@@ -1,0 +1,127 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AccountDeletionResponse {
+  message: String!
+}
+
+type Admin {
+  avatar: String
+  createdAt: String!
+  email: String!
+  email_verified: Boolean!
+  firstname: String!
+  fullname: String!
+  id: ID!
+  lastname: String!
+  role: String!
+  status: String!
+  tokenVersion: String!
+  updatedAt: String!
+  user_number: String!
+  username: String!
+}
+
+input AdminCredentialsDto {
+  email: String!
+  password: String!
+}
+
+input CreateUserDTO {
+  email: String!
+  firstname: String!
+  lastname: String!
+  password: String!
+}
+
+type CreateUserResponse {
+  message: String!
+  type: String!
+  user: User
+}
+
+type LoginResponse {
+  accessToken: String!
+  avatar: String
+  email: String!
+  firstname: String!
+  fullname: String!
+  id: String!
+  lastname: String!
+  role: String!
+}
+
+type LoginResponseUser {
+  accessToken: String!
+  avatar: String
+  email: String!
+  firstname: String!
+  fullname: String!
+  id: String!
+  lastname: String!
+  refreshToken: String!
+  role: String!
+  username: String!
+}
+
+type Mutation {
+  AdminDeleteAccount: AccountDeletionResponse!
+  AdminLogin(data: AdminCredentialsDto!): LoginResponse!
+  AdminSignup: RegisterAdminResponse!
+  AdminUpdateInfo(data: UpdateAdminDto!): Admin!
+  UserLogin(data: UserCredentialsDto!): LoginResponseUser!
+  UserRegister(data: CreateUserDTO!): CreateUserResponse!
+  UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
+}
+
+type Query {
+  AdminProfile: Admin!
+  UserProfile: User!
+  UsersList: [User!]!
+}
+
+type RegisterAdminResponse {
+  message: String!
+}
+
+input UpdateAdminDto {
+  firstname: String!
+  lastname: String!
+  username: String!
+}
+
+input UpdateUserDTO {
+  birthdate: String
+  firstname: String!
+  lastname: String!
+}
+
+type UpdateUserResponse {
+  message: String!
+  type: String!
+  user: User!
+}
+
+type User {
+  archived: Boolean!
+  avatar: String
+  createdAt: String!
+  email: String!
+  firstname: String!
+  fullname: String!
+  id: ID!
+  lastname: String!
+  revoke_login: Boolean!
+  role: String!
+  status: String!
+  tokenVersion: String!
+  updatedAt: String!
+  user_ID: String!
+  username: String!
+}
+
+input UserCredentialsDto {
+  email: String!
+  password: String!
+}
