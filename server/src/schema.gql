@@ -28,6 +28,20 @@ input AdminCredentialsDto {
   password: String!
 }
 
+type AllHotspotTypeQueryResponse {
+  totalCount: Int!
+  types: [HotspotType!]!
+}
+
+type CreateHospotTypeResponse {
+  message: String!
+  type: HotspotType!
+}
+
+input CreateHotpotTypeDTO {
+  type_name: String!
+}
+
 input CreateUserDTO {
   email: String!
   firstname: String!
@@ -39,6 +53,22 @@ type CreateUserResponse {
   message: String!
   type: String!
   user: User
+}
+
+input DeleteHotspotTypeDTO {
+  type_id: String!
+}
+
+type DeleteHotspotTypeResponse {
+  message: String!
+}
+
+type HotspotType {
+  createdAt: String!
+  id: ID!
+  type_deleted: Boolean!
+  type_name: String!
+  updatedAt: String!
 }
 
 type LoginResponse {
@@ -70,6 +100,11 @@ type Mutation {
   AdminLogin(data: AdminCredentialsDto!): LoginResponse!
   AdminSignup: RegisterAdminResponse!
   AdminUpdateInfo(data: UpdateAdminDto!): Admin!
+  HotspotTypeArchive(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
+  HotspotTypeCreation(data: CreateHotpotTypeDTO!): CreateHospotTypeResponse!
+  HotspotTypeDelete(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
+  HotspotTypeRestore(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
+  HotspotTypeUpdate(data: UpdateHotspotTypeDTO!): UpdateHotspoTypeResponse!
   UserLogin(data: UserCredentialsDto!): LoginResponseUser!
   UserRegister(data: CreateUserDTO!): CreateUserResponse!
   UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
@@ -77,6 +112,9 @@ type Mutation {
 
 type Query {
   AdminProfile: Admin!
+  AllActiveHotspotType: [HotspotType!]!
+  AllHotspotType(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotTypeQueryResponse!
+  SelectedHotspotType(id: String!): HotspotType!
   UserProfile: User!
   UsersList: [User!]!
 }
@@ -89,6 +127,16 @@ input UpdateAdminDto {
   firstname: String!
   lastname: String!
   username: String!
+}
+
+input UpdateHotspotTypeDTO {
+  type_id: String!
+  type_name: String!
+}
+
+type UpdateHotspoTypeResponse {
+  message: String!
+  type: HotspotType!
 }
 
 input UpdateUserDTO {

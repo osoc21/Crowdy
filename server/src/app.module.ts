@@ -10,11 +10,11 @@ import { TypeOrmConfigService } from './config/databases/postgres/config.service
 import { AdminAuthConfigModule } from './config/auth/admin-auth/config.module';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './config/Log/winston.config';
-import { RoleModule } from './modules/role/role.module';
 import { UserAuthConfigModule } from 'src/config/auth/user/config.module';
 
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { UserModule } from './modules/user/user.module';
+import { HotspotTypeModule } from './modules/hotspotType/hotspotType.module';
 
 /**
  * Import and provide app related classes.
@@ -59,7 +59,7 @@ import { UserModule } from './modules/user/user.module';
     AdminModule,
     AdminAuthModule,
     UserModule,
-    RoleModule,
+    HotspotTypeModule,
   ],
   controllers: [],
   providers: [],
