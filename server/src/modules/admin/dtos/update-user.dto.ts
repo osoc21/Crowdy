@@ -6,7 +6,7 @@ import { UsernameAlreadyExists } from 'src/shared/validation/decorators/admin';
 @InputType()
 export class UpdateAdminDto extends BaseNameWithValidation(class {}) {
   @Field()
-  @IsString({ message: `Format non pris en charge.` })
+  @IsString({ message: `Username invalid format.` })
   @MinLength(6, {
     message: `Le Nom d'utilisateur doit avoir au moins 12 caractères.`,
   })

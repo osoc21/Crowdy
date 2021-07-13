@@ -24,24 +24,26 @@ export class AdminResolver {
   }
 
   /* Update Admin Info */
+  @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => Admin)
   async AdminUpdateInfo(
     @CurrentAdmin()
-    user: Admin,
+    admin: Admin,
     @Args('data') updateUserDto: UpdateAdminDto,
   ) {
-    const id = user.id;
-    return this.userService.updateUser(updateUserDto, id);
+    const id = admin.id;
+    return this.userService.updateAdmin(updateUserDto, id);
   }
 
   /* Delete admin account */
+  @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => AccountDeletionResponse)
   async AdminDeleteAccount(
     @CurrentAdmin()
     user: Admin,
   ) {
     const id = user.id;
-    await this.userService.deleteUser(id);
-    return { message: `Votre compte a été supprimé avec succès` };
+    await this.userService.deleteAdmin(id);
+    return { message: `Your account has been successfully deleted!` };
   }
 }

@@ -12,25 +12,25 @@ export class JwtStrategyAdmin extends PassportStrategy(Strategy, 'jwt-admin') {
   constructor(
     @InjectRepository(AdminAuthRepository)
     private readonly authUserRepository: AdminAuthRepository,
-    readonly userAuthConfig: AdminJwtConfigService,
+    readonly adminAuthConfig: AdminJwtConfigService,
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: userAuthConfig.jwtSecret,
+      secretOrKey: adminAuthConfig.jwtSecret,
     });
   }
 
   async validate(payload: IJwtPayloadAdmin): Promise<Admin> {
     const { id } = payload;
-    const user = await this.authUserRepository.findOne({ id });
+    const admin = await this.authUserRepository.findOne({ id });
 
-    if (!user) {
+    if (!admin) {
       throw new UnauthorizedException(
         'Please authenticated yourself first as an Admin!',
       );
     }
 
-    return user;
+    return admin;
   }
 }

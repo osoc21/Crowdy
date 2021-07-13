@@ -70,6 +70,7 @@ export class UserRepository extends Repository<User> {
     const user = await this.findUserById(id);
     user.firstname = firstname ? firstname : user.firstname;
     user.lastname = lastname ? lastname : user.lastname;
+    user.fullname = `${firstname} ${lastname}`;
 
     try {
       await this.save(user);
