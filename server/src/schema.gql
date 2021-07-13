@@ -28,9 +28,19 @@ input AdminCredentialsDto {
   password: String!
 }
 
+type AllHotspotQueryResponse {
+  hotspots: [HotSpot!]!
+  totalCount: Int!
+}
+
 type AllHotspotTypeQueryResponse {
   totalCount: Int!
   types: [HotspotType!]!
+}
+
+type CreateHospotResponse {
+  hotspot: HotSpot!
+  message: String!
 }
 
 type CreateHospotTypeResponse {
@@ -40,6 +50,10 @@ type CreateHospotTypeResponse {
 
 input CreateHotpotTypeDTO {
   type_name: String!
+}
+
+input CreateHotSpotDTO {
+  hotspot_name: String!
 }
 
 input CreateUserDTO {
@@ -55,12 +69,34 @@ type CreateUserResponse {
   user: User
 }
 
+input DeleteHotspotDTO {
+  hotspot_id: String!
+}
+
+type DeleteHotspotResponse {
+  message: String!
+}
+
 input DeleteHotspotTypeDTO {
   type_id: String!
 }
 
 type DeleteHotspotTypeResponse {
   message: String!
+}
+
+type HotSpot {
+  city: String
+  coordinates: [JSON!]
+  createdAt: String!
+  district: String
+  hotspot_deleted: Boolean!
+  hotspot_name: String!
+  hotspot_status: String
+  id: ID!
+  number: String
+  street: String
+  updatedAt: String!
 }
 
 type HotspotType {
@@ -70,6 +106,11 @@ type HotspotType {
   type_name: String!
   updatedAt: String!
 }
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
 
 type LoginResponse {
   accessToken: String!
@@ -100,11 +141,16 @@ type Mutation {
   AdminLogin(data: AdminCredentialsDto!): LoginResponse!
   AdminSignup: RegisterAdminResponse!
   AdminUpdateInfo(data: UpdateAdminDto!): Admin!
+  HotspotArchive(data: DeleteHotspotDTO!): DeleteHotspotResponse!
+  HotspotCreation(data: CreateHotSpotDTO!): CreateHospotResponse!
+  HotspotDelete(data: DeleteHotspotDTO!): DeleteHotspotResponse!
+  HotSpotRestore(data: DeleteHotspotDTO!): DeleteHotspotResponse!
   HotspotTypeArchive(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeCreation(data: CreateHotpotTypeDTO!): CreateHospotTypeResponse!
   HotspotTypeDelete(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeRestore(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeUpdate(data: UpdateHotspotTypeDTO!): UpdateHotspoTypeResponse!
+  HotspotUpdate(data: UpdateHotspotDTO!): UpdateHotspoResponse!
   UserLogin(data: UserCredentialsDto!): LoginResponseUser!
   UserRegister(data: CreateUserDTO!): CreateUserResponse!
   UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
@@ -112,8 +158,11 @@ type Mutation {
 
 type Query {
   AdminProfile: Admin!
+  AllActiveHotspot: [HotSpot!]!
   AllActiveHotspotType: [HotspotType!]!
+  AllHotspot(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotQueryResponse!
   AllHotspotType(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotTypeQueryResponse!
+  SelectedHotspot(id: String!): HotSpot!
   SelectedHotspotType(id: String!): HotspotType!
   UserProfile: User!
   UsersList: [User!]!
@@ -127,6 +176,16 @@ input UpdateAdminDto {
   firstname: String!
   lastname: String!
   username: String!
+}
+
+type UpdateHotspoResponse {
+  hotspot: HotSpot!
+  message: String!
+}
+
+input UpdateHotspotDTO {
+  hotspot_id: String!
+  hotspot_name: String!
 }
 
 input UpdateHotspotTypeDTO {

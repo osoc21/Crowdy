@@ -15,6 +15,7 @@ import { UserAuthConfigModule } from 'src/config/auth/user/config.module';
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { UserModule } from './modules/user/user.module';
 import { HotspotTypeModule } from './modules/hotspotType/hotspotType.module';
+import { HotspotModule } from './modules/hotspot/hotspot.module';
 
 /**
  * Import and provide app related classes.
@@ -59,6 +60,7 @@ import { HotspotTypeModule } from './modules/hotspotType/hotspotType.module';
     AdminModule,
     AdminAuthModule,
     UserModule,
+    HotspotModule,
     HotspotTypeModule,
   ],
   controllers: [],

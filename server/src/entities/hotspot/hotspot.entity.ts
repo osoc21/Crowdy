@@ -44,4 +44,9 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   @Field(() => String, { nullable: true })
   @Column('varchar', { default: 'active' })
   hotspot_status: string;
+
+  /* Space for deleted hotspot */
+  @Field(() => Boolean)
+  @Column({ default: false })
+  hotspot_deleted: boolean;
 }
