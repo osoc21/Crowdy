@@ -4,8 +4,10 @@ import {
   EntityBase,
 } from 'src/entities/base-entity/base.entity';
 import { EmptyClass } from 'src/shared/library';
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, ManyToOne } from 'typeorm';
 import GraphQLJSON from 'graphql-type-json';
+import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
+import { HotspotService } from 'src/entities/hotspotService/hotspotService.entity';
 
 @ObjectType()
 @Entity('hotspots')
@@ -44,6 +46,28 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   @Field(() => String)
   @Column('varchar', { default: 'active' })
   hotspot_status: string;
+
+  // Space for hotspot Types
+  @Field(() => HotspotType)
+  @ManyToOne(
+    type => HotspotType,
+    type => type.hotspots,
+    { eager: false },
+  )
+  hotspotType: HotspotType;
+
+  @Field(() => String)
+  @Column('uuid')
+  hotspoTypeId: string;
+
+  // Space for hotspot Services
+  @Field(() => [HotspotService])
+  @OneToMany(
+    () => HotspotService,
+    type => type.hotspot,
+    { eager: true, nullable: true },
+  )
+  hotspotServices: HotspotService[];
 
   /* Space for deleted hotspot */
   @Field(() => Boolean)

@@ -120,6 +120,9 @@ type HotSpot {
   hotspot_deleted: Boolean!
   hotspot_name: String!
   hotspot_status: String!
+  hotspotServices: [HotspotService!]!
+  hotspotType: HotspotType!
+  hotspoTypeId: String!
   id: ID!
   number: String!
   street: String!
@@ -128,6 +131,8 @@ type HotSpot {
 
 type HotspotService {
   createdAt: String!
+  hotspot: HotSpot!
+  hotspotId: String!
   id: ID!
   service_deleted: Boolean!
   service_name: String!
@@ -141,6 +146,7 @@ input HotspotServiceUpdateDTO {
 
 type HotspotType {
   createdAt: String!
+  hotspots: [HotSpot!]!
   id: ID!
   type_deleted: Boolean!
   type_name: String!

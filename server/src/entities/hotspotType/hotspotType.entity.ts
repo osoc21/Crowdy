@@ -4,7 +4,8 @@ import {
   EntityBase,
 } from 'src/entities/base-entity/base.entity';
 import { EmptyClass } from 'src/shared/library';
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, ManyToOne } from 'typeorm';
+import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
 
 @ObjectType()
 @Entity('hotspotType')
@@ -13,6 +14,16 @@ export class HotspotType extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   @Field(() => String)
   @Column('varchar', { length: 55, unique: true })
   type_name: string;
+
+  /* Space for Hotspot and the relation*/
+
+  @Field(() => [HotSpot])
+  @OneToMany(
+    () => HotSpot,
+    hotspot => hotspot.hotspotType,
+    { eager: true, nullable: true },
+  )
+  hotspots: HotSpot[];
 
   /* Space for deleted hotspot type*/
   @Field(() => Boolean)
