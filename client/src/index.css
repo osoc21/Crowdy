@@ -1,0 +1,20 @@
+@import './styles/reset.css';
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  height: 100%;
+}
+
+/* stylelint-disable */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+/* stylelint-enable */
+
+body {
+  font-size: 2rem;
+  line-height: 1.4;
+}
