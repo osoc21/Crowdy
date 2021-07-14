@@ -16,32 +16,32 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   hotspot_name: string;
 
   /* Space for coordinates*/
-  @Field(() => [GraphQLJSON], { nullable: true })
+  @Field(() => [GraphQLJSON])
   @Column('jsonb')
   coordinates: object[];
 
   /* Space for hotspot city */
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   @Column('varchar', { length: 55, unique: true, nullable: true })
   city: string;
 
   /* Space for hotspot district */
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   @Column('varchar', { length: 55, unique: true, nullable: true })
   district: string;
 
   /* Space for hotspot street */
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   @Column('varchar', { length: 55, unique: true, nullable: true })
   street: string;
 
   /* Space for hotspot street number */
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   @Column('varchar', { length: 55, unique: true, nullable: true })
   number: string;
 
   /* Space for status */
-  @Field(() => String, { nullable: true })
+  @Field(() => String)
   @Column('varchar', { default: 'active' })
   hotspot_status: string;
 

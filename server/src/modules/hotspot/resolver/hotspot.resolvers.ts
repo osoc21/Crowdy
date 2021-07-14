@@ -14,8 +14,8 @@ import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
 
 @Resolver()
 // @UseGuards(new GqlAuthGuardAdmin())
-export class HotspotTypeResolver {
-  constructor(private hotspotTypeService: HotSpotService) {}
+export class HotspotResolver {
+  constructor(private hotspotService: HotSpotService) {}
 
   /* Read all HotSpot */
   @UseGuards(new GqlAuthGuardAdmin())
@@ -26,37 +26,30 @@ export class HotspotTypeResolver {
     @Args('q', { type: () => String, nullable: true }) q?: string,
     @Args('deleted', { type: () => Boolean, nullable: true }) deleted?: boolean,
   ): Promise<AllHotspotQueryResponse> {
-    return await this.hotspotTypeService.getAllHotspot(
-      page,
-      perPage,
-      q,
-      deleted,
-    );
+    return await this.hotspotService.getAllHotspot(page, perPage, q, deleted);
   }
 
   /* Read all HotSpot for selection*/
   // @UseGuards(new GqlAuthGuardAdmin())
   @Query(() => [HotSpot])
   async AllActiveHotspot(): Promise<HotSpot[]> {
-    return await this.hotspotTypeService.AllActiveHotspot();
+    return await this.hotspotService.AllActiveHotspot();
   }
 
   // ** Get Selected HotSpot
   // @UseGuards(new GqlAuthGuardAdmin())
   @Query(() => HotSpot)
   async SelectedHotspot(@Args('id', { type: () => String }) id: string) {
-    return await this.hotspotTypeService.getSelectedHotspot(id);
+    return await this.hotspotService.getSelectedHotspot(id);
   }
 
   /* Create HotSpot Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => CreateHospotResponse)
   async HotspotCreation(
     @Args('data') createHotspotDTO: CreateHotSpotDTO,
   ): Promise<CreateHospotResponse> {
-    const hotspot = await this.hotspotTypeService.createHotspot(
-      createHotspotDTO,
-    );
+    const hotspot = await this.hotspotService.createHotspot(createHotspotDTO);
     return {
       hotspot: hotspot,
       message: 'The Hotspot has been saved!',
@@ -69,7 +62,7 @@ export class HotspotTypeResolver {
   async HotspotUpdate(
     @Args('data') updateHotSpotDTO: UpdateHotspotDTO,
   ): Promise<UpdateHotspoResponse> {
-    const type = await this.hotspotTypeService.updateHotspot(updateHotSpotDTO);
+    const type = await this.hotspotService.updateHotspot(updateHotSpotDTO);
     return {
       hotspot: type,
       message: 'The Hotspot has been updated!',
@@ -82,7 +75,7 @@ export class HotspotTypeResolver {
   async HotspotArchive(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,
   ): Promise<DeleteHotspotResponse> {
-    await this.hotspotTypeService.archiveHotspot(deleteHotspotDTO);
+    await this.hotspotService.archiveHotspot(deleteHotspotDTO);
     return {
       message: 'The Hotspot has been archived!',
     };
@@ -94,7 +87,7 @@ export class HotspotTypeResolver {
   async HotSpotRestore(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,
   ): Promise<DeleteHotspotResponse> {
-    await this.hotspotTypeService.restoreHotspot(deleteHotspotDTO);
+    await this.hotspotService.restoreHotspot(deleteHotspotDTO);
     return {
       message: 'The Hotspot has been restored!',
     };
@@ -106,7 +99,7 @@ export class HotspotTypeResolver {
   async HotspotDelete(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,
   ): Promise<DeleteHotspotResponse> {
-    await this.hotspotTypeService.deleteHotspot(deleteHotspotDTO);
+    await this.hotspotService.deleteHotspot(deleteHotspotDTO);
     return {
       message: 'The Hotspot has been deleted!',
     };

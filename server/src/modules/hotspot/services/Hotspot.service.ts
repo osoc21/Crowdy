@@ -71,10 +71,8 @@ export class HotSpotService {
   }
 
   /* Hotspot creation service */
-  async createHotspot(
-    createHotspotTypeDTO: CreateHotSpotDTO,
-  ): Promise<HotSpot> {
-    return await this.hotspotRepository.createHotspot(createHotspotTypeDTO);
+  async createHotspot(createHotspotDTO: CreateHotSpotDTO): Promise<HotSpot> {
+    return await this.hotspotRepository.createHotspot(createHotspotDTO);
   }
 
   /* Hotspot Update service */

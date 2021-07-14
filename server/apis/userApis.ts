@@ -1,3 +1,5 @@
+import { gql } from 'apollo-server-express';
+
 /**
  * USER  APIS [Funcs]
  */

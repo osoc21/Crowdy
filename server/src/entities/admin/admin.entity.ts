@@ -22,7 +22,7 @@ import { AdminStatus } from './enum/admin.status.enum';
 export class Admin extends EntityBaseWithDate(
   EntityWithNames(EntityBase(EmptyClass)),
 ) {
-  /* Space for roles */
+  /* Space for avatar */
   @Field({ nullable: true })
   @Column('text', { nullable: true })
   avatar: string;

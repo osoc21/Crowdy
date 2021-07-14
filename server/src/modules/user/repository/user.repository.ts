@@ -18,12 +18,12 @@ import { CreateUserResponse } from '../dtos/responses/user-creation.response';
 export class UserRepository extends Repository<User> {
   /* User creation repository */
   async createUser(createUserDTO: CreateUserDTO): Promise<CreateUserResponse> {
-    const { firstname, lastname, email, password } = createUserDTO;
+    const { lastname, email, password } = createUserDTO;
 
     // Getting the actual ability
 
     const user = this.create();
-    user.firstname = firstname;
+    // user.firstname = firstname;
     user.lastname = lastname;
     user.email = email;
     user.salt = await bcrypt.genSalt();
@@ -66,11 +66,11 @@ export class UserRepository extends Repository<User> {
   }
   /* Employee Update repository */
   async updateUserInfo(id, updateUserDTO: UpdateUserDTO): Promise<User> {
-    const { firstname, lastname } = updateUserDTO;
+    const { lastname } = updateUserDTO;
     const user = await this.findUserById(id);
-    user.firstname = firstname ? firstname : user.firstname;
+    // user.firstname = firstname ? firstname : user.firstname;
     user.lastname = lastname ? lastname : user.lastname;
-    user.fullname = `${firstname} ${lastname}`;
+    // user.fullname = `${firstname} ${lastname}`;
 
     try {
       await this.save(user);

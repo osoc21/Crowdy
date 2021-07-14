@@ -5,7 +5,6 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
-// import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateHotSpotDTO } from '../dtos/inputs/create-hotspot.dto';
 import { DeleteHotspotDTO } from '../dtos/inputs/delete-hotspot.dto';
@@ -16,14 +15,26 @@ import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
 export class HotSpotRepository extends Repository<HotSpot> {
   /* HotSpot creation repository */
   async createHotspot(createHotspotDTO: CreateHotSpotDTO): Promise<HotSpot> {
-    const { hotspot_name: type_name } = createHotspotDTO;
+    const {
+      hotspot_name,
+      city,
+      district,
+      hotspot_coordinates,
+      street,
+      number,
+    } = createHotspotDTO;
 
-    const type = this.create();
-    type.hotspot_name = type_name;
+    const hotspot = this.create();
+    hotspot.hotspot_name = hotspot_name;
+    hotspot.coordinates = hotspot_coordinates;
+    hotspot.city = city;
+    hotspot.district = district;
+    hotspot.street = street;
+    hotspot.number = number;
 
     try {
-      await this.manager.save(type);
-      return type;
+      await this.manager.save(hotspot);
+      return hotspot;
     } catch (error) {
       if (error.code.toString() === '23505') {
         throw new ConflictException(
@@ -41,12 +52,9 @@ export class HotSpotRepository extends Repository<HotSpot> {
   async updateHotspot(
     updateHotspotTypeDTO: UpdateHotspotDTO,
   ): Promise<HotSpot> {
-    const {
-      hotspot_name: type_name,
-      hotspot_id: type_id,
-    } = updateHotspotTypeDTO;
-    const type = await this.findHotspotById(type_id);
-    type.hotspot_name = type_name ? type_name : type.hotspot_name;
+    const { hotspot_name, hotspot_id } = updateHotspotTypeDTO;
+    const type = await this.findHotspotById(hotspot_id);
+    type.hotspot_name = hotspot_name ? hotspot_name : type.hotspot_name;
 
     try {
       await this.save(type);
