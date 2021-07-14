@@ -185,3 +185,76 @@ export const DELETE_HOTSPOT_TYPE_API = gql`
 // {
 //   "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5NDA3YzdlLWE5OTAtNDZlNy1hNzQ4LTgyYmE1ZTcyY2I5MyIsInVzZXJuYW1lIjoia1NJSUlLR254MWtqIiwidXNlcl9pZCI6IlpYLVVTUi1JTkVSLTI4MDcyIiwiaWF0IjoxNjI2MTY4NTgxLCJleHAiOjE2MjYxNzIxODF9.JlhE0SEzvmB1rTJEWB_t-H4mPbAK-A6OPG1w16ONdzI"
 // }
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+/**
+ *  THIS PART IS FOR QUERIES ONLY
+ */
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+// ** QUERY :: ALL ACTIVE HOTSPOT TYPE
+export const ALL_ACTIVE_HOTSPOTS_TYPES = gql`
+  query {
+    AllActiveHotspotType {
+      id
+      type_name
+      type_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+// ** NO variables to provide
+// ** Expected DATA
+// {
+//   "data": {
+//     "AllActiveHotspotType": [
+//       {
+//         "id": "fdb30cbb-ce75-447e-85be-7660368a44a1",
+//         "type_name": "Park",
+//         "type_deleted": false,
+//         "updatedAt": "1626271395199",
+//         "createdAt": "1626271395199"
+//       }
+//     ]
+//   }
+// }
+
+// ** QUERY :: GET SELECTED HOTSPOT TYPE
+export const GET_SELECTED_HOTSPOT_TYPE = gql`
+  query($id: String!) {
+    SelectedHotspotService(id: $id) {
+      id
+      service_name
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+//** VARIABLES TO PROVIDE
+// {
+//   "id":"fdb30cbb-ce75-447e-85be-7660368a44a1"
+// }
+
+// BLueprint of expected DATA
+// {
+//   "data": {
+//     "SelectedHotspotType": {
+//       "id": "fdb30cbb-ce75-447e-85be-7660368a44a1",
+//       "type_name": "Park",
+//       "type_deleted": false,
+//       "updatedAt": "1626271395199",
+//       "createdAt": "1626271395199"
+//     }
+//   }
+// }

@@ -177,3 +177,77 @@ export const DELETE_HOTSPOT_SERVICE_API = gql`
 // {
 //   "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5NDA3YzdlLWE5OTAtNDZlNy1hNzQ4LTgyYmE1ZTcyY2I5MyIsInVzZXJuYW1lIjoia1NJSUlLR254MWtqIiwidXNlcl9pZCI6IlpYLVVTUi1JTkVSLTI4MDcyIiwiaWF0IjoxNjI2MTY4NTgxLCJleHAiOjE2MjYxNzIxODF9.JlhE0SEzvmB1rTJEWB_t-H4mPbAK-A6OPG1w16ONdzI"
 // }
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+/**
+ *  THIS PART IS FOR QUERIES ONLY
+ */
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+// ** QUERY :: ALL ACTIVE HOTSPOT
+export const ALL_ACTIVE_HOTSPOTS_SERVICES = gql`
+  query {
+    AllActiveHotspotServices {
+      id
+      service_name
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+// ** NO variables to provide
+// ** Expected DATA
+// {
+//   "data": {
+//     "HotspotCreationService": {
+//       "hotspotService": {
+//         "id": "1b2d9093-3bf3-4086-aa26-4f8510af7ba2",
+//         "service_name": "Sthg cool",
+//         "service_deleted": false,
+//         "updatedAt": "1626271175601",
+//         "createdAt": "1626271175601"
+//       },
+//       "message": "The Hotspot Service has been saved!"
+//     }
+//   }
+// }
+
+// ** QUERY :: GET SELECTED HOTSPOT
+export const GET_SELECTED_HOTSPOT_SERVICE = gql`
+  query($id: String!) {
+    SelectedHotspotService(id: $id) {
+      id
+      service_name
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+//** VARIABLES TO PROVIDE
+// {
+//   "id":"1b2d9093-3bf3-4086-aa26-4f8510af7ba2"
+// }
+
+// BLueprint of expected DATA
+// {
+//   "data": {
+//     "SelectedHotspotService": {
+//       "id": "1b2d9093-3bf3-4086-aa26-4f8510af7ba2",
+//       "service_name": "Sthg cool",
+//       "service_deleted": false,
+//       "updatedAt": "1626271175601",
+//       "createdAt": "1626271175601"
+//     }
+//   }
+// }

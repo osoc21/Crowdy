@@ -59,9 +59,9 @@ export class HotSpotService {
   async AllActiveHotspot(): Promise<HotSpot[]> {
     return await this.hotspotRepository.find({
       where: {
-        type_deleted: 'false',
+        hotspot_deleted: 'false',
       },
-      relations: ['hotspots'],
+      // relations: ['hotspots'],
     });
   }
 

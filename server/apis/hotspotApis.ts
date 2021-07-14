@@ -206,3 +206,101 @@ export const DELETE_HOTSPOT_API = gql`
 // {
 //   "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5NDA3YzdlLWE5OTAtNDZlNy1hNzQ4LTgyYmE1ZTcyY2I5MyIsInVzZXJuYW1lIjoia1NJSUlLR254MWtqIiwidXNlcl9pZCI6IlpYLVVTUi1JTkVSLTI4MDcyIiwiaWF0IjoxNjI2MTY4NTgxLCJleHAiOjE2MjYxNzIxODF9.JlhE0SEzvmB1rTJEWB_t-H4mPbAK-A6OPG1w16ONdzI"
 // }
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+/**
+ *  THIS PART IS FOR QUERIES ONLY
+ */
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+// ** QUERY :: ALL ACTIVE HOTSPOT
+export const ALL_ACTIVE_HOTSPOTS = gql`
+  query {
+    AllActiveHotspot {
+      id
+      hotspot_name
+      coordinates
+      city
+      district
+      street
+      number
+      hotspot_status
+      hotspot_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+// ** variables to provide
+// ** Expected DATA
+// {
+//   "data": {
+//     "AllActiveHotspot": [
+//       {
+//         "id": "00dbae87-e229-4275-88f2-bc85370c1f2c",
+//         "hotspot_name": "Koken Market",
+//         "coordinates": [],
+//         "city": "",
+//         "district": "",
+//         "street": "",
+//         "number": "",
+//         "hotspot_status": "active",
+//         "hotspot_deleted": false,
+//         "updatedAt": "1626269070780",
+//         "createdAt": "1626269070780"
+//       }
+//     ]
+//   }
+// }
+
+// ** QUERY :: GET SELECTED HOTSPOT
+export const GET_SELECTED_HOTSPOT = gql`
+  query($id: String!) {
+    SelectedHotspot(id: $id) {
+      id
+      hotspot_name
+      coordinates
+      city
+      district
+      street
+      number
+      hotspot_status
+      hotspot_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+//** VARIABLES TO PROVIDE
+// {
+//   "id":"00dbae87-e229-4275-88f2-bc85370c1f2c"
+// }
+
+// BLueprint of expected DATA
+// {
+//   "data": {
+//     "SelectedHotspot": {
+//       "id": "00dbae87-e229-4275-88f2-bc85370c1f2c",
+//       "hotspot_name": "Koken Market",
+//       "coordinates": [],
+//       "city": "",
+//       "district": "",
+//       "street": "",
+//       "number": "",
+//       "hotspot_status": "active",
+//       "hotspot_deleted": false,
+//       "updatedAt": "1626269070780",
+//       "createdAt": "1626269070780"
+//     }
+//   }
+// }

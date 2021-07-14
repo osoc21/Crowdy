@@ -61,7 +61,7 @@ export class HotSpotTypeService {
       where: {
         type_deleted: 'false',
       },
-      relations: ['hotspots'],
+      // relations: ['hotspots'],
     });
   }
 
