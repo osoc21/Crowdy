@@ -19,14 +19,14 @@ export class HotSpotRepository extends Repository<HotSpot> {
       hotspot_name,
       city,
       district,
-      hotspot_coordinates,
+      coordinates,
       street,
       number,
     } = createHotspotDTO;
 
     const hotspot = this.create();
     hotspot.hotspot_name = hotspot_name;
-    hotspot.coordinates = hotspot_coordinates;
+    hotspot.coordinates = coordinates;
     hotspot.city = city;
     hotspot.district = district;
     hotspot.street = street;
@@ -52,7 +52,11 @@ export class HotSpotRepository extends Repository<HotSpot> {
   async updateHotspot(
     updateHotspotTypeDTO: UpdateHotspotDTO,
   ): Promise<HotSpot> {
-    const { hotspot_name, hotspot_id } = updateHotspotTypeDTO;
+    const {
+      hotspot_name,
+      hotspot_id,
+      hotspot_coordinates,
+    } = updateHotspotTypeDTO;
     const type = await this.findHotspotById(hotspot_id);
     type.hotspot_name = hotspot_name ? hotspot_name : type.hotspot_name;
 
@@ -61,7 +65,7 @@ export class HotSpotRepository extends Repository<HotSpot> {
       return type;
     } catch (error) {
       throw new InternalServerErrorException(
-        `Error while updating the hotspot type name!`,
+        `Error while updating the hotspot  name!`,
       );
     }
   }
@@ -77,15 +81,15 @@ export class HotSpotRepository extends Repository<HotSpot> {
       return type;
     } catch (error) {
       throw new InternalServerErrorException(
-        `Error while archiving the hotspot type. Please try again later!`,
+        `Error while archiving the hotspot . Please try again later!`,
       );
     }
   }
 
   /* HotSpot restore repository */
   async restoreHotspot(restoreHotspoTypeDTO: DeleteHotspotDTO) {
-    const { hotspot_id: type_id } = restoreHotspoTypeDTO;
-    const type = await this.findHotspotById(type_id);
+    const { hotspot_id } = restoreHotspoTypeDTO;
+    const type = await this.findHotspotById(hotspot_id);
     type.hotspot_deleted = false;
 
     try {

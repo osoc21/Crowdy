@@ -58,16 +58,21 @@ type CreateHospotTypeResponse {
   type: HotspotType!
 }
 
-input CreateHotpotTypeDTO {
-  type_name: String!
-}
-
 input CreateHotSpotDTO {
+  city: String
+  coordinates: [JSON!]
+  district: String
   hotspot_name: String!
+  number: String
+  street: String
 }
 
 input CreateHotSpotServiceDTO {
   service_name: String!
+}
+
+input CreateHotspotTypeDTO {
+  type_name: String!
 }
 
 input CreateUserDTO {
@@ -92,7 +97,7 @@ type DeleteHotspotResponse {
 }
 
 input DeleteHotspotServiceDTO {
-  hotspot_id: String!
+  service_id: String!
 }
 
 type DeleteHotspotServiceResponse {
@@ -108,16 +113,16 @@ type DeleteHotspotTypeResponse {
 }
 
 type HotSpot {
-  city: String
-  coordinates: [JSON!]
+  city: String!
+  coordinates: [JSON!]!
   createdAt: String!
-  district: String
+  district: String!
   hotspot_deleted: Boolean!
   hotspot_name: String!
-  hotspot_status: String
+  hotspot_status: String!
   id: ID!
-  number: String
-  street: String
+  number: String!
+  street: String!
   updatedAt: String!
 }
 
@@ -127,6 +132,11 @@ type HotspotService {
   service_deleted: Boolean!
   service_name: String!
   updatedAt: String!
+}
+
+input HotspotServiceUpdateDTO {
+  service_id: String!
+  service_name: String!
 }
 
 type HotspotType {
@@ -179,12 +189,13 @@ type Mutation {
   HotspotServiceArchive(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotspotServiceDelete(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotSpotServiceRestore(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
+  HotspotServiceUpdate(data: HotspotServiceUpdateDTO!): UpdateHotspotServiceResponse!
   HotspotTypeArchive(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
-  HotspotTypeCreation(data: CreateHotpotTypeDTO!): CreateHospotTypeResponse!
+  HotspotTypeCreation(data: CreateHotspotTypeDTO!): CreateHospotTypeResponse!
   HotspotTypeDelete(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeRestore(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeUpdate(data: UpdateHotspotTypeDTO!): UpdateHotspoTypeResponse!
-  HotspotUpdate(data: UpdateHotspotServiceDTO!): UpdateHotspotServiceResponse!
+  HotspotUpdate(data: UpdateHotspotDTO!): UpdateHotspotResponse!
   UserLogin(data: UserCredentialsDto!): LoginResponseUser!
   UserRegister(data: CreateUserDTO!): CreateUserResponse!
   UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
@@ -215,14 +226,19 @@ input UpdateAdminDto {
   username: String!
 }
 
-type UpdateHotspoResponse {
-  hotspot: HotSpot!
-  message: String!
+input UpdateHotspotDTO {
+  city: String
+  district: String
+  hotspot_coordinates: [JSON!]
+  hotspot_id: String!
+  hotspot_name: String!
+  number: String
+  street: String
 }
 
-input UpdateHotspotServiceDTO {
-  service_id: String!
-  service_name: String!
+type UpdateHotspotResponse {
+  hotspot: HotSpot!
+  message: String!
 }
 
 type UpdateHotspotServiceResponse {

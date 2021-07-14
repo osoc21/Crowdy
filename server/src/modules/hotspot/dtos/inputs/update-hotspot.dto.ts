@@ -11,60 +11,67 @@ import { version } from 'uuid';
 
 @InputType()
 export class UpdateHotspotDTO {
+  // hotspot Id
   @Field()
   @IsString({ message: `String format not supported.` })
   @IsUUID(4, { message: `Not valid UUID version!` })
   hotspot_id: string;
 
+  // Hotspot name
   @Field()
   @IsString({ message: `String format not supported.` })
-  @MinLength(2, {
-    message: `Hotspot Type name must have at least 2 characters.`,
-  })
+  // @MinLength(2, {
+  //   message: `Hotspot Type name must have at least 2 characters.`,
+  // })
   @MaxLength(55, {
     message: `Hotspot Type name too long.`,
   })
   hotspot_name: string;
 
-  @Field()
+  // Hotspot coordinates
+  @Field(() => [GraphQLJSON], { nullable: true })
   @IsArray({ message: `Coordinates format not allowed.` })
   hotspot_coordinates: [JSON];
 
-  @Field()
+  // Hotspot city
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The city of the hotspot must contain at least two letters.`,
-  })
+  // @MinLength(2, {
+  //   message: `The city of the hotspot must contain at least two letters.`,
+  // })
   @MaxLength(25, {
     message: `The Hotspot city is too long.`,
   })
   city: string;
 
-  @Field()
+  // Hotspot district
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot district must contain at least two letters.`,
-  })
+  // @MinLength(2, {
+  //   message: `The Hotspot district must contain at least two letters.`,
+  // })
   @MaxLength(25, {
     message: `The Hotspot district is too long.`,
   })
   district: string;
 
-  @Field()
+  // hotspot street
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot street must contain at least two letters.`,
-  })
+  // @MinLength(2, {
+  //   message: `The Hotspot street must contain at least two letters.`,
+  // })
   @MaxLength(25, {
     message: `The Hotspot street is too long.`,
   })
   street: string;
 
-  @Field()
+  // hotspot Number
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot number must contain at least two letters.`,
-  })
+  // @MinLength(2, {
+  //   message: `The Hotspot number must contain at least two letters.`,
+  // })
   @MaxLength(55, {
     message: `The Hotspot number is too long.`,
   })

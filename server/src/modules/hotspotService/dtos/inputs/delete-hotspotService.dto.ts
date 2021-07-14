@@ -7,5 +7,5 @@ export class DeleteHotspotServiceDTO {
   @Field()
   @IsString({ message: `Invalid String Format.` })
   @IsUUID(4, { message: `Invalid UUID version!` })
-  hotspot_id: string;
+  service_id: string;
 }

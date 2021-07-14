@@ -1,4 +1,5 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { Field } from '@nestjs/graphql/dist/decorators/field.decorator';
+import { InputType } from '@nestjs/graphql/dist/decorators/input-type.decorator';
 import {
   IsArray,
   IsString,
@@ -10,6 +11,7 @@ import GraphQLJSON from 'graphql-type-json';
 
 @InputType()
 export class CreateHotSpotDTO {
+  // Hotspot Name
   @Field()
   @IsString({ message: `Format Invalid.` })
   @MinLength(2, {
@@ -20,45 +22,38 @@ export class CreateHotSpotDTO {
   })
   hotspot_name: string;
 
-  @Field(() => [GraphQLJSON])
+  // Hotspot coordinates
+  @Field(() => [GraphQLJSON], { nullable: true })
   @IsArray({ message: `Coordinates format not allowed.` })
-  hotspot_coordinates: [JSON];
+  coordinates: [JSON];
 
-  @Field()
+  // Hotspot city
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The city of the hotspot must contain at least two letters.`,
-  })
   @MaxLength(25, {
     message: `The Hotspot city is too long.`,
   })
   city: string;
 
-  @Field()
+  // Hotspot district
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot district must contain at least two letters.`,
-  })
   @MaxLength(25, {
     message: `The Hotspot district is too long.`,
   })
   district: string;
 
-  @Field()
+  // Hotspot street
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot street must contain at least two letters.`,
-  })
   @MaxLength(25, {
     message: `The Hotspot street is too long.`,
   })
   street: string;
 
-  @Field()
+  // hotspot number
+  @Field({ nullable: true })
   @IsString({ message: `Format Invalid.` })
-  @MinLength(2, {
-    message: `The Hotspot number must contain at least two letters.`,
-  })
   @MaxLength(55, {
     message: `The Hotspot number is too long.`,
   })

@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuardAdmin } from 'src/modules/admin-auth/auth-strategy/guards/auth-gql.guard';
-import { CreateHotpotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
+import { CreateHotspotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
 import { DeleteHotspotTypeDTO } from '../dtos/inputs/delete-hotspotType.dto';
 import { UpdateHotspotTypeDTO } from '../dtos/inputs/update-hotspotType.dto';
 import { DeleteHotspotTypeResponse } from '../dtos/responses/delete-hotspotType.response';
@@ -18,7 +18,7 @@ export class HotspotTypeResolver {
   constructor(private hotspotTypeService: HotSpotTypeService) {}
 
   /* Read all HotspotType */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Query(() => AllHotspotTypeQueryResponse)
   async AllHotspotType(
     @Args('page', { type: () => Int }) page: number,
@@ -49,10 +49,10 @@ export class HotspotTypeResolver {
   }
 
   /* Create HotspotType Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => CreateHospotTypeResponse)
   async HotspotTypeCreation(
-    @Args('data') createTypeDTO: CreateHotpotTypeDTO,
+    @Args('data') createTypeDTO: CreateHotspotTypeDTO,
   ): Promise<CreateHospotTypeResponse> {
     const type = await this.hotspotTypeService.createHotspotType(createTypeDTO);
     return {
@@ -62,7 +62,7 @@ export class HotspotTypeResolver {
   }
 
   /* Update HotspotType Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => UpdateHotspoTypeResponse)
   async HotspotTypeUpdate(
     @Args('data') updateTypeDTO: UpdateHotspotTypeDTO,
@@ -75,7 +75,7 @@ export class HotspotTypeResolver {
   }
 
   /* Archive HotspotType Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotTypeResponse)
   async HotspotTypeArchive(
     @Args('data') deleteTypeDTO: DeleteHotspotTypeDTO,
@@ -87,7 +87,7 @@ export class HotspotTypeResolver {
   }
 
   /* Restore HotspotType Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotTypeResponse)
   async HotspotTypeRestore(
     @Args('data') deleteTypeDTO: DeleteHotspotTypeDTO,
@@ -99,7 +99,7 @@ export class HotspotTypeResolver {
   }
 
   /* Delete HotspotType Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotTypeResponse)
   async HotspotTypeDelete(
     @Args('data') deleteTypeDTO: DeleteHotspotTypeDTO,

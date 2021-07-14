@@ -8,7 +8,7 @@ import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
 import { DeleteHotspotResponse } from '../dtos/responses/delete-hotspot.response';
 import { AllHotspotQueryResponse } from '../dtos/responses/queries/allhotspot.response';
 import { CreateHospotResponse } from '../dtos/responses/hotspot-creation.response';
-import { UpdateHotspoResponse } from '../dtos/responses/hotspot-update.response';
+import { UpdateHotspotResponse } from '../dtos/responses/hotspot-update.response';
 import { HotSpotService } from '../services/Hotspot.service';
 import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
 
@@ -57,20 +57,20 @@ export class HotspotResolver {
   }
 
   /* Update HotSpot Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
-  @Mutation(() => UpdateHotspoResponse)
+  // @UseGuards(new GqlAuthGuardAdmin())
+  @Mutation(() => UpdateHotspotResponse)
   async HotspotUpdate(
     @Args('data') updateHotSpotDTO: UpdateHotspotDTO,
-  ): Promise<UpdateHotspoResponse> {
-    const type = await this.hotspotService.updateHotspot(updateHotSpotDTO);
+  ): Promise<UpdateHotspotResponse> {
+    const hotspot = await this.hotspotService.updateHotspot(updateHotSpotDTO);
     return {
-      hotspot: type,
+      hotspot: hotspot,
       message: 'The Hotspot has been updated!',
     };
   }
 
   /* Archive HotSpot Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotResponse)
   async HotspotArchive(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,
@@ -82,7 +82,7 @@ export class HotspotResolver {
   }
 
   /* Restore HotSpot Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotResponse)
   async HotSpotRestore(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,
@@ -94,7 +94,7 @@ export class HotspotResolver {
   }
 
   /* Delete HotSpot Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotResponse)
   async HotspotDelete(
     @Args('data') deleteHotspotDTO: DeleteHotspotDTO,

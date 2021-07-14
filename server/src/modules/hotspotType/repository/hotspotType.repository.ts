@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
 import { EntityRepository, Repository } from 'typeorm';
-import { CreateHotpotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
+import { CreateHotspotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
 import { DeleteHotspotTypeDTO } from '../dtos/inputs/delete-hotspotType.dto';
 import { UpdateHotspotTypeDTO } from '../dtos/inputs/update-hotspotType.dto';
 
@@ -15,7 +15,7 @@ import { UpdateHotspotTypeDTO } from '../dtos/inputs/update-hotspotType.dto';
 export class HotSpotTypeRepository extends Repository<HotspotType> {
   /* HotspotType creation repository */
   async createHotspotType(
-    createHotspotTypeDTO: CreateHotpotTypeDTO,
+    createHotspotTypeDTO: CreateHotspotTypeDTO,
   ): Promise<HotspotType> {
     const { type_name } = createHotspotTypeDTO;
 

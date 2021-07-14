@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
 // import { Role } from 'src/entities/role/role.entity';
-import { CreateHotpotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
+import { CreateHotspotTypeDTO } from '../dtos/inputs/create-hotspotType.dto';
 import { DeleteHotspotTypeDTO } from '../dtos/inputs/delete-hotspotType.dto';
 import { UpdateHotspotTypeDTO } from '../dtos/inputs/update-hotspotType.dto';
 import { AllHotspotTypeQueryResponse } from '../dtos/responses/queries/allhotspotType.response';
@@ -72,7 +72,7 @@ export class HotSpotTypeService {
 
   /* HotspotType creation service */
   async createHotspotType(
-    createHotspotTypeDTO: CreateHotpotTypeDTO,
+    createHotspotTypeDTO: CreateHotspotTypeDTO,
   ): Promise<HotspotType> {
     return await this.hotspotTypeRepository.createHotspotType(
       createHotspotTypeDTO,

@@ -2,7 +2,7 @@ import { InputType, Field } from '@nestjs/graphql';
 import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
 
 @InputType()
-export class CreateHotpotTypeDTO {
+export class CreateHotspotTypeDTO {
   @Field()
   @IsString({ message: `Format Invalid.` })
   @MinLength(2, {

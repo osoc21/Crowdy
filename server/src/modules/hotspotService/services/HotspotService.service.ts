@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateHotSpotServiceDTO } from '../dtos/inputs/create-hotspotService.dto';
 import { DeleteHotspotServiceDTO } from '../dtos/inputs/delete-hotspotService.dto';
-import { UpdateHotspotServiceDTO } from '../dtos/inputs/update-hotspotService.dto';
+import { HotspotServiceUpdateDTO } from '../dtos/inputs/update-hotspotService.dto';
 import { AllHotspotServiceQueryResponse } from '../dtos/responses/queries/allhotspotService.response';
 import { HotspotRepository } from '../repository/hotspotService.repository';
 import { HotspotService } from './../../../entities/hotspotService/hotspotService.entity';
@@ -79,7 +79,7 @@ export class HotSpotService {
   }
 
   /* Hotspot Update service */
-  async updateHotspotService(updateHotspotDTO: UpdateHotspotServiceDTO) {
+  async updateHotspotService(updateHotspotDTO: HotspotServiceUpdateDTO) {
     return await this.hotspotServiceRepository.updateHotspotService(
       updateHotspotDTO,
     );

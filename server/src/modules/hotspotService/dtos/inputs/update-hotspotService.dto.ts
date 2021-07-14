@@ -3,7 +3,7 @@ import { IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
 import { version } from 'uuid';
 
 @InputType()
-export class UpdateHotspotServiceDTO {
+export class HotspotServiceUpdateDTO {
   @Field()
   @IsString({ message: `String format not supported.` })
   @IsUUID(4, { message: `Not valid UUID version!` })

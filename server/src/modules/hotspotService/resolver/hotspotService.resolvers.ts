@@ -4,7 +4,7 @@ import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GqlAuthGuardAdmin } from 'src/modules/admin-auth/auth-strategy/guards/auth-gql.guard';
 import { CreateHotSpotServiceDTO } from '../dtos/inputs/create-hotspotService.dto';
 import { DeleteHotspotServiceDTO } from '../dtos/inputs/delete-hotspotService.dto';
-import { UpdateHotspotServiceDTO } from '../dtos/inputs/update-hotspotService.dto';
+import { HotspotServiceUpdateDTO } from '../dtos/inputs/update-hotspotService.dto';
 import { DeleteHotspotServiceResponse } from '../dtos/responses/delete-hotspotService.response';
 import { AllHotspotServiceQueryResponse } from '../dtos/responses/queries/allhotspotService.response';
 import { CreateHospotServiceResponse } from '../dtos/responses/hotspotService-creation.response';
@@ -18,7 +18,7 @@ export class HotspotServiceResolver {
   constructor(private hotspotService: HotSpotService) {}
 
   /* Read all HotSpot Service*/
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Query(() => AllHotspotServiceQueryResponse)
   async AllHotspotServices(
     @Args('page', { type: () => Int }) page: number,
@@ -65,8 +65,8 @@ export class HotspotServiceResolver {
   /* Update HotSpot Service Mutation */
   // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => UpdateHotspotServiceResponse)
-  async HotspotUpdate(
-    @Args('data') updateHotSpotServiceDTO: UpdateHotspotServiceDTO,
+  async HotspotServiceUpdate(
+    @Args('data') updateHotSpotServiceDTO: HotspotServiceUpdateDTO,
   ): Promise<UpdateHotspotServiceResponse> {
     const service = await this.hotspotService.updateHotspotService(
       updateHotSpotServiceDTO,
@@ -102,7 +102,7 @@ export class HotspotServiceResolver {
   }
 
   /* Delete HotSpot Service Mutation */
-  @UseGuards(new GqlAuthGuardAdmin())
+  // @UseGuards(new GqlAuthGuardAdmin())
   @Mutation(() => DeleteHotspotServiceResponse)
   async HotspotServiceDelete(
     @Args('data') deleteHotspotServiceDTO: DeleteHotspotServiceDTO,

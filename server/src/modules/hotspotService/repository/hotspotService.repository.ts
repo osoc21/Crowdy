@@ -7,7 +7,7 @@ import {
 import { EntityRepository, Repository } from 'typeorm';
 import { CreateHotSpotServiceDTO } from '../dtos/inputs/create-hotspotService.dto';
 import { DeleteHotspotServiceDTO } from '../dtos/inputs/delete-hotspotService.dto';
-import { UpdateHotspotServiceDTO } from '../dtos/inputs/update-hotspotService.dto';
+import { HotspotServiceUpdateDTO } from '../dtos/inputs/update-hotspotService.dto';
 import { HotspotService } from './../../../entities/hotspotService/hotspotService.entity';
 
 @Injectable()
@@ -40,7 +40,7 @@ export class HotspotRepository extends Repository<HotspotService> {
 
   /* HotSpot Update repository */
   async updateHotspotService(
-    updateHotspotServiceDTO: UpdateHotspotServiceDTO,
+    updateHotspotServiceDTO: HotspotServiceUpdateDTO,
   ): Promise<HotspotService> {
     const { service_name, service_id } = updateHotspotServiceDTO;
     const service = await this.findHotspotById(service_id);
@@ -60,7 +60,7 @@ export class HotspotRepository extends Repository<HotspotService> {
   async archiveHotspotService(
     archiveHotspotServiceDTO: DeleteHotspotServiceDTO,
   ) {
-    const { hotspot_id } = archiveHotspotServiceDTO;
+    const { service_id: hotspot_id } = archiveHotspotServiceDTO;
     const service = await this.findHotspotById(hotspot_id);
     service.service_deleted = true;
 
@@ -78,7 +78,7 @@ export class HotspotRepository extends Repository<HotspotService> {
   async restoreHotspotService(
     restoreHotspotServiceDTO: DeleteHotspotServiceDTO,
   ) {
-    const { hotspot_id } = restoreHotspotServiceDTO;
+    const { service_id: hotspot_id } = restoreHotspotServiceDTO;
     const service = await this.findHotspotById(hotspot_id);
     service.service_deleted = false;
 
@@ -94,7 +94,7 @@ export class HotspotRepository extends Repository<HotspotService> {
 
   /* HotSpot delete repository */
   async deleteHotspotService(deleteHotSpotServiceDTO: DeleteHotspotServiceDTO) {
-    const { hotspot_id } = deleteHotSpotServiceDTO;
+    const { service_id: hotspot_id } = deleteHotSpotServiceDTO;
     const service = await this.findHotspotById(hotspot_id);
     const result = await this.delete(service.id);
     if (result.affected === 0) {
