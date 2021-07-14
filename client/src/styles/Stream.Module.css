@@ -1,0 +1,27 @@
+.container {
+  display: grid;
+}
+
+/* stylelint-disable */
+
+.container > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* stylelint-enable */
+
+.stream {
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.error {
+  z-index: 3;
+  margin: 2rem auto;
+  align-self: flex-end;
+  color: white;
+  background-color: red;
+}
