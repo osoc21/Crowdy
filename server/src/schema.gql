@@ -33,6 +33,11 @@ type AllHotspotQueryResponse {
   totalCount: Int!
 }
 
+type AllHotspotServiceQueryResponse {
+  hotspots: [HotspotService!]!
+  totalCount: Int!
+}
+
 type AllHotspotTypeQueryResponse {
   totalCount: Int!
   types: [HotspotType!]!
@@ -40,6 +45,11 @@ type AllHotspotTypeQueryResponse {
 
 type CreateHospotResponse {
   hotspot: HotSpot!
+  message: String!
+}
+
+type CreateHospotServiceResponse {
+  hotspotService: HotspotService!
   message: String!
 }
 
@@ -54,6 +64,10 @@ input CreateHotpotTypeDTO {
 
 input CreateHotSpotDTO {
   hotspot_name: String!
+}
+
+input CreateHotSpotServiceDTO {
+  service_name: String!
 }
 
 input CreateUserDTO {
@@ -77,6 +91,14 @@ type DeleteHotspotResponse {
   message: String!
 }
 
+input DeleteHotspotServiceDTO {
+  hotspot_id: String!
+}
+
+type DeleteHotspotServiceResponse {
+  message: String!
+}
+
 input DeleteHotspotTypeDTO {
   type_id: String!
 }
@@ -96,6 +118,14 @@ type HotSpot {
   id: ID!
   number: String
   street: String
+  updatedAt: String!
+}
+
+type HotspotService {
+  createdAt: String!
+  id: ID!
+  service_deleted: Boolean!
+  service_name: String!
   updatedAt: String!
 }
 
@@ -143,14 +173,18 @@ type Mutation {
   AdminUpdateInfo(data: UpdateAdminDto!): Admin!
   HotspotArchive(data: DeleteHotspotDTO!): DeleteHotspotResponse!
   HotspotCreation(data: CreateHotSpotDTO!): CreateHospotResponse!
+  HotspotCreationService(data: CreateHotSpotServiceDTO!): CreateHospotServiceResponse!
   HotspotDelete(data: DeleteHotspotDTO!): DeleteHotspotResponse!
   HotSpotRestore(data: DeleteHotspotDTO!): DeleteHotspotResponse!
+  HotspotServiceArchive(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
+  HotspotServiceDelete(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
+  HotSpotServiceRestore(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotspotTypeArchive(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeCreation(data: CreateHotpotTypeDTO!): CreateHospotTypeResponse!
   HotspotTypeDelete(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeRestore(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeUpdate(data: UpdateHotspotTypeDTO!): UpdateHotspoTypeResponse!
-  HotspotUpdate(data: UpdateHotspotDTO!): UpdateHotspoResponse!
+  HotspotUpdate(data: UpdateHotspotServiceDTO!): UpdateHotspotServiceResponse!
   UserLogin(data: UserCredentialsDto!): LoginResponseUser!
   UserRegister(data: CreateUserDTO!): CreateUserResponse!
   UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
@@ -159,10 +193,13 @@ type Mutation {
 type Query {
   AdminProfile: Admin!
   AllActiveHotspot: [HotSpot!]!
+  AllActiveHotspotServices: [HotspotService!]!
   AllActiveHotspotType: [HotspotType!]!
   AllHotspot(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotQueryResponse!
+  AllHotspotServices(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotServiceQueryResponse!
   AllHotspotType(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotTypeQueryResponse!
   SelectedHotspot(id: String!): HotSpot!
+  SelectedHotspotService(id: String!): HotspotService!
   SelectedHotspotType(id: String!): HotspotType!
   UserProfile: User!
   UsersList: [User!]!
@@ -183,9 +220,14 @@ type UpdateHotspoResponse {
   message: String!
 }
 
-input UpdateHotspotDTO {
-  hotspot_id: String!
-  hotspot_name: String!
+input UpdateHotspotServiceDTO {
+  service_id: String!
+  service_name: String!
+}
+
+type UpdateHotspotServiceResponse {
+  hotspotService: HotspotService!
+  message: String!
 }
 
 input UpdateHotspotTypeDTO {

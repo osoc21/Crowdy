@@ -7,10 +7,8 @@ import { EmptyClass } from 'src/shared/library';
 import { Entity, Column, OneToMany } from 'typeorm';
 
 @ObjectType()
-@Entity('Available_services')
-export class AvailableService extends EntityBaseWithDate(
-  EntityBase(EmptyClass),
-) {
+@Entity('hotspotServices')
+export class HotspotService extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   /* Space for service name */
   @Field(() => String)
   @Column('varchar', { length: 55, unique: true })
