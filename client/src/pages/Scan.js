@@ -1,27 +1,49 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState /*,useEffect, useRef*/ } from 'react';
 import Navbar from '../components/Navbar';
-import Stream from '../components/Stream';
+// import Stream from '../components/Stream';
 import styles from '../styles/Scan.Module.css';
+import QrReader from 'react-qr-reader'
 
 const Scan = () => {
-  const videoRef = useRef(null);
-  const [init, setInit] = useState(false);
+  // const videoRef = useRef(null);
+  // const [init, setInit] = useState(false);
 
-  useEffect(() => {
-    setInit(true);
-  }, [videoRef]);
+  // useEffect(() => {
+  //   setInit(true);
+  // }, [videoRef]);
 
-  const handleCanPlay = () => {
-    videoRef.current.play();
+  // const handleCanPlay = () => {
+  //   videoRef.current.play();
+  // }
+
+  const [code, setCode] = useState({ result: 'No result' });
+
+  const handleScan = data => {
+    if (data) {
+      setCode({ result: data });
+    }
   }
 
+  const handleError = err => {
+    console.error(err);
+  }
+  
   return (
     <section className={styles.container}>
       <Navbar previous="/" title="Scan" />
       <div className={styles.scanner}>
-        <Stream ref={videoRef} ready={init} handleCanPlay={handleCanPlay} />
+        {/* <Stream ref={videoRef} ready={init} handleCanPlay={handleCanPlay} /> */}
+        <div>
+          <QrReader
+            delay={300}
+            onError={handleError}
+            onScan={handleScan}
+            style={{ width: '100vw' }}
+          />
+          <p>{code.result}</p>
+        </div>
         <p className={styles.instruction}>Scan the QR-code at the hotspot</p>
-        <img className={styles.focus__area} src="./assets/img/qr-code-focus-area.svg" alt="focus area"></img>
+        {/* <img className={styles.focus__area} src="./assets/img/qr-code-focus-area.svg" alt="focus area"></img> */}
       </div>
     </section>
   );

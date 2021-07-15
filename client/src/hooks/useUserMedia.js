@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const useUserMedia = (requestedMedia) => {
   const [mediaStream, setMediaStream] = useState(null);
@@ -27,7 +27,26 @@ const useUserMedia = (requestedMedia) => {
     }
   }, [mediaStream, requestedMedia]);
 
+  useCleanup(mediaStream);
+
   return mediaStream;
 }
  
 export default useUserMedia;
+
+const useCleanup = (val) => {
+  const stream = useRef(val);
+  useEffect(() => {
+    stream.current = val;
+  }, [val])
+
+  useEffect(() => {
+    return async () => {
+      if (stream.current && stream.current.hasOwnProperty('ok')) {
+        console.log(stream);
+        console.log('unmounted');
+        stream.current.ok.getTracks().forEach(track => track.stop());
+      }
+    }
+  }, [])
+}

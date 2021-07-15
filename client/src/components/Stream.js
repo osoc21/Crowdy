@@ -1,8 +1,8 @@
-import { useState, useEffect, forwardRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useUserMedia from '../hooks/useUserMedia';
 import styles from '../styles/Stream.Module.css';
 
-const Stream = forwardRef(({ ready, handleCanPlay }, ref) => {
+const Stream = ({ ref, ready, handleCanPlay }) => {
   const [isError, setIsError] = useState(false);
   const streamConfig = {
     audio: false,
@@ -13,17 +13,6 @@ const Stream = forwardRef(({ ready, handleCanPlay }, ref) => {
       height: {ideal: 720}
     }
   }
-
-  useEffect(() => {
-    const videoRef = ref.current;
-
-    return () => {
-      console.log('unmounted');
-      console.log(videoRef);
-      videoRef.srcObject.getTracks().forEach(track => track.stop());
-      videoRef.srcObject = null;
-    }
-  }, [ref]);
 
   const mediaStream = useUserMedia(streamConfig);
 
@@ -40,6 +29,8 @@ const Stream = forwardRef(({ ready, handleCanPlay }, ref) => {
     setIsError(true);
   }
 
+  useCleanup(ref.current);
+
   if (isError) {
     return (
       <div className={styles.container}>
@@ -53,6 +44,25 @@ const Stream = forwardRef(({ ready, handleCanPlay }, ref) => {
       <video className={styles.stream} ref={ref} onCanPlay={handleCanPlay} autoPlay playsInline muted />
     </div>
   );
-})
+}
  
 export default Stream;
+
+const useCleanup = (val) => {
+  const valRef = useRef(val);
+  useEffect(() => {
+    valRef.current = val;
+  }, [val])
+
+  useEffect(() => {
+    return async () => {
+      // console.log(valRef.current);
+      // console.log('unmounted');
+      // valRef.current.srcObject.getTracks().forEach(track => {
+      //   console.log('track');
+      //   track.stop();
+      // });
+      valRef.current.srcObject = null;
+    }
+  }, [])
+}
