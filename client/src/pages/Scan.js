@@ -3,8 +3,9 @@ import Navbar from '../components/Navbar';
 // import Stream from '../components/Stream';
 import styles from '../styles/Scan.Module.css';
 import QrReader from 'react-qr-reader'
+import { Redirect } from 'react-router-dom';
 
-const Scan = () => {
+const Scan = ({ hotspots }) => {
   // const videoRef = useRef(null);
   // const [init, setInit] = useState(false);
 
@@ -27,7 +28,25 @@ const Scan = () => {
   const handleError = err => {
     console.error(err);
   }
-  
+
+  // Checking if the code is valid
+  if (code.result.includes('linkedin')) {
+    const hotspotNames = hotspots.map(item => item.name);
+    const locationSplit = code.result.split('/');
+    let locationHotspot = '';
+    let counter = 0;
+    do {
+      counter ++;
+      locationHotspot = locationSplit[locationSplit.length - counter];
+    }
+    while (locationHotspot === '')
+    //console.log(locationHotspot);
+    locationHotspot = `vrijdagsmarkt`;
+    if (hotspotNames.includes(locationHotspot)) {
+      return <Redirect to={`/report/${locationHotspot}`} />
+    }
+  }
+
   return (
     <section className={styles.container}>
       <Navbar previous="/" title="Scan" />
