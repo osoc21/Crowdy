@@ -1,7 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
-import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
+import { HotspotServiceRepository } from 'src/modules/hotspotService/repository/hotspotService.repository';
+import { HotSpotTypeRepository } from 'src/modules/hotspotType/repository/hotspotType.repository';
 import { CreateHotSpotDTO } from '../dtos/inputs/create-hotspot.dto';
 import { DeleteHotspotDTO } from '../dtos/inputs/delete-hotspot.dto';
 import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
@@ -13,44 +18,49 @@ export class HotSpotService {
   constructor(
     @InjectRepository(HotSpotRepository)
     private readonly hotspotRepository: HotSpotRepository,
+    private readonly hotspotTypeRepository: HotSpotTypeRepository,
+    private readonly hotspotServiceRepository: HotspotServiceRepository,
   ) {}
 
   /* Get all Hotspot */
   async getAllHotspot(
-    page: number,
-    perPage: number,
+    page?: number,
+    perPage?: number,
     q?: string,
     deleted?: boolean,
   ): Promise<AllHotspotQueryResponse> {
     let HotspotTypeQB = await this.hotspotRepository
       .createQueryBuilder('e')
-      .leftJoinAndSelect('e.employees', 'employee');
+      .leftJoinAndSelect('e.hotspots', 'hotspot');
     let countResults = await HotspotTypeQB.getCount();
 
     if (deleted == true) {
-      HotspotTypeQB = HotspotTypeQB.andWhere('e.role_deleted = true', {
+      HotspotTypeQB = HotspotTypeQB.andWhere('e.type_deleted = true', {
         deleted,
       });
       countResults = await HotspotTypeQB.getCount();
     } else if (deleted == false) {
-      HotspotTypeQB = HotspotTypeQB.andWhere('e.role_deleted = false', {
+      HotspotTypeQB = HotspotTypeQB.andWhere('e.service_deleted = false', {
         deleted,
       });
       countResults = await HotspotTypeQB.getCount();
     }
 
     if (q) {
-      HotspotTypeQB = HotspotTypeQB.andWhere('e.role_name ilike :role_name', {
-        role_name: `%${q}%`,
-      });
+      HotspotTypeQB = HotspotTypeQB.andWhere(
+        'e.service_name ilike :service_name',
+        {
+          service_name: `%${q}%`,
+        },
+      );
       countResults = await HotspotTypeQB.getCount();
     }
     const skipValue: number = perPage * (page - 1);
-    const roles = await HotspotTypeQB.take(perPage)
+    const services = await HotspotTypeQB.take(perPage)
       .skip(skipValue)
       .getMany();
     return {
-      hotspots: roles,
+      hotspots: services,
       totalCount: countResults,
     };
   }
@@ -61,7 +71,7 @@ export class HotSpotService {
       where: {
         hotspot_deleted: 'false',
       },
-      // relations: ['hotspots'],
+      relations: ['types', 'services'],
     });
   }
 
@@ -72,12 +82,114 @@ export class HotSpotService {
 
   /* Hotspot creation service */
   async createHotspot(createHotspotDTO: CreateHotSpotDTO): Promise<HotSpot> {
-    return await this.hotspotRepository.createHotspot(createHotspotDTO);
+    const {
+      hotspot_name,
+      city,
+      district,
+      coordinates,
+      street,
+      number,
+      types,
+      services,
+    } = createHotspotDTO;
+
+    // Getting the types from inputed array of types ids
+    try {
+      var typesArray = await this.hotspotTypeRepository.findByIds(types);
+    } catch {
+      throw new InternalServerErrorException(
+        `One of selected types is invalid.`,
+      );
+    }
+
+    // Getting the services from inputed array of services ids
+    try {
+      var servicesArray = await this.hotspotServiceRepository.findByIds(
+        services,
+      );
+    } catch {
+      throw new InternalServerErrorException(
+        `One of selected services is invalid.`,
+      );
+    }
+
+    const hotspot = this.hotspotRepository.create();
+    hotspot.hotspot_name = hotspot_name;
+    hotspot.coordinates = coordinates;
+    hotspot.city = city;
+    hotspot.district = district;
+    hotspot.street = street;
+    hotspot.number = number;
+    hotspot.types = typesArray;
+    hotspot.services = servicesArray;
+
+    try {
+      await this.hotspotRepository.save(hotspot);
+      return hotspot;
+    } catch (error) {
+      if (error.code.toString() === '23505') {
+        throw new ConflictException(
+          `The hotspot already exists. Please try again later.`,
+        );
+      } else {
+        throw new InternalServerErrorException(
+          `Error while saving data int database!`,
+        );
+      }
+    }
   }
 
   /* Hotspot Update service */
   async updateHotspot(updateHotspotDTO: UpdateHotspotDTO) {
-    return await this.hotspotRepository.updateHotspot(updateHotspotDTO);
+    const {
+      hotspot_name,
+      city,
+      district,
+      coordinates,
+      street,
+      number,
+      types,
+      services,
+    } = updateHotspotDTO;
+
+    // Getting the types from inputed array of types ids
+    try {
+      var typesArray = await this.hotspotTypeRepository.findByIds(types);
+    } catch {
+      throw new InternalServerErrorException(
+        `One of selected types is invalid.`,
+      );
+    }
+
+    // Getting the services from inputed array of services ids
+    try {
+      var servicesArray = await this.hotspotServiceRepository.findByIds(
+        services,
+      );
+    } catch {
+      throw new InternalServerErrorException(
+        `One of selected services is invalid.`,
+      );
+    }
+
+    const hotspot = this.hotspotRepository.create();
+    hotspot.hotspot_name = hotspot_name ? hotspot_name : hotspot.hotspot_name;
+    hotspot.coordinates = coordinates ? coordinates : hotspot.coordinates;
+    hotspot.city = city ? city : hotspot.city;
+    hotspot.district = district ? district : hotspot.district;
+    hotspot.street = street ? street : hotspot.street;
+    hotspot.number = number ? number : hotspot.number;
+    hotspot.types = typesArray ? typesArray : hotspot.types;
+    hotspot.services = servicesArray ? servicesArray : hotspot.services;
+
+    try {
+      await this.hotspotRepository.save(hotspot);
+      return hotspot;
+    } catch (error) {
+      throw new InternalServerErrorException(
+        `Error while saving data int database!`,
+      );
+    }
   }
 
   /* Hotspot Archive service */

@@ -197,6 +197,18 @@ export const ALL_ACTIVE_HOTSPOTS_SERVICES = gql`
     AllActiveHotspotServices {
       id
       service_name
+      hotSpots {
+        id
+        hotspot_name
+        coordinates
+        district
+        street
+        number
+        hotspot_status
+        hotspot_deleted
+        updatedAt
+        createdAt
+      }
       service_deleted
       updatedAt
       createdAt
@@ -208,16 +220,71 @@ export const ALL_ACTIVE_HOTSPOTS_SERVICES = gql`
 // ** Expected DATA
 // {
 //   "data": {
-//     "HotspotCreationService": {
-//       "hotspotService": {
-//         "id": "1b2d9093-3bf3-4086-aa26-4f8510af7ba2",
-//         "service_name": "Sthg cool",
+//     "AllActiveHotspotServices": [
+//       {
+//         "id": "a19ed3df-e9c3-4dfb-8620-10154bca473f",
+//         "service_name": "Karate thing",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
 //         "service_deleted": false,
-//         "updatedAt": "1626271175601",
-//         "createdAt": "1626271175601"
+//         "updatedAt": "1626354170951",
+//         "createdAt": "1626354170951"
 //       },
-//       "message": "The Hotspot Service has been saved!"
-//     }
+//       {
+//         "id": "ecbce8ec-fef8-45c6-8b2a-cfa2b4c8e996",
+//         "service_name": "Yoga stuff",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "service_deleted": false,
+//         "updatedAt": "1626354161495",
+//         "createdAt": "1626354161495"
+//       },
+//       {
+//         "id": "2854972b-58c3-430c-860e-41d38a160e68",
+//         "service_name": "Beer thing",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "service_deleted": false,
+//         "updatedAt": "1626354178247",
+//         "createdAt": "1626354178247"
+//       }
+//     ]
 //   }
 // }
 

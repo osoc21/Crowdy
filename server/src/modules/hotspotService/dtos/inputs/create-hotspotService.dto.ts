@@ -1,5 +1,11 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsString, Matches, MaxLength, MinLength } from 'class-validator';
+import {
+  IsString,
+  IsUUID,
+  Matches,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 @InputType()
 export class CreateHotSpotServiceDTO {

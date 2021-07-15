@@ -64,7 +64,9 @@ input CreateHotSpotDTO {
   district: String
   hotspot_name: String!
   number: String
+  services: [String!]
   street: String
+  types: [String!]
 }
 
 input CreateHotSpotServiceDTO {
@@ -120,19 +122,17 @@ type HotSpot {
   hotspot_deleted: Boolean!
   hotspot_name: String!
   hotspot_status: String!
-  hotspotServices: [HotspotService!]!
-  hotspotType: HotspotType!
-  hotspoTypeId: String!
   id: ID!
   number: String!
+  services: [HotspotService!]!
   street: String!
+  types: [HotspotType!]!
   updatedAt: String!
 }
 
 type HotspotService {
   createdAt: String!
-  hotspot: HotSpot!
-  hotspotId: String!
+  hotSpots: [HotSpot!]!
   id: ID!
   service_deleted: Boolean!
   service_name: String!
@@ -146,7 +146,7 @@ input HotspotServiceUpdateDTO {
 
 type HotspotType {
   createdAt: String!
-  hotspots: [HotSpot!]!
+  hotSpots: [HotSpot!]!
   id: ID!
   type_deleted: Boolean!
   type_name: String!
@@ -234,12 +234,14 @@ input UpdateAdminDto {
 
 input UpdateHotspotDTO {
   city: String
+  coordinates: [JSON!]
   district: String
-  hotspot_coordinates: [JSON!]
   hotspot_id: String!
   hotspot_name: String!
   number: String
+  services: [String!]
   street: String
+  types: [String!]
 }
 
 type UpdateHotspotResponse {

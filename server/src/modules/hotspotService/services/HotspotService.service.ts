@@ -4,14 +4,14 @@ import { CreateHotSpotServiceDTO } from '../dtos/inputs/create-hotspotService.dt
 import { DeleteHotspotServiceDTO } from '../dtos/inputs/delete-hotspotService.dto';
 import { HotspotServiceUpdateDTO } from '../dtos/inputs/update-hotspotService.dto';
 import { AllHotspotServiceQueryResponse } from '../dtos/responses/queries/allhotspotService.response';
-import { HotspotRepository } from '../repository/hotspotService.repository';
+import { HotspotServiceRepository } from '../repository/hotspotService.repository';
 import { HotspotService } from './../../../entities/hotspotService/hotspotService.entity';
 
 @Injectable()
 export class HotSpotService {
   constructor(
-    @InjectRepository(HotspotRepository)
-    private readonly hotspotServiceRepository: HotspotRepository,
+    @InjectRepository(HotspotServiceRepository)
+    private readonly hotspotServiceRepository: HotspotServiceRepository,
   ) {}
 
   /* Get all Hotspot */
@@ -60,7 +60,7 @@ export class HotSpotService {
       where: {
         service_deleted: 'false',
       },
-      // relations: ['hotspots'],
+      relations: ['hotSpots'],
     });
   }
 

@@ -4,7 +4,14 @@ import {
   EntityBase,
 } from 'src/entities/base-entity/base.entity';
 import { EmptyClass } from 'src/shared/library';
-import { Entity, Column, OneToMany, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToMany,
+  ManyToOne,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
 import GraphQLJSON from 'graphql-type-json';
 import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
 import { HotspotService } from 'src/entities/hotspotService/hotspotService.entity';
@@ -47,27 +54,47 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   @Column('varchar', { default: 'active' })
   hotspot_status: string;
 
-  // Space for hotspot Types
-  @Field(() => HotspotType)
-  @ManyToOne(
-    type => HotspotType,
-    type => type.hotspots,
+  /* Space for Types and the relation*/
+
+  @Field(() => [HotspotType])
+  @ManyToMany(
+    () => HotspotType,
+    type => type.hotSpots,
     { eager: false },
   )
-  hotspotType: HotspotType;
+  @JoinTable({
+    name: 'hotspots_hotsposts_types',
+    joinColumn: {
+      name: 'hotspotId',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'hotspot_typeId',
+      referencedColumnName: 'id',
+    },
+  })
+  types: HotspotType[];
 
-  @Field(() => String)
-  @Column('uuid')
-  hotspoTypeId: string;
+  /* Space for Services and the relation*/
 
-  // Space for hotspot Services
   @Field(() => [HotspotService])
-  @OneToMany(
+  @ManyToMany(
     () => HotspotService,
-    type => type.hotspot,
-    { eager: true, nullable: true },
+    service => service.hotSpots,
+    { eager: false },
   )
-  hotspotServices: HotspotService[];
+  @JoinTable({
+    name: 'hotspots_hotsposts_services',
+    joinColumn: {
+      name: 'hotspotId',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'hotspot_serviceId',
+      referencedColumnName: 'id',
+    },
+  })
+  services: HotspotService[];
 
   /* Space for deleted hotspot */
   @Field(() => Boolean)

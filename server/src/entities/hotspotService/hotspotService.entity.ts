@@ -4,7 +4,7 @@ import {
   EntityBase,
 } from 'src/entities/base-entity/base.entity';
 import { EmptyClass } from 'src/shared/library';
-import { Entity, Column, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, Column, OneToMany, ManyToOne, ManyToMany } from 'typeorm';
 import { HotSpot } from '../hotspot/hotspot.entity';
 
 @ObjectType()
@@ -15,18 +15,15 @@ export class HotspotService extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   @Column('varchar', { length: 55, unique: true })
   service_name: string;
 
-  /* Space for Hotspot and the relation*/
-  @Field(() => HotSpot)
-  @ManyToOne(
-    type => HotSpot,
-    hsType => hsType.hotspotServices,
-    { eager: false },
-  )
-  hotspot: HotSpot;
+  // Space for hotspot Services
 
-  @Field(() => String)
-  @Column('uuid')
-  hotspotId: string;
+  @Field(() => [HotSpot])
+  @ManyToMany(
+    () => HotSpot,
+    hotSpot => hotSpot.services,
+    { eager: true },
+  )
+  hotSpots: HotSpot[];
 
   /* Space for deleted service*/
   @Field(() => Boolean)

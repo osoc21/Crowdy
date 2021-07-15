@@ -28,12 +28,14 @@ export const CREATE_HOTSPOT_API = gql`
 // ** Variables
 // {
 //   "input": {
-//     "hotspot_name": "Koken Market",
-//     "hotspot_coordinates":  [],
+//     "hotspot_name": "Koken House",
+//     "coordinates":  [],
 //     "city":"",
 //     "district": "",
 //     "street": "",
-//     "number": ""
+//     "number": "",
+//     "services":["a19ed3df-e9c3-4dfb-8620-10154bca473f","ecbce8ec-fef8-45c6-8b2a-cfa2b4c8e996","2854972b-58c3-430c-860e-41d38a160e68"],
+//     "types":["66b28f29-b7ad-4127-9850-c9697dfacc10","e1b57835-0554-4dd1-ba80-53aaead64def","abf44f4a-be7a-49aa-92b4-453ff5d15816"]
 //   }
 // }
 
@@ -88,13 +90,15 @@ export const UPDATE_HOTSPOT_API = gql`
 // ** Variables
 // {
 //   "input": {
-//     "hotspot_id": "feee3055-8fbd-4c92-a794-9cad3d5e0147",
-//     "hotspot_name": "Koken Market",
-//     "hotspot_coordinates":  [],
+//     "hotspot_id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//     "hotspot_name": "Koken House",
+//     "coordinates":  [],
 //     "city":"",
 //     "district": "",
 //     "street": "",
-//     "number": ""
+//     "number": "",
+//     "services":["a19ed3df-e9c3-4dfb-8620-10154bca473f","ecbce8ec-fef8-45c6-8b2a-cfa2b4c8e996","2854972b-58c3-430c-860e-41d38a160e68"],
+//     "types":["66b28f29-b7ad-4127-9850-c9697dfacc10","e1b57835-0554-4dd1-ba80-53aaead64def","abf44f4a-be7a-49aa-92b4-453ff5d15816"]
 //   }
 // }
 
@@ -228,6 +232,20 @@ export const ALL_ACTIVE_HOTSPOTS = gql`
       id
       hotspot_name
       coordinates
+      types {
+        id
+        type_name
+        type_deleted
+        updatedAt
+        createdAt
+      }
+      services {
+        id
+        service_name
+        service_deleted
+        updatedAt
+        createdAt
+      }
       city
       district
       street
@@ -246,17 +264,63 @@ export const ALL_ACTIVE_HOTSPOTS = gql`
 //   "data": {
 //     "AllActiveHotspot": [
 //       {
-//         "id": "00dbae87-e229-4275-88f2-bc85370c1f2c",
-//         "hotspot_name": "Koken Market",
+//         "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//         "hotspot_name": "Koken House",
 //         "coordinates": [],
+//         "types": [
+//           {
+//             "id": "66b28f29-b7ad-4127-9850-c9697dfacc10",
+//             "type_name": "Resto",
+//             "type_deleted": false,
+//             "updatedAt": "1626354144487",
+//             "createdAt": "1626354144487"
+//           },
+//           {
+//             "id": "e1b57835-0554-4dd1-ba80-53aaead64def",
+//             "type_name": "Bar",
+//             "type_deleted": false,
+//             "updatedAt": "1626354149635",
+//             "createdAt": "1626354149635"
+//           },
+//           {
+//             "id": "abf44f4a-be7a-49aa-92b4-453ff5d15816",
+//             "type_name": "Park",
+//             "type_deleted": false,
+//             "updatedAt": "1626354138673",
+//             "createdAt": "1626354138673"
+//           }
+//         ],
+//         "services": [
+//           {
+//             "id": "2854972b-58c3-430c-860e-41d38a160e68",
+//             "service_name": "Beer thing",
+//             "service_deleted": false,
+//             "updatedAt": "1626354178247",
+//             "createdAt": "1626354178247"
+//           },
+//           {
+//             "id": "ecbce8ec-fef8-45c6-8b2a-cfa2b4c8e996",
+//             "service_name": "Yoga stuff",
+//             "service_deleted": false,
+//             "updatedAt": "1626354161495",
+//             "createdAt": "1626354161495"
+//           },
+//           {
+//             "id": "a19ed3df-e9c3-4dfb-8620-10154bca473f",
+//             "service_name": "Karate thing",
+//             "service_deleted": false,
+//             "updatedAt": "1626354170951",
+//             "createdAt": "1626354170951"
+//           }
+//         ],
 //         "city": "",
 //         "district": "",
 //         "street": "",
 //         "number": "",
 //         "hotspot_status": "active",
 //         "hotspot_deleted": false,
-//         "updatedAt": "1626269070780",
-//         "createdAt": "1626269070780"
+//         "updatedAt": "1626354546996",
+//         "createdAt": "1626354546996"
 //       }
 //     ]
 //   }
