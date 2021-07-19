@@ -1,17 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 //import 'maplibre-gl/dist/maplibre-gl.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import "mapbox-gl/dist/mapbox-gl.css";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+
+// ** Apollo
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
+
+// ** Apollo HTTPLINK
+const httpLink = new HttpLink({
+  credentials: "include",
+  uri: process.env.REACT_APP_APOLLO_URI,
+});
+
+// ** Apollo Client
+export const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  httpLink,
+});
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </BrowserRouter>,
-  document.getElementById('root')
+
+  document.getElementById("root"),
 );
 
 // If you want to start measuring performance in your app, pass a function
