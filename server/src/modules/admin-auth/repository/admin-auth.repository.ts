@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { Admin } from '../../../entities/admin/admin.entity';
 import { AdminRegisterDto } from '../dtos/register/register-admin.dto';
 import { UserRole } from '../enums/admin-roles.enum';

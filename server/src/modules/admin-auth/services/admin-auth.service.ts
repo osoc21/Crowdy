@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AdminJwtConfigService } from 'src/config/auth/admin-auth/config.service';
 import { AdminConfigService } from 'src/config/auth/admin/config.service';
@@ -39,7 +39,7 @@ export class AdminAuthService {
     private readonly jwtService: JwtService,
     private readonly adminAuthConfig: AdminConfigService,
     private readonly userJwtAuthConfig: AdminJwtConfigService,
-  ) {}
+  ) { }
 
   /* INSERT USER ADMIN IN DB */
   async createAdmin() {

@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../repository/user.repository';
 import { JwtService } from '@nestjs/jwt';
@@ -34,7 +34,7 @@ export class UserService {
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
     private readonly userJwtAuthConfig: UserJwtConfigService,
-  ) {}
+  ) { }
   /* Get all Users */
   async getAllUsers() {
     const users = await this.userRepository.find();
