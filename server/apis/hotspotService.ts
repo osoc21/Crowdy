@@ -177,3 +177,144 @@ export const DELETE_HOTSPOT_SERVICE_API = gql`
 // {
 //   "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5NDA3YzdlLWE5OTAtNDZlNy1hNzQ4LTgyYmE1ZTcyY2I5MyIsInVzZXJuYW1lIjoia1NJSUlLR254MWtqIiwidXNlcl9pZCI6IlpYLVVTUi1JTkVSLTI4MDcyIiwiaWF0IjoxNjI2MTY4NTgxLCJleHAiOjE2MjYxNzIxODF9.JlhE0SEzvmB1rTJEWB_t-H4mPbAK-A6OPG1w16ONdzI"
 // }
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+/**
+ *  THIS PART IS FOR QUERIES ONLY
+ */
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+// ** QUERY :: ALL ACTIVE HOTSPOT
+export const ALL_ACTIVE_HOTSPOTS_SERVICES = gql`
+  query {
+    AllActiveHotspotServices {
+      id
+      service_name
+      hotSpots {
+        id
+        hotspot_name
+        coordinates
+        district
+        street
+        number
+        hotspot_status
+        hotspot_deleted
+        updatedAt
+        createdAt
+      }
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+// ** NO variables to provide
+// ** Expected DATA
+// {
+//   "data": {
+//     "AllActiveHotspotServices": [
+//       {
+//         "id": "a19ed3df-e9c3-4dfb-8620-10154bca473f",
+//         "service_name": "Karate thing",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "service_deleted": false,
+//         "updatedAt": "1626354170951",
+//         "createdAt": "1626354170951"
+//       },
+//       {
+//         "id": "ecbce8ec-fef8-45c6-8b2a-cfa2b4c8e996",
+//         "service_name": "Yoga stuff",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "service_deleted": false,
+//         "updatedAt": "1626354161495",
+//         "createdAt": "1626354161495"
+//       },
+//       {
+//         "id": "2854972b-58c3-430c-860e-41d38a160e68",
+//         "service_name": "Beer thing",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "service_deleted": false,
+//         "updatedAt": "1626354178247",
+//         "createdAt": "1626354178247"
+//       }
+//     ]
+//   }
+// }
+
+// ** QUERY :: GET SELECTED HOTSPOT
+export const GET_SELECTED_HOTSPOT_SERVICE = gql`
+  query($id: String!) {
+    SelectedHotspotService(id: $id) {
+      id
+      service_name
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+//** VARIABLES TO PROVIDE
+// {
+//   "id":"1b2d9093-3bf3-4086-aa26-4f8510af7ba2"
+// }
+
+// BLueprint of expected DATA
+// {
+//   "data": {
+//     "SelectedHotspotService": {
+//       "id": "1b2d9093-3bf3-4086-aa26-4f8510af7ba2",
+//       "service_name": "Sthg cool",
+//       "service_deleted": false,
+//       "updatedAt": "1626271175601",
+//       "createdAt": "1626271175601"
+//     }
+//   }
+// }

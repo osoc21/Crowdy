@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql/dist/decorators/input-type.decorator'
 import {
   IsArray,
   IsString,
+  IsUUID,
   Matches,
   MaxLength,
   MinLength,
@@ -58,4 +59,14 @@ export class CreateHotSpotDTO {
     message: `The Hotspot number is too long.`,
   })
   number: string;
+
+  // ** Types
+  @Field(() => [String], { nullable: true })
+  @IsArray({ message: `Unsupported array format.` })
+  types: string[];
+
+  // ** Types
+  @Field(() => [String], { nullable: true })
+  @IsArray({ message: `Unsupported array format.` })
+  services: string[];
 }
