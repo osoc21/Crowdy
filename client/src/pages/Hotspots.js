@@ -61,7 +61,7 @@ const Hotspots = ({ hotspots }) => {
       <Navbar previous="/" title="hotspots" options={navOptions} />
       <div className={styles.content}>
         <div className={styles.filter__list}>
-          <p>Filters applied: {filters.join(", ")}</p>
+          <p>Filtered on: {filters.join(', ')}</p>
         </div>
         <ul className={styles.list}>
           {hotspotsList.map((item) => (

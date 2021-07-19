@@ -22,6 +22,7 @@ const Scan = ({ hotspots }) => {
   const handleScan = data => {
     if (data) {
       setCode({ result: data });
+      console.log(data);
     }
   }
 
@@ -30,7 +31,7 @@ const Scan = ({ hotspots }) => {
   }
 
   // Checking if the code is valid
-  if (code.result.includes('linkedin')) {
+  if (code.result.includes('crowdy')) {
     const hotspotNames = hotspots.map(item => item.name);
     const locationSplit = code.result.split('/');
     let locationHotspot = '';
@@ -40,8 +41,8 @@ const Scan = ({ hotspots }) => {
       locationHotspot = locationSplit[locationSplit.length - counter];
     }
     while (locationHotspot === '')
-    //console.log(locationHotspot);
-    locationHotspot = `vrijdagsmarkt`;
+    console.log(locationHotspot);
+    //locationHotspot = `vrijdagsmarkt`;
     if (hotspotNames.includes(locationHotspot)) {
       return <Redirect to={`/report/${locationHotspot}`} />
     }
