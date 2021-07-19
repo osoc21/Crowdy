@@ -32,6 +32,14 @@ function App() {
 
   const ranks = ['The Tourist', 'The Traveller', 'The Ranger', 'The King'];
 
+  const markers = [
+    {
+      name: 'Kinepolis Ghent',
+      longitude: 3.729538,
+      latitude: 51.0417487
+    }
+  ];
+
   return (
     <div className={styles.container}>
       <Switch>
@@ -51,7 +59,7 @@ function App() {
           <Reward />
         </Route>
         <Route path="/map">
-          <Map />
+          <Map data={markers} />
         </Route>
         <Route path="/login">
           <Login />
