@@ -3,7 +3,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from 'src/entities/user/user.entity';
 import { UserCredentialsDto } from '../dtos/login-user/user-credentials.dto';
