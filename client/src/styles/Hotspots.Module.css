@@ -1,0 +1,29 @@
+@value tokens: "./Vars.Module.css";
+@value clrPurple, clrOrange, clrLavender from tokens;
+
+.container {
+  composes: container from "./Vars.Module.css";
+}
+
+.content {
+  composes: container__content from "./Vars.Module.css";
+}
+
+.filter__list {
+  width: 100vw;
+  color: clrPurple;
+  background-color: clrLavender;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+}
+
+.list {
+  width: 100vw;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.list__item {
+  
+}
