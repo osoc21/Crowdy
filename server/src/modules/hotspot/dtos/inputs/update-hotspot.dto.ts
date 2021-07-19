@@ -31,7 +31,7 @@ export class UpdateHotspotDTO {
   // Hotspot coordinates
   @Field(() => [GraphQLJSON], { nullable: true })
   @IsArray({ message: `Coordinates format not allowed.` })
-  hotspot_coordinates: [JSON];
+  coordinates: [JSON];
 
   // Hotspot city
   @Field({ nullable: true })
@@ -76,4 +76,14 @@ export class UpdateHotspotDTO {
     message: `The Hotspot number is too long.`,
   })
   number: string;
+
+  // ** Types
+  @Field(() => [String], { nullable: true })
+  @IsArray({ message: `Unsupported array format.` })
+  types: string[];
+
+  // ** Types
+  @Field(() => [String], { nullable: true })
+  @IsArray({ message: `Unsupported array format.` })
+  services: string[];
 }

@@ -12,7 +12,7 @@ import { HotspotService } from './../../../entities/hotspotService/hotspotServic
 
 @Injectable()
 @EntityRepository(HotspotService)
-export class HotspotRepository extends Repository<HotspotService> {
+export class HotspotServiceRepository extends Repository<HotspotService> {
   /* Hotspot Services creation repository */
   async createHotspotService(
     createHotspotDTO: CreateHotSpotServiceDTO,

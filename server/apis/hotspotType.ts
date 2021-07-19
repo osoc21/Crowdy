@@ -185,3 +185,143 @@ export const DELETE_HOTSPOT_TYPE_API = gql`
 // {
 //   "authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg5NDA3YzdlLWE5OTAtNDZlNy1hNzQ4LTgyYmE1ZTcyY2I5MyIsInVzZXJuYW1lIjoia1NJSUlLR254MWtqIiwidXNlcl9pZCI6IlpYLVVTUi1JTkVSLTI4MDcyIiwiaWF0IjoxNjI2MTY4NTgxLCJleHAiOjE2MjYxNzIxODF9.JlhE0SEzvmB1rTJEWB_t-H4mPbAK-A6OPG1w16ONdzI"
 // }
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+/**
+ *  THIS PART IS FOR QUERIES ONLY
+ */
+
+/**
+ * ********************************************************************************************************************************************************************************************************************************************
+ * ********************************************************************************************************************************************************************************************************************************************
+ */
+
+// ** QUERY :: ALL ACTIVE HOTSPOT TYPE
+export const ALL_ACTIVE_HOTSPOTS_TYPES = gql`
+  query {
+    AllActiveHotspotType {
+      id
+      type_name
+      hotSpots {
+        id
+        hotspot_name
+        coordinates
+        district
+        street
+        number
+        hotspot_status
+        hotspot_deleted
+        updatedAt
+        createdAt
+      }
+      type_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+// ** NO variables to provide
+// ** Expected DATA
+// {
+//   "data": {
+//     "AllActiveHotspotType": [
+//       {
+//         "id": "66b28f29-b7ad-4127-9850-c9697dfacc10",
+//         "type_name": "Resto",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "type_deleted": false,
+//         "updatedAt": "1626354144487",
+//         "createdAt": "1626354144487"
+//       },
+//       {
+//         "id": "e1b57835-0554-4dd1-ba80-53aaead64def",
+//         "type_name": "Bar",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "type_deleted": false,
+//         "updatedAt": "1626354149635",
+//         "createdAt": "1626354149635"
+//       },
+//       {
+//         "id": "abf44f4a-be7a-49aa-92b4-453ff5d15816",
+//         "type_name": "Park",
+//         "hotSpots": [
+//           {
+//             "id": "cac6da75-b902-4254-bb3b-9f8e1dd8f51e",
+//             "hotspot_name": "Koken House",
+//             "coordinates": [],
+//             "district": "",
+//             "street": "",
+//             "number": "",
+//             "hotspot_status": "active",
+//             "hotspot_deleted": false,
+//             "updatedAt": "1626354546996",
+//             "createdAt": "1626354546996"
+//           }
+//         ],
+//         "type_deleted": false,
+//         "updatedAt": "1626354138673",
+//         "createdAt": "1626354138673"
+//       }
+//     ]
+//   }
+// }
+// ** QUERY :: GET SELECTED HOTSPOT TYPE
+export const GET_SELECTED_HOTSPOT_TYPE = gql`
+  query($id: String!) {
+    SelectedHotspotService(id: $id) {
+      id
+      service_name
+      service_deleted
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+//** VARIABLES TO PROVIDE
+// {
+//   "id":"fdb30cbb-ce75-447e-85be-7660368a44a1"
+// }
+
+// BLueprint of expected DATA
+// {
+//   "data": {
+//     "SelectedHotspotType": {
+//       "id": "fdb30cbb-ce75-447e-85be-7660368a44a1",
+//       "type_name": "Park",
+//       "type_deleted": false,
+//       "updatedAt": "1626271395199",
+//       "createdAt": "1626271395199"
+//     }
+//   }
+// }

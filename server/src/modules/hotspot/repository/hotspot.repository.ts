@@ -13,63 +13,6 @@ import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
 @Injectable()
 @EntityRepository(HotSpot)
 export class HotSpotRepository extends Repository<HotSpot> {
-  /* HotSpot creation repository */
-  async createHotspot(createHotspotDTO: CreateHotSpotDTO): Promise<HotSpot> {
-    const {
-      hotspot_name,
-      city,
-      district,
-      coordinates,
-      street,
-      number,
-    } = createHotspotDTO;
-
-    const hotspot = this.create();
-    hotspot.hotspot_name = hotspot_name;
-    hotspot.coordinates = coordinates;
-    hotspot.city = city;
-    hotspot.district = district;
-    hotspot.street = street;
-    hotspot.number = number;
-
-    try {
-      await this.manager.save(hotspot);
-      return hotspot;
-    } catch (error) {
-      if (error.code.toString() === '23505') {
-        throw new ConflictException(
-          `The hotspot type name already exist. Try again later.`,
-        );
-      } else {
-        throw new InternalServerErrorException(
-          `Error while saving the data in database.`,
-        );
-      }
-    }
-  }
-
-  /* HotSpot Update repository */
-  async updateHotspot(
-    updateHotspotTypeDTO: UpdateHotspotDTO,
-  ): Promise<HotSpot> {
-    const {
-      hotspot_name,
-      hotspot_id,
-      hotspot_coordinates,
-    } = updateHotspotTypeDTO;
-    const type = await this.findHotspotById(hotspot_id);
-    type.hotspot_name = hotspot_name ? hotspot_name : type.hotspot_name;
-
-    try {
-      await this.save(type);
-      return type;
-    } catch (error) {
-      throw new InternalServerErrorException(
-        `Error while updating the hotspot  name!`,
-      );
-    }
-  }
-
   /* HotSpot archive repository */
   async archiveHotspot(archiveHotspotTypeDTO: DeleteHotspotDTO) {
     const { hotspot_id: type_id } = archiveHotspotTypeDTO;
