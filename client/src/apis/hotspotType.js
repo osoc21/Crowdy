@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "@apollo/client";
 
 /**
  * HOTSPOT TYPE  APIS [Funcs]
@@ -297,7 +297,7 @@ export const ALL_ACTIVE_HOTSPOTS_TYPES = gql`
 // }
 // ** QUERY :: GET SELECTED HOTSPOT TYPE
 export const GET_SELECTED_HOTSPOT_TYPE = gql`
-  query($id: String!) {
+  query ($id: String!) {
     SelectedHotspotService(id: $id) {
       id
       service_name

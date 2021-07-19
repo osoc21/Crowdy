@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-express';
+import { gql } from "@apollo/client";
 
 /**
  * HOTSPOT  APIS [Funcs]
@@ -328,7 +328,7 @@ export const ALL_ACTIVE_HOTSPOTS = gql`
 
 // ** QUERY :: GET SELECTED HOTSPOT
 export const GET_SELECTED_HOTSPOT = gql`
-  query($id: String!) {
+  query ($id: String!) {
     SelectedHotspot(id: $id) {
       id
       hotspot_name

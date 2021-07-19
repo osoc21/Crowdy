@@ -8,19 +8,12 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
 // ** Apollo
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
-import { ApolloProvider } from "@apollo/client";
-
-// ** Apollo HTTPLINK
-const httpLink = new HttpLink({
-  credentials: "include",
-  uri: process.env.REACT_APP_APOLLO_URI,
-});
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // ** Apollo Client
-export const client = new ApolloClient({
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
-  httpLink,
 });
 
 ReactDOM.render(
