@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar';
 import styles from '../styles/Map.Module.css';
 
-import React, { useMemo } from 'react';
+import { useState, useMemo } from 'react';
 //import maplibregl from 'maplibre-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import ReactMapGL, {Marker} from 'react-map-gl';
  
@@ -112,7 +112,7 @@ const Map = (props) => {
     return () => map.remove();
   }, []);*/
 
-  const [viewport, setViewport] = React.useState({
+  const [viewport, setViewport] = useState({
     longitude: 3.72800,
     latitude: 51.05323,
     zoom: 13
