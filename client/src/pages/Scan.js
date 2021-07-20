@@ -53,6 +53,7 @@ const Scan = ({ hotspots }) => {
       <Navbar previous="/" title="Scan" />
       <div className={styles.scanner}>
         {/* <Stream ref={videoRef} ready={init} handleCanPlay={handleCanPlay} /> */}
+        <p className={styles.instruction}>Scan the QR-code at the hotspot</p>
         <div>
           <QrReader
             delay={300}
@@ -60,9 +61,7 @@ const Scan = ({ hotspots }) => {
             onScan={handleScan}
             style={{ width: '100vw' }}
           />
-          <p>{code.result}</p>
         </div>
-        <p className={styles.instruction}>Scan the QR-code at the hotspot</p>
         {/* <img className={styles.focus__area} src="./assets/img/qr-code-focus-area.svg" alt="focus area"></img> */}
       </div>
     </section>

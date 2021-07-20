@@ -12,6 +12,22 @@
   height: 100vw;
 }
 
-.marker__img {
-  transform: translate(-50%, -50%);
+.marker {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-white.svg);
+}
+
+.marker__01 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-green.svg);
+}
+
+.marker__02 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-orange.svg);
+}
+
+.marker__03 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-red.svg);
 }

@@ -2,12 +2,7 @@
 @value clrTeal, clrPurple, clrOrange from tokens;
 
 .container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  composes: container from "./Vars.Module.css";
 }
 
 .header {
@@ -18,18 +13,37 @@
   align-items: center;
   background-color: clrTeal;
   text-align: center;
+  border-bottom: 1rem solid white;
 }
 
 .title {
   composes: title from "./Vars.Module.css";
 }
 
+.content {
+  flex: 1;
+  display: grid;
+}
+
+.content > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .nav {
-  width: 100vw;
+  z-index: 1;
+  width: 100%;
+  height: fit-content;
+  margin-top: 1rem;
+  overflow-y: scroll;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.nav__item {
+  display: inline-block;
 }
 
 .nav__item > a {
@@ -39,7 +53,7 @@
   align-items: center;
   width: 14rem;
   height: 14rem;
-  margin: .8rem;
+  margin: 1rem;
   color: white;
   background-color: clrPurple;
   border: .3rem solid clrOrange;
@@ -87,4 +101,37 @@
 .profile__icon {
   composes: nav__icon;
   background-image: url(./../assets/images/profile-icon.svg);
+}
+
+.btn__download {
+  z-index: 2;
+  display: flex;
+  width: 17.5rem;
+  height: 15rem;
+  margin-left: auto;
+  align-self: flex-end;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+  background-color: clrTeal;
+  background-repeat: no-repeat;
+  background-position:
+    10rem 6rem,
+    center;
+  background-image: 
+    url(./../assets/images/download-icon.svg),
+    url(./../assets/images/download-icon-layout-line.svg);
+  background-size:
+    6.4rem,
+    17.5rem 15rem;
+}
+
+.btn__download__txt {
+  width: 10rem;
+  margin: .3rem;
+  margin-left: auto;
+  align-self: flex-end;
+  font-family: 'Josefin Slab', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: clrPurple;
+  text-align: center;
 }

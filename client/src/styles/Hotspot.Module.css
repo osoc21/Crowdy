@@ -1,0 +1,125 @@
+@value tokens: "./Vars.Module.css";
+@value clrPurple, clrLavender, clrLavenderFill, clrGreen, clrOrange, clrRed, clrGrey, clrGreenFill, clrOrangeFill, clrRedFill, clrGreyFill from tokens;
+
+.container {
+  composes: container from "./Vars.Module.css";
+}
+
+.content {
+  composes: container__content from "./Vars.Module.css";
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.info {
+  z-index: 2;
+  flex: 1;
+  border-radius: 0 0 2rem 2rem;
+  background-color: clrLavenderFill;
+}
+
+.crowdedness {
+  width: 100%;
+  height: 9.2rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 8rem auto;
+  grid-template-areas: 
+  "icon status"
+  "icon info";
+  color: white;
+}
+
+.crowdedness__00 {
+  composes: crowdedness;
+  background-color: clrGrey;
+}
+
+.crowdedness__01 {
+  composes: crowdedness;
+  background-color: clrGreen;
+}
+
+.crowdedness__02 {
+  composes: crowdedness;
+  background-color: clrOrange;
+}
+
+.crowdedness__03 {
+  composes: crowdedness;
+  background-color: clrRed;
+}
+
+.data {
+  width: 100%;
+  padding: 2rem;
+}
+
+.name {
+  font-family: 'Lexend Giga', sans-serif;
+  font-size: 3rem;
+  text-transform: capitalize;
+  color: clrPurple;
+}
+
+.type {
+  margin-left: .3rem;
+  font-family: 'Josefin Slab', sans-serif;
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: #AE9AF8;
+}
+
+.crowdedness__icon {
+  grid-area: icon;
+  align-self: center;
+  width: 7.2rem;
+  height: 7.2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 7.2rem;
+  background-image: url(./../assets/images/pin-icon-white.svg);
+}
+
+.crowdedness__status {
+  grid-area: status;
+  font-family: 'Josefin Slab', sans-serif;
+  font-weight: 500;
+  font-size: 2.8rem;
+  align-self: flex-end;
+}
+
+.crowdedness__info {
+  grid-area: info;
+  font-family: 'Josefin Slab', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.map {
+  height: 18rem;
+}
+
+.map > div {
+  margin-top: -2rem;
+}
+
+.marker {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-white.svg);
+}
+
+.marker__01 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-green.svg);
+}
+
+.marker__02 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-orange.svg);
+}
+
+.marker__03 {
+  composes: marker from "./Vars.Module.css";
+  background-image: url(./../assets/images/pin-icon-red.svg);
+}
