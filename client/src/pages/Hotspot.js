@@ -2,23 +2,33 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Hotspot.Module.css";
 // eslint-disable-next-line
-import { formatDateFromMilliToDate } from "../js/functions";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useMemo } from 'react';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
-const Hotspot = () => {
+const Hotspot = ({ hotspots }) => {
+  const { id } = useParams();
+  const data = hotspots[id];
   const dateCurrent = new Date();
 
-  const data = {
-    name: "korenmarkt",
-    type: "square",
-    services: ["toilet"],
-    crowdedness: 1,
-    created_at: new Date(`July ${dateCurrent.getDate()}, 2021 09:02:34`),
-  };
-  // eslint-disable-next-line
-  const difference = dateCurrent.getTime() - data.created_at.getTime();
-  console.log(`Difference: `);
+  const [viewport, setViewport] = useState({
+    longitude: data.longitude,
+    latitude: data.latitude,
+    zoom: 15
+  });
 
-  const crowdedness = ["calm & quiet", "comfortable", "too crowded"];
+  const markers = useMemo(() => hotspots.map(
+    (city, index) => (
+      <Marker key={city.name} longitude={city.longitude} latitude={city.latitude} >
+        <Link to={`/hotspot/${index}`} className={styles.marker}>
+          <div className={styles[`marker__${city.crowdedness.toString().padStart(2, '0')}`]} />
+        </Link>
+      </Marker>
+    )
+  ), [hotspots]);
+
+  const crowdedness = ["Unknown", "Calm", "Rather crowded", "CROWDY!"];
 
   const [favourites, setFavourites] = useState([2]);
 
@@ -34,19 +44,30 @@ const Hotspot = () => {
 
   return (
     <section className={styles.container}>
-      <Navbar previous="/hotspots" title="details" options={navOptions} />
-      <p className={styles.name}>{data.name}</p>
-      <p className={styles.type}>{data.type} in Ghent</p>
-      <ul className={styles.services}>
-        {data.services.map((item) => (
-          <div className={styles[`btn__${item}`]} key={item}></div>
-        ))}
-      </ul>
-      <p className={styles.crowdedness}>
-        {crowdedness[data.crowdedness - 1]} ({data.crowdedness})
-      </p>
-      <p className={styles.last__reported}>Last reported: 34 minutes ago</p>
-      <div className={styles.map}></div>
+      <Navbar previous="/hotspots" title="" options={navOptions} />
+      <div className={styles.content}>
+        <div className={styles.info}>
+          <div className={styles.data}>
+            <p className={styles.name}>{data.name}</p>
+            <p className={styles.type}>{data.type} in Ghent</p>
+            <ul className={styles.services}>
+              {data.services.map((item) => (
+                <div className={styles[`btn__${item}`]} key={item}></div>
+              ))}
+            </ul>
+          </div>
+          <div className={styles[`crowdedness__${data.crowdedness.toString().padStart(2, '0')}`]}>
+            <div className={styles.crowdedness__icon}></div>
+            <p className={styles.crowdedness__status}>{crowdedness[data.crowdedness]}</p>
+            <p className={styles.crowdedness__info}>15 reports last 60 minutes</p>
+          </div>
+        </div>
+        <div className={styles.map}>
+          <ReactMapGL {...viewport} width="100vw" height="200px" onViewportChange={setViewport} mapStyle={`https://api.maptiler.com/maps/89880a13-40f8-4ec1-8b46-009ae4a9cbe4/style.json?key=${process.env.REACT_APP_MAPTILER_ACCESS_TOKEN}`}>
+            {markers}
+          </ReactMapGL>
+        </div>
+      </div>
     </section>
   );
 };

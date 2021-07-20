@@ -1,5 +1,5 @@
 @value tokens: "./Vars.Module.css";
-@value clrPurple, clrOrange, clrLavender from tokens;
+@value clrPurple, clrLavender, clrGreen, clrOrange, clrRed, clrGrey, clrGreenFill, clrOrangeFill, clrRedFill, clrGreyFill from tokens;
 
 .container {
   composes: container from "./Vars.Module.css";
@@ -11,8 +11,9 @@
 
 .filter__list {
   width: 100vw;
+  padding: 1rem 2rem;
   color: clrPurple;
-  background-color: clrLavender;
+  background-color: #E0DFFF;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
 }
@@ -24,6 +25,59 @@
   flex-direction: column;
 }
 
-.list__item {
-  
+.item {
+  width: 100%;
+  margin-bottom: 1.4rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: .3rem solid clrGrey;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  background-color: clrGreyFill;
+}
+
+.list__item__01 {
+  composes: item;
+  border-color: clrGreen;
+  background-color: clrGreenFill;
+}
+
+.list__item__02 {
+  composes: item;
+  border-color: clrOrange;
+  background-color: clrOrangeFill;
+}
+
+.list__item__03 {
+  composes: item;
+  border-color: clrRed;
+  background-color: clrRedFill;
+}
+
+.item__name {
+  font-family: 'Lexend Giga', sans-serif;
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: clrPurple;
+  white-space: normal;
+}
+
+.favourite__icon {
+  width: 4rem;
+  height: 4rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 4rem 4rem;
+}
+
+.favourite__icon__true {
+  composes: favourite__icon;
+  background-image: url(./../assets/images/favourite-true-icon.svg);
+}
+
+.favourite__icon__false {
+  composes: favourite__icon;
+  background-image: url(./../assets/images/favourite-false-icon.svg);
 }

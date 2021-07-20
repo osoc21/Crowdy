@@ -36,7 +36,7 @@ const Hotspots = ({ hotspots }) => {
   } = useQuery(ALL_ACTIVE_HOTSPOTS, {
     fetchPolicy: "network-only",
     onError(error) {
-      alert("Failed to load hotspots, Refresh The page!");
+      //alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data_hotspot) {
       console.log(data_hotspot);
@@ -64,11 +64,11 @@ const Hotspots = ({ hotspots }) => {
           <p>Filtered on: {filters.join(', ')}</p>
         </div>
         <ul className={styles.list}>
-          {hotspotsList.map((item) => (
+          {hotspotsList.map((item, index) => (
             <li className={styles.list__item} key={item.name}>
-              <Link to="/hotspot">
-                <p className={styles.item__crowdedness}>{item.crowdedness}</p>
+              <Link to={`/hotspot/${index}`} className={styles[`list__item__${item.crowdedness.toString().padStart(2, '0')}`]}>
                 <p className={styles.item__name}>{item.name}</p>
+                <div className={styles[`favourite__icon__${false}`]} />
               </Link>
             </li>
           ))}

@@ -42,3 +42,8 @@
   composes: btn;
   background-image: url(./../assets/images/filter-icon.svg);
 }
+
+.btn__favourite {
+  composes: btn;
+  background-image: url(./../assets/images/favourite-false-icon.svg);
+}

@@ -18,27 +18,31 @@ function App() {
   const [hotspots, setHotspots] = useState([
     {
       name: 'korenmarkt',
-      crowdedness: 1
+      longitude: 3.7195936,
+      latitude: 51.0546034,
+      crowdedness: 1,
+      type: "square",
+      services: ["toilet"]
     },
     {
       name: 'citadelpark',
-      crowdedness: 2
+      longitude: 3.7167535,
+      latitude: 51.0366794,
+      crowdedness: 2,
+      type: "park",
+      services: []
     },
     {
-      name: 'vrijdagsmarkt',
-      crowdedness: 3
+      name: 'vrijdagmarkt',
+      longitude: 3.7241467,
+      latitude: 51.05695,
+      crowdedness: 3,
+      type: "square",
+      services: []
     }
   ]);
 
   const ranks = ['The Tourist', 'The Traveller', 'The Ranger', 'The King'];
-
-  const markers = [
-    {
-      name: 'Kinepolis Ghent',
-      longitude: 3.729538,
-      latitude: 51.0417487
-    }
-  ];
 
   return (
     <div className={styles.container}>
@@ -46,8 +50,8 @@ function App() {
         <Route path="/hotspots">
           <Hotspots hotspots={hotspots} />
         </Route>
-        <Route path="/hotspot">
-          <Hotspot />
+        <Route path="/hotspot/:id">
+          <Hotspot hotspots={hotspots} />
         </Route>
         <Route path="/scan">
           <Scan hotspots={hotspots} />
@@ -59,7 +63,7 @@ function App() {
           <Reward />
         </Route>
         <Route path="/map">
-          <Map data={markers} />
+          <Map hotspots={hotspots} />
         </Route>
         <Route path="/login">
           <Login />

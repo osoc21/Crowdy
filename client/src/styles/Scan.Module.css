@@ -1,3 +1,6 @@
+@value tokens: "./Vars.Module.css";
+@value clrPurple, clrLavender, clrGreen, clrOrange, clrRed, clrGrey, clrGreenFill, clrOrangeFill, clrRedFill, clrGreyFill from tokens;
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -8,23 +11,30 @@
 }
 
 .scanner {
-  display: grid;
+  /* display: grid; */
+  flex: 1;
+  background-color: clrPurple;
 }
 
 /* stylelint-disable */
 
-.scanner > * {
+/* .scanner > * {
   grid-column: 1;
   grid-row: 1;
-}
+} */
 
 /* stylelint-enable */
 
 .instruction {
   z-index: 5;
+  width: 100%;
   margin: 2rem auto;
+  padding: .5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  text-align: center;
   color: white;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(77, 75, 192, .67);
   height: fit-content;
 }
 

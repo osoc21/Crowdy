@@ -1,8 +1,17 @@
 @value clrBackground: #F6F6FC;
 @value clrTeal: #A5FFF7;
 @value clrPurple: #4D4BC0;
-@value clrOrange: #F8BB84;
 @value clrLavender: #B4B3F0;
+@value clrLavenderFill: #EAEAFF;
+@value clrGreen: #70C04B;
+@value clrOrange: #F8BB84;
+@value clrRed: #F88484;
+@value clrGrey: #818181;
+@value clrFillOpacity: 0.15;
+@value clrGreenFill: rgba(112, 192, 75, clrFillOpacity);
+@value clrOrangeFill: rgba(248, 187, 132, clrFillOpacity);
+@value clrRedFill: rgba(248, 132, 132, clrFillOpacity);
+@value clrGreyFill: rgba(208, 208, 208, .5);
 
 .container {
   display: flex;
@@ -25,4 +34,14 @@
   font-size: 2.2rem;
   font-family: 'Josefin Slab', sans-serif;
   text-transform: uppercase;
+}
+
+.marker {
+  width: 6rem;
+  height: 6rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 6rem;
+  margin-top: -6rem;
+  margin-left: -3rem;
 }
