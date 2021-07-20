@@ -7,9 +7,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
 import { HotspotServiceRepository } from 'src/modules/hotspotService/repository/hotspotService.repository';
 import { HotSpotTypeRepository } from 'src/modules/hotspotType/repository/hotspotType.repository';
+import { VoteRepository } from 'src/modules/vote/repository/vote.repository';
 import { CreateHotSpotDTO } from '../dtos/inputs/create-hotspot.dto';
 import { DeleteHotspotDTO } from '../dtos/inputs/delete-hotspot.dto';
 import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
+import { allActiveHotspotResponse } from '../dtos/responses/queries/allActiveHotspot.response';
 import { AllHotspotQueryResponse } from '../dtos/responses/queries/allhotspot.response';
 import { HotSpotRepository } from '../repository/hotspot.repository';
 
@@ -20,6 +22,7 @@ export class HotSpotService {
     private readonly hotspotRepository: HotSpotRepository,
     private readonly hotspotTypeRepository: HotSpotTypeRepository,
     private readonly hotspotServiceRepository: HotspotServiceRepository,
+    private readonly voteRepository: VoteRepository,
   ) {}
 
   /* Get all Hotspot */
@@ -66,18 +69,36 @@ export class HotSpotService {
   }
 
   // ** Get all active Hotspot
-  async AllActiveHotspot(): Promise<HotSpot[]> {
-    return await this.hotspotRepository.find({
+  async AllActiveHotspot(): Promise<allActiveHotspotResponse> {
+    // ** Getting the hotspot
+    let hotspots = await this.hotspotRepository.find({
       where: {
         hotspot_deleted: 'false',
       },
-      relations: ['types', 'services'],
+      relations: ['types', 'services', 'votes'],
     });
+
+    let voteInfo = { votesCount: '6', crowdLevel: '2.5' };
+
+    const hotspotslength = hotspots.map(e => console.log(e.votes.length));
+    for (let i = 0; i < hotspots.length; i++) {
+      const element = ((hotspots[i] as unknown) + '' + voteInfo) as unknown;
+      console.log(element);
+    }
+
+    console.log(hotspotslength);
+    return {
+      hotspots: hotspots,
+      totalVoteCount: 3,
+      crowdLevel: 5,
+    };
   }
 
   // ** Get Selected Hotspot
   async getSelectedHotspot(id: string) {
-    return await this.hotspotRepository.findOne(id);
+    return await this.hotspotRepository.findOne(id, {
+      relations: ['types', 'services', 'votes'],
+    });
   }
 
   /* Hotspot creation service */

@@ -17,6 +17,7 @@ import { UserModule } from './modules/user/user.module';
 import { HotspotTypeModule } from './modules/hotspotType/hotspotType.module';
 import { HotspotModule } from './modules/hotspot/hotspot.module';
 import { HotspotServicesModule } from './modules/hotspotService/hotspotService.module';
+import { VoteModule } from './modules/vote/vote.module';
 
 /**
  * Import and provide app related classes.
@@ -60,6 +61,7 @@ import { HotspotServicesModule } from './modules/hotspotService/hotspotService.m
     /* Modules */
     AdminModule,
     AdminAuthModule,
+    VoteModule,
     UserModule,
     HotspotModule,
     HotspotTypeModule,

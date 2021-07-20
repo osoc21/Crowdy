@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminAuthModule } from '../admin-auth/admin-auth.module';
 import { HotspotServiceRepository } from '../hotspotService/repository/hotspotService.repository';
 import { HotSpotTypeRepository } from '../hotspotType/repository/hotspotType.repository';
+import { VoteRepository } from '../vote/repository/vote.repository';
 import { HotSpotRepository } from './repository/hotspot.repository';
 import { HotspotResolver } from './resolver/hotspot.resolvers';
 import { HotSpotService } from './services/Hotspot.service';
@@ -13,6 +14,7 @@ import { HotSpotService } from './services/Hotspot.service';
       HotSpotRepository,
       HotSpotTypeRepository,
       HotspotServiceRepository,
+      VoteRepository,
     ]),
     AdminAuthModule,
   ],

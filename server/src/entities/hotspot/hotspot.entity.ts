@@ -8,13 +8,14 @@ import {
   Entity,
   Column,
   OneToMany,
-  ManyToOne,
   ManyToMany,
   JoinTable,
+  ManyToOne,
 } from 'typeorm';
 import GraphQLJSON from 'graphql-type-json';
 import { HotspotType } from 'src/entities/hotspotType/hotspotType.entity';
 import { HotspotService } from 'src/entities/hotspotService/hotspotService.entity';
+import { Vote } from 'src/entities/vote/vote.entity';
 
 @ObjectType()
 @Entity('hotspots')
@@ -31,22 +32,22 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
 
   /* Space for hotspot city */
   @Field(() => String)
-  @Column('varchar', { length: 55, unique: true, nullable: true })
+  @Column('varchar', { length: 55, nullable: true })
   city: string;
 
   /* Space for hotspot district */
   @Field(() => String)
-  @Column('varchar', { length: 55, unique: true, nullable: true })
+  @Column('varchar', { length: 55, nullable: true })
   district: string;
 
   /* Space for hotspot street */
   @Field(() => String)
-  @Column('varchar', { length: 55, unique: true, nullable: true })
+  @Column('varchar', { length: 55, nullable: true })
   street: string;
 
   /* Space for hotspot street number */
   @Field(() => String)
-  @Column('varchar', { length: 55, unique: true, nullable: true })
+  @Column('varchar', { length: 55, nullable: true })
   number: string;
 
   /* Space for status */
@@ -95,6 +96,23 @@ export class HotSpot extends EntityBaseWithDate(EntityBase(EmptyClass)) {
     },
   })
   services: HotspotService[];
+
+  // ** space for votes
+  @Field(() => [Vote])
+  @OneToMany(
+    type => Vote,
+    vote => vote.hotspot,
+    { eager: false, nullable: true },
+  )
+  votes: Vote[];
+
+  // @Field(() => Vote)
+  // @ManyToOne(
+  //   type => Vote,
+  //   vote => vote.hotspots,
+  //   { eager: true },
+  // )
+  // votes: Vote;
 
   /* Space for deleted hotspot */
   @Field(() => Boolean)

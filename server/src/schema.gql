@@ -28,6 +28,12 @@ input AdminCredentialsDto {
   password: String!
 }
 
+type allActiveHotspotResponse {
+  crowdLevel: Int!
+  hotspots: [HotSpot!]!
+  totalVoteCount: Int!
+}
+
 type AllHotspotQueryResponse {
   hotspots: [HotSpot!]!
   totalCount: Int!
@@ -41,6 +47,11 @@ type AllHotspotServiceQueryResponse {
 type AllHotspotTypeQueryResponse {
   totalCount: Int!
   types: [HotspotType!]!
+}
+
+type AllVotesQueryResponse {
+  totalCount: Int!
+  votes: [Vote!]!
 }
 
 type CreateHospotResponse {
@@ -90,6 +101,16 @@ type CreateUserResponse {
   user: User
 }
 
+input CreateVoteDTO {
+  hotSpotID: String!
+  vote_value: String!
+}
+
+type CreateVoteResponse {
+  message: String!
+  vote: Vote!
+}
+
 input DeleteHotspotDTO {
   hotspot_id: String!
 }
@@ -114,6 +135,14 @@ type DeleteHotspotTypeResponse {
   message: String!
 }
 
+input DeleteVoteDTO {
+  vote_id: String!
+}
+
+type DeleteVoteResponse {
+  message: String!
+}
+
 type HotSpot {
   city: String!
   coordinates: [JSON!]!
@@ -128,6 +157,7 @@ type HotSpot {
   street: String!
   types: [HotspotType!]!
   updatedAt: String!
+  votes: [Vote!]!
 }
 
 type HotspotService {
@@ -205,19 +235,27 @@ type Mutation {
   UserLogin(data: UserCredentialsDto!): LoginResponseUser!
   UserRegister(data: CreateUserDTO!): CreateUserResponse!
   UserUpdateInfo(data: UpdateUserDTO!): UpdateUserResponse!
+  VoteArchive(data: DeleteVoteDTO!): DeleteVoteResponse!
+  VoteCreation(data: CreateVoteDTO!): CreateVoteResponse!
+  VoteDelete(data: DeleteVoteDTO!): DeleteVoteResponse!
+  VoteRestore(data: DeleteVoteDTO!): DeleteVoteResponse!
+  VoteUpdate(data: UpdateVoteDTO!): UpdateVoteResponse!
 }
 
 type Query {
   AdminProfile: Admin!
-  AllActiveHotspot: [HotSpot!]!
+  AllActiveHotspot: allActiveHotspotResponse!
   AllActiveHotspotServices: [HotspotService!]!
   AllActiveHotspotType: [HotspotType!]!
+  AllActiveVotes: [Vote!]!
   AllHotspot(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotQueryResponse!
   AllHotspotServices(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotServiceQueryResponse!
   AllHotspotType(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllHotspotTypeQueryResponse!
+  AllVotes(deleted: Boolean, page: Int!, perPage: Int!, q: String): AllVotesQueryResponse!
   SelectedHotspot(id: String!): HotSpot!
   SelectedHotspotService(id: String!): HotspotService!
   SelectedHotspotType(id: String!): HotspotType!
+  SelectedVote(id: String!): Vote!
   UserProfile: User!
   UsersList: [User!]!
 }
@@ -276,6 +314,16 @@ type UpdateUserResponse {
   user: User!
 }
 
+input UpdateVoteDTO {
+  vote_id: String!
+  vote_value: String!
+}
+
+type UpdateVoteResponse {
+  message: String!
+  vote: Vote!
+}
+
 type User {
   archived: Boolean!
   avatar: String
@@ -297,4 +345,13 @@ type User {
 input UserCredentialsDto {
   email: String!
   password: String!
+}
+
+type Vote {
+  createdAt: String!
+  hotspot: HotSpot!
+  id: ID!
+  updatedAt: String!
+  vote_deleted: Boolean!
+  vote_value: String!
 }

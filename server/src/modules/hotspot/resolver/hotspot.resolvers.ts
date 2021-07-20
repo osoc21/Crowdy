@@ -11,6 +11,7 @@ import { CreateHospotResponse } from '../dtos/responses/hotspot-creation.respons
 import { UpdateHotspotResponse } from '../dtos/responses/hotspot-update.response';
 import { HotSpotService } from '../services/Hotspot.service';
 import { HotSpot } from 'src/entities/hotspot/hotspot.entity';
+import { allActiveHotspotResponse } from '../dtos/responses/queries/allActiveHotspot.response';
 
 @Resolver()
 // @UseGuards(new GqlAuthGuardAdmin())
@@ -31,8 +32,8 @@ export class HotspotResolver {
 
   /* Read all HotSpot for selection*/
   // @UseGuards(new GqlAuthGuardAdmin())
-  @Query(() => [HotSpot])
-  async AllActiveHotspot(): Promise<HotSpot[]> {
+  @Query(() => allActiveHotspotResponse)
+  async AllActiveHotspot(): Promise<allActiveHotspotResponse> {
     return await this.hotspotService.AllActiveHotspot();
   }
 
