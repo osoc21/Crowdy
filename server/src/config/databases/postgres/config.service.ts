@@ -12,11 +12,12 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: this.type,
-      host: this.host,
-      port: this.port,
-      username: this.username,
-      password: this.password,
-      database: this.database,
+      url: this.url,
+      // host: this.host,
+      // port: this.port,
+      // username: this.username,
+      // password: this.password,
+      // database: this.database,
       autoLoadEntities: this.autoLoadEntities,
       synchronize: this.synchronize,
       logging: this.logging,
@@ -30,21 +31,24 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   get type(): any {
     return this.configService.get<any>('typeOrm.database.type');
   }
-  get database(): string {
-    return this.configService.get<string>('typeOrm.database.database');
+  get url(): string {
+    return this.configService.get<string>('typeOrm.database.url');
   }
-  get port(): number {
-    return this.configService.get<number>('typeOrm.database.port');
-  }
-  get host(): string {
-    return this.configService.get<string>('typeOrm.database.host');
-  }
-  get username(): string {
-    return this.configService.get<string>('typeOrm.database.username');
-  }
-  get password(): string {
-    return this.configService.get<string>('typeOrm.database.password');
-  }
+  // get database(): string {
+  //   return this.configService.get<string>('typeOrm.database.database');
+  // }
+  // get port(): number {
+  //   return this.configService.get<number>('typeOrm.database.port');
+  // }
+  // get host(): string {
+  //   return this.configService.get<string>('typeOrm.database.host');
+  // }
+  // get username(): string {
+  //   return this.configService.get<string>('typeOrm.database.username');
+  // }
+  // get password(): string {
+  //   return this.configService.get<string>('typeOrm.database.password');
+  // }
   get autoLoadEntities(): boolean {
     return this.configService.get<boolean>('typeOrm.database.autoLoadEntities');
   }

@@ -80,13 +80,13 @@ export class HotSpotService {
 
     let voteInfo = { votesCount: '6', crowdLevel: '2.5' };
 
-    const hotspotslength = hotspots.map(e => console.log(e.votes.length));
+    // const hotspotslength = hotspots.map(e => console.log(e.votes.length));
     for (let i = 0; i < hotspots.length; i++) {
       const element = ((hotspots[i] as unknown) + '' + voteInfo) as unknown;
-      console.log(element);
+      // console.log(element);
     }
 
-    console.log(hotspotslength);
+    // console.log(hotspotslength);
     return {
       hotspots: hotspots,
       totalVoteCount: 3,
