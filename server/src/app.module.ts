@@ -11,6 +11,7 @@ import { AdminAuthConfigModule } from './config/auth/admin-auth/config.module';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './config/Log/winston.config';
 import { UserAuthConfigModule } from 'src/config/auth/user/config.module';
+import { ConfigModule } from '@nestjs/config';
 
 import { GraphQLError, GraphQLFormattedError } from 'graphql';
 import { UserModule } from './modules/user/user.module';
@@ -31,6 +32,26 @@ import { VoteModule } from './modules/vote/vote.module';
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
     }),
+
+    // ConfigModule.forRoot({
+    //   isGlobal: true,
+    //   envFilePath:
+    //     process.env.NODE_ENV === 'development'
+    //       ? '.development.env'
+    //       : '.production.env',
+    // }),
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   ssl: {
+    //     rejectUnauthorized: false,
+    //     require: Boolean(process.env.TYPEORM_SSL),
+    //   },
+    //   url: process.env.TYPEORM_URL,
+    //   autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
+    //   synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
+    //   logging: Boolean(process.env.TYPEORM_LOGGING),
+    //   logger: 'file',
+    // }),
 
     /* Winston Import */
     WinstonModule.forRoot(winstonConfig),

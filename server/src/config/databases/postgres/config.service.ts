@@ -26,15 +26,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       logging: this.logging,
       logger: 'file',
       driver: {
-        ssl: this.ssl,
-
-        // ssl: {
-        //   rejectUnauthorized: false,
-        // },
-
-        // extra: {
-        //   ssl: true,
-        // },
+        ssl: {
+          require: true,
+        },
       },
     };
   }
