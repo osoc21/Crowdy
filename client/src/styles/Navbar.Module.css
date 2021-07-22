@@ -2,6 +2,7 @@
 @value clrTeal from tokens;
 
 .container {
+  z-index: 10;
   width: 100%;
   padding: .5rem;
   display: grid;
