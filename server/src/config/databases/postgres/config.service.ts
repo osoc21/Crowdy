@@ -14,6 +14,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       type: this.type,
       url: this.url,
+      ssl: this.ssl,
       // host: this.host,
       // port: this.port,
       // username: this.username,
@@ -25,11 +26,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
       logging: this.logging,
       logger: 'file',
-      driver: {
-        ssl: {
-          require: true,
-        },
-      },
+      // driver: {
+      //   ssl: {
+      //     require: true,
+      //   },
+      // },
     };
   }
   get env(): string {
