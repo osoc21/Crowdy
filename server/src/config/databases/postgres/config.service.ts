@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { Boolean } from 'aws-sdk/clients/cognitosync';
 /**
  * Service dealing with app config based operations.
  *
@@ -18,10 +19,23 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       // username: this.username,
       // password: this.password,
       // database: this.database,
+
       autoLoadEntities: this.autoLoadEntities,
       synchronize: this.synchronize,
+
       logging: this.logging,
       logger: 'file',
+      driver: {
+        ssl: this.ssl,
+
+        // ssl: {
+        //   rejectUnauthorized: false,
+        // },
+
+        // extra: {
+        //   ssl: true,
+        // },
+      },
     };
   }
   get env(): string {
@@ -30,6 +44,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
 
   get type(): any {
     return this.configService.get<any>('typeOrm.database.type');
+  }
+  get ssl(): boolean {
+    return this.configService.get<Boolean>('typeOrm.database.url');
   }
   get url(): string {
     return this.configService.get<string>('typeOrm.database.url');

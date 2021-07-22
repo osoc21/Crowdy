@@ -9,6 +9,7 @@ export default registerAs('typeOrm', () => ({
     // username: process.env.TYPEORM_USERNAME,
     // password: process.env.TYPEORM_PASSWORD,
     // database: process.env.TYPEORM_NAME,
+    ssl: process.env.TYPEORM_SSL,
     url: process.env.TYPEORM_URL,
     autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
     synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
