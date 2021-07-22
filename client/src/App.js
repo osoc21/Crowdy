@@ -57,7 +57,7 @@ function App() {
           <Scan hotspots={hotspots} />
         </Route>
         <Route path="/report/:slug">
-          <Report />
+          <Report hotspots={hotspots} />
         </Route>
         <Route path="/reward">
           <Reward />

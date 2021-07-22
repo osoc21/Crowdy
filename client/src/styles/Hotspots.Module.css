@@ -7,6 +7,20 @@
 
 .content {
   composes: container__content from "./Vars.Module.css";
+  display: grid;
+}
+
+.content > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.list__container {
+  z-index: 1;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter__list {
@@ -80,4 +94,111 @@
 .favourite__icon__false {
   composes: favourite__icon;
   background-image: url(./../assets/images/favourite-false-icon.svg);
+}
+
+.filter__container {
+  transform: translate(0, 0%);
+  z-index: 2;
+  height: 100%;
+  background-color: #9D9CDD;
+  transition: transform ease .5s;
+}
+
+.filter__container__hidden {
+  composes: filter__container;
+  transform: translate(0, -100%);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  display: none;
+}
+
+.filter__header {
+  padding: 2rem 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.filter__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.filter__btn__close {
+  margin-left: auto;
+}
+
+.filter__field__title {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.filter__input__sortby {
+  width: 100%;
+  display: flex;
+  border-bottom: .3rem solid clrPurple;
+}
+
+.filter__input__sortby .filter__item {
+  flex: 1;
+}
+
+.filter__input__sortby .filter__label {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+}
+
+.filter__input__sortby .filter__input:checked + .filter__label {
+  color: clrOrange !important;
+  background-color: clrPurple !important;
+  border-radius: 1rem;
+}
+
+.filter__input__sortby .filter__item:first-child .filter__input:checked + .filter__label {
+  border-radius: 0 1rem 1rem 0;
+}
+
+.filter__input__sortby .filter__item:last-child .filter__input:checked + .filter__label {
+  border-radius: 1rem 0 0 1rem ;
+}
+
+.filter__input__type {
+  width: 100%;
+  padding: 0 2rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.filter__input__type .filter__label {
+  display: inline-block;
+  padding: 1.4rem;
+  margin: 1.2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: clrPurple;
+  background-color: #E8E8FF;
+  border: .3rem solid clrPurple;
+  border-radius: 1rem;
+}
+
+.filter__input__type .filter__input:checked + .filter__label {
+  color: clrOrange !important;
+  background-color: clrPurple !important;
 }

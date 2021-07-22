@@ -1,18 +1,22 @@
 import Navbar from '../components/Navbar';
 import styles from '../styles/Report.Module.css';
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-const Report = () => {
+const Report = ({ hotspots }) => {
   let { slug } = useParams();
+  const hotspot = hotspots[slug];
 
-  const ratings = ['abandoned', 'quiet', 'comfortable', 'crowded', 'very crowded']
+  const ratings = ['quiet', 'comfortable', 'crowded']
 
   return (
     <section className={styles.container}>
-      <Navbar previous="/scan" title="Report" />
+      <Navbar previous="/scan" title="Crowdedness" />
       <div className={styles.content}>
-        <p className={styles.hotspot}>{slug}</p>
-        <p className={styles.question}>How crowded is it here?</p>
+        <div className={styles.info}>
+          <p className={styles.hotspot}>{hotspot.name}</p>
+          <p className={styles.question}>How crowded is it here?</p>
+        </div>
         <div className={styles.rating__container}>
           <div className={styles.rating__header}>
             <p className={styles.rating__header__item}>Quiet</p>
@@ -22,7 +26,9 @@ const Report = () => {
             {ratings.map((rating, index) => <p className={styles.rating} key={index}>[{rating}]</p>)}
           </div>
         </div>
-        <p className={styles.about}>What is Crowdy?</p>
+        <Link className={styles.about__link} to="/about">
+          <p className={styles.about}>What is Crowdy?</p>
+        </Link>
       </div>
     </section>
   );
