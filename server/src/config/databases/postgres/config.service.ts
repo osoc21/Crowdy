@@ -14,12 +14,17 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       type: this.type,
       url: this.url,
-      ssl: this.ssl,
       // host: this.host,
       // port: this.port,
       // username: this.username,
       // password: this.password,
       // database: this.database,
+      ssl: this.ssl,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false
+        }
+      },
 
       autoLoadEntities: this.autoLoadEntities,
       synchronize: this.synchronize,
