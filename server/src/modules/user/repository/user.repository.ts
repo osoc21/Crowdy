@@ -7,8 +7,6 @@ import * as bcrypt from 'bcryptjs';
 import { EntityRepository, Repository } from 'typeorm';
 import { User } from 'src/entities/user/user.entity';
 import { UserCredentialsDto } from '../dtos/login-user/user-credentials.dto';
-import { ChangePasswordUserDto } from '../dtos/change-pass/change-pass.dto';
-import { MessageResponseUser } from '../dtos/generic-response/response.dto';
 import { CreateUserDTO } from '../dtos/inputs/create-user.dto';
 import { UpdateUserDTO } from '../dtos/inputs/update-user.dto';
 import { CreateUserResponse } from '../dtos/responses/user-creation.response';
@@ -18,12 +16,12 @@ import { CreateUserResponse } from '../dtos/responses/user-creation.response';
 export class UserRepository extends Repository<User> {
   /* User creation repository */
   async createUser(createUserDTO: CreateUserDTO): Promise<CreateUserResponse> {
-    const { lastname, email, password } = createUserDTO;
+    const { firstname, lastname, email, password } = createUserDTO;
 
     // Getting the actual ability
 
     const user = this.create();
-    // user.firstname = firstname;
+    user.firstname = firstname;
     user.lastname = lastname;
     user.email = email;
     user.salt = await bcrypt.genSalt();
