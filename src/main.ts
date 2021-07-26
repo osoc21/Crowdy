@@ -32,9 +32,6 @@ async function bootstrap() {
 
   const port = process.env.APP_PORT;
   await app.listen(port || 3000);
-  logger.log(
-    `Application is running on: ${await app.getUrl()}`,
-    'Main - Bootstrap',
-  );
+  logger.log(`Application is running on: ${await port}`, 'Main - Bootstrap');
 }
 bootstrap();
