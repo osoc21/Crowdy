@@ -12,20 +12,18 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
-      type: this.type,
-      host: this.host,
-      port: this.port,
-      username: this.username,
-      password: this.password,
-      database: this.database,
-      autoLoadEntities: this.autoLoadEntities,
-      synchronize: this.synchronize,
-      logging: false,
-      logger: 'file',
       driver: {
-        extra: {
-          ssl: true,
-        },
+        type: this.type,
+        host: this.host,
+        port: this.port,
+        username: this.username,
+        password: this.password,
+        database: this.database,
+        autoLoadEntities: this.autoLoadEntities,
+        synchronize: this.synchronize,
+        logging: false,
+        logger: 'file',
+        ssl: true,
       },
     };
   }

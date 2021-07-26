@@ -29,29 +29,31 @@ import { VoteModule } from './modules/vote/vote.module';
 @Module({
   imports: [
     /* TypeOrm Import */
-    TypeOrmModule.forRootAsync({
-      useClass: TypeOrmConfigService,
-    }),
+    // TypeOrmModule.forRootAsync({
+    //   useClass: TypeOrmConfigService,
+    // }),
 
-    // ConfigModule.forRoot({
-    //   isGlobal: true,
-    //   envFilePath:
-    //     process.env.NODE_ENV === 'development'
-    //       ? '.development.env'
-    //       : '.production.env',
-    // }),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   ssl: {
-    //     rejectUnauthorized: false,
-    //     require: Boolean(process.env.TYPEORM_SSL),
-    //   },
-    //   url: process.env.TYPEORM_URL,
-    //   autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
-    //   synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
-    //   logging: Boolean(process.env.TYPEORM_LOGGING),
-    //   logger: 'file',
-    // }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath:
+        process.env.NODE_ENV === 'development'
+          ? '.development.env'
+          : '.production.env',
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.TYPEORM_HOST,
+      port: +process.env.TYPEORM_PORT,
+      username: process.env.TYPEORM_USERNAME,
+      password: process.env.TYPEORM_PASSWORD,
+      database: process.env.TYPEORM_NAME,
+      url: process.env.TYPEORM_URL,
+      autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
+      synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
+      logging: Boolean(process.env.TYPEORM_LOGGING),
+      logger: 'file',
+      ssl: false,
+    }),
 
     /* Winston Import */
     WinstonModule.forRoot(winstonConfig),
@@ -61,7 +63,7 @@ import { VoteModule } from './modules/vote/vote.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       cors: {
-        // credentials: true,
+        credentials: true,
         origin: process.env.APP_URL,
       },
       formatError: (error: GraphQLError) => {
