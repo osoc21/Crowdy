@@ -15,10 +15,7 @@ const Hotspots = ({ hotspots }) => {
     type: []
   });
 
-  const showFilter = () => {
-    setIsFilter(true);
-  };
-
+  // Changing the parameters of the filter based on user-input
   const changeFilter = e => {
     const { name, value } = e.target;
     let tmp = {...filters};
@@ -36,7 +33,10 @@ const Hotspots = ({ hotspots }) => {
 
   console.log(filters);
 
-  const navOptions = [{ name: "filter", action: showFilter }];
+  // Defining which actions the user can do in the navigationbar
+  const navOptions = [
+    { name: "filter", action: () => setIsFilter(true) }
+  ];
 
   // ** GRAPHQL QUERY CODE
   // eslint-disable-next - line;

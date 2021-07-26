@@ -5,7 +5,6 @@ import styles from '../styles/Form.Module.css';
 const Login = () => {
   return (
     <section className={styles.container}>
-      {/* WHAT IS THE PREVIOUS LINK? THIS DEPENDS */}
       <Navbar previous="" title="Log in" options={[]} />
       <div className={styles.content}>
         <form className={styles.form} method="post">

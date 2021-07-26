@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Profile.Module.css';
 
 const Profile = ({ account, ranks }) => {
+  // Test account data
   const data = {
     firstname: 'Pieter',
     lastname: 'Desmet',
@@ -23,12 +24,13 @@ const Profile = ({ account, ranks }) => {
     ]
   }
 
-  const edit = () => {
+  const logout = () => {
     return false;
   };
 
+  // Defining which actions the user can do in the navigationbar
   const navOptions = [
-    { name: 'edit', action: edit }
+    { name: 'logout', action: logout }
   ];
 
   return (
@@ -53,6 +55,7 @@ const Profile = ({ account, ranks }) => {
               <p className={styles.scanned__title}>Scanned</p>
               <p className={styles.scanned__number}>{data.scanned}</p>
               <p className={styles.scanned__unit}>Times</p>
+              <div className={styles.scanned__icon} />
             </div>
             <div className={styles.leaderboard}>
               <p className={styles.leaderboard__title}>Leaderboard</p>

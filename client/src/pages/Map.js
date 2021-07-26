@@ -5,12 +5,14 @@ import { useState, useMemo } from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl';
 
 const Map = ({ hotspots }) => {
+  // Defining how and what to show on the map
   const [viewport, setViewport] = useState({
     longitude: 3.72800,
     latitude: 51.05100,
     zoom: 12.5
   });
 
+  // Creating the markers separately and memoizing them for better performance
   const markers = useMemo(() => hotspots.map(
     (city, index) => (
       <Marker key={city.name} longitude={city.longitude} latitude={city.latitude} >

@@ -12,7 +12,7 @@ const Navbar = ({ previous, title, options = [] }) => {
           <div className={styles.btn__back} />
         </Link>
       ) : (
-        <div className={styles.btn__back} onClick={() => history.goBack()}></div>
+        <div className={styles.btn__back} onClick={() => history.goBack()} />
       )}
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.options}>
