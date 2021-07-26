@@ -31,7 +31,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   const port = process.env.APP_PORT;
-  await app.listen(port);
+  await app.listen(port || 3000);
   logger.log(
     `Application is running on: ${await app.getUrl()}`,
     'Main - Bootstrap',

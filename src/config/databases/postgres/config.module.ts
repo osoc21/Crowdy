@@ -18,10 +18,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         : '.production.env',
       isGlobal: true,
       validationSchema: Joi.object({
-        // TYPEORM_HOST: Joi.required(),
-        // TYPEORM_PORT: Joi.number().default(5432),
-        // TYPEORM_LOGGING: Joi.bool().default(false),
-        // TYPEORM_SYNCHRONIZE: Joi.bool().default(false),
+        TYPEORM_HOST: Joi.required(),
+        TYPEORM_PORT: Joi.number().default(5432),
+        TYPEORM_LOGGING: Joi.bool().default(false),
+        TYPEORM_SYNCHRONIZE: Joi.bool().default(false),
       }),
     }),
     TypeOrmModule.forRootAsync({
