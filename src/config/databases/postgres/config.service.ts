@@ -22,6 +22,11 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       synchronize: this.synchronize,
       logging: false,
       logger: 'file',
+      driver: {
+        extra: {
+          ssl: true,
+        },
+      },
     };
   }
   get env(): string {
