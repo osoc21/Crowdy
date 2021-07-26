@@ -19,23 +19,12 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       // username: this.username,
       // password: this.password,
       // database: this.database,
-      ssl: this.ssl,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false
-        }
-      },
 
       autoLoadEntities: this.autoLoadEntities,
       synchronize: this.synchronize,
 
       logging: this.logging,
       logger: 'file',
-      // driver: {
-      //   ssl: {
-      //     require: true,
-      //   },
-      // },
     };
   }
   get env(): string {

@@ -28,12 +28,6 @@ input AdminCredentialsDto {
   password: String!
 }
 
-type allActiveHotspotResponse {
-  crowdLevel: Int!
-  hotspots: [HotSpot!]!
-  totalVoteCount: Int!
-}
-
 type AllHotspotQueryResponse {
   hotspots: [HotSpot!]!
   totalCount: Int!
@@ -217,14 +211,14 @@ type Mutation {
   AdminLogin(data: AdminCredentialsDto!): LoginResponse!
   AdminSignup: RegisterAdminResponse!
   AdminUpdateInfo(data: UpdateAdminDto!): Admin!
+  HotSpotRestore(data: DeleteHotspotDTO!): DeleteHotspotResponse!
+  HotSpotServiceRestore(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotspotArchive(data: DeleteHotspotDTO!): DeleteHotspotResponse!
   HotspotCreation(data: CreateHotSpotDTO!): CreateHospotResponse!
   HotspotCreationService(data: CreateHotSpotServiceDTO!): CreateHospotServiceResponse!
   HotspotDelete(data: DeleteHotspotDTO!): DeleteHotspotResponse!
-  HotSpotRestore(data: DeleteHotspotDTO!): DeleteHotspotResponse!
   HotspotServiceArchive(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotspotServiceDelete(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
-  HotSpotServiceRestore(data: DeleteHotspotServiceDTO!): DeleteHotspotServiceResponse!
   HotspotServiceUpdate(data: HotspotServiceUpdateDTO!): UpdateHotspotServiceResponse!
   HotspotTypeArchive(data: DeleteHotspotTypeDTO!): DeleteHotspotTypeResponse!
   HotspotTypeCreation(data: CreateHotspotTypeDTO!): CreateHospotTypeResponse!
@@ -270,6 +264,11 @@ input UpdateAdminDto {
   username: String!
 }
 
+type UpdateHotspoTypeResponse {
+  message: String!
+  type: HotspotType!
+}
+
 input UpdateHotspotDTO {
   city: String
   coordinates: [JSON!]
@@ -295,11 +294,6 @@ type UpdateHotspotServiceResponse {
 input UpdateHotspotTypeDTO {
   type_id: String!
   type_name: String!
-}
-
-type UpdateHotspoTypeResponse {
-  message: String!
-  type: HotspotType!
 }
 
 input UpdateUserDTO {
@@ -354,4 +348,10 @@ type Vote {
   updatedAt: String!
   vote_deleted: Boolean!
   vote_value: String!
+}
+
+type allActiveHotspotResponse {
+  crowdLevel: Int!
+  hotspots: [HotSpot!]!
+  totalVoteCount: Int!
 }

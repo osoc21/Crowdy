@@ -19,7 +19,7 @@ async function bootstrap() {
     });
   }
 
-  const appConfig: AppConfigService = app.get('AppConfigService');
+  // const appConfig: AppConfigService = app.get('AppConfigService');
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -30,7 +30,7 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  const port = appConfig.port;
+  const port = process.env.APP_PORT;
   await app.listen(port);
   logger.log(
     `Application is running on: ${await app.getUrl()}`,

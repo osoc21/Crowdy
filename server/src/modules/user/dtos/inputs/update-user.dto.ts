@@ -37,6 +37,6 @@ export class UpdateUserDTO extends BaseNameWithValidation(class {}) {
   /* Space for birthdate */
   @Field({ nullable: true })
   @IsOptional()
-  @IsDateString({ message: `Format invalide pour la date de naissance.` })
+  @IsDateString()
   birthdate: string;
 }
