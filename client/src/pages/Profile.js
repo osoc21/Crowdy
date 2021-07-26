@@ -34,9 +34,45 @@ const Profile = ({ account, ranks }) => {
   return (
     <section className={styles.container}>
       <Navbar previous="" title="your profile" options={navOptions} />
-      {/*WHAT ELEMENTS IN THE PROFILE PICTURE?*/}
-      <p className={styles.name}>{data.firstname} {data.lastname}</p>
-      <p className={styles.rank}></p>
+      <div className={styles.content}>
+        <div className={styles.info}>
+          <div className={styles.name__container}>
+            <p className={styles.name}>{data.firstname} {data.lastname}</p>
+            <div className={styles.btn__edit} />
+          </div>
+          <p className={styles.created}>Member since 01/01/1960</p>
+          <div className={styles.profile__picture} />
+        </div>
+        <div className={styles.data}>
+          <p className={styles.rank}>Streetrat</p>
+          <div className={styles.progress}>
+            <div className={styles.progress__bar}></div>
+          </div>
+          <div className={styles.nav}>
+            <div className={styles.scanned}>
+              <p className={styles.scanned__title}>Scanned</p>
+              <p className={styles.scanned__number}>{data.scanned}</p>
+              <p className={styles.scanned__unit}>Times</p>
+            </div>
+            <div className={styles.leaderboard}>
+              <p className={styles.leaderboard__title}>Leaderboard</p>
+              <div className={styles.leaderboard__icon} />
+            </div>
+          </div>
+          <div className={styles.badges__container}>
+            <p className={styles.badges__title}>Badges</p>
+            <ul className={styles.badges}>
+              <li className={styles.badge__extra}></li>
+              <li className={styles.badge} />
+              <li className={styles.badge} />
+              <li className={styles.badge} />
+              <li className={styles.badge} />
+              <li className={styles.badge} />
+              <li className={styles.badge__extra}></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

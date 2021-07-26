@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import styles from "../styles/Hotspot.Module.css";
 // eslint-disable-next-line
@@ -7,10 +7,9 @@ import { Link } from "react-router-dom";
 import { useMemo } from 'react';
 import ReactMapGL, {Marker} from 'react-map-gl';
 
-const Hotspot = ({ hotspots }) => {
+const Hotspot = ({ hotspots, favourites, setFavourites }) => {
   const { id } = useParams();
   const data = hotspots[id];
-  const dateCurrent = new Date();
 
   const [viewport, setViewport] = useState({
     longitude: data.longitude,
@@ -28,19 +27,32 @@ const Hotspot = ({ hotspots }) => {
     )
   ), [hotspots]);
 
+  useEffect(() => {
+    console.log(favourites);
+  }, [favourites]);
+
   const crowdedness = ["Unknown", "Calm", "Rather crowded", "CROWDY!"];
 
-  const [favourites, setFavourites] = useState([2]);
-
-  const changeFavourites = (hotspot) => {
-    const tmp = [...favourites];
-    favourites.includes(hotspot)
-      ? tmp.splice(favourites.indexOf(hotspot), 1)
-      : tmp.push(hotspot);
-    setFavourites(tmp);
+  const changeFavourites = () => {
+    const idHotspot = parseInt(id);
+    setFavourites(previous => {
+      let tmp = [...previous];
+      if (tmp.includes(idHotspot)) {
+        tmp.splice(previous.indexOf(idHotspot), 1);
+      } else {
+        tmp.push(idHotspot);
+      }
+      return tmp;
+    });
   };
 
-  const navOptions = [{ name: "favourite", action: changeFavourites }];
+  const navOptions = [
+    { 
+      name: "favourite", 
+      action: changeFavourites,
+      icon: `favourite__${favourites.includes(parseInt(id))}`
+    }
+  ];
 
   return (
     <section className={styles.container}>
@@ -48,6 +60,7 @@ const Hotspot = ({ hotspots }) => {
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.data}>
+            <div onClick={changeFavourites}>CLICK</div>
             <p className={styles.name}>{data.name}</p>
             <p className={styles.type}>{data.type} in Ghent</p>
             <ul className={styles.services}>

@@ -48,3 +48,13 @@
   composes: btn;
   background-image: url(./../assets/images/favourite-false-icon.svg);
 }
+
+.btn__favourite__false {
+  composes: btn;
+  background-image: url(./../assets/images/favourite-false-icon.svg);
+}
+
+.btn__favourite__true {
+  composes: btn;
+  background-image: url(./../assets/images/favourite-true-icon.svg);
+}

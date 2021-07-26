@@ -16,7 +16,7 @@ const Navbar = ({ previous, title, options = [] }) => {
       )}
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.options}>
-        {options.map(item => <div className={styles[`btn__${item.name}`]} onClick={item.action} key={item.name} />)}
+        {options.map(item => <div className={styles[`btn__${item.hasOwnProperty('icon') ? item.icon : item.name}`]} onClick={item.action} key={item.name} />)}
       </div>
     </div>
   );

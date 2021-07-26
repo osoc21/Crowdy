@@ -34,7 +34,8 @@
   z-index: 1;
   width: 100%;
   height: fit-content;
-  margin-top: 1rem;
+  margin: 0 auto;
+  padding: 1.5rem;
   overflow-y: scroll;
   display: flex;
   flex-flow: row wrap;
@@ -43,7 +44,7 @@
 }
 
 .nav__item {
-  display: inline-block;
+  display: flex;
 }
 
 .nav__item > a {
@@ -71,14 +72,14 @@
 }
 
 .nav__item__txt {
-  margin: .2rem auto;
+  margin-top: .5rem;
   font-family: 'Josefin Slab', sans-serif;
 }
 
 .nav__icon {
-  width: 7.2rem;
-  height: 7.2rem;
-  background-size: 7.2rem 7.2rem;
+  width: 9rem;
+  height: 7rem;
+  background-size: 9rem 7.2rem;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -101,6 +102,11 @@
 .profile__icon {
   composes: nav__icon;
   background-image: url(./../assets/images/profile-icon.svg);
+}
+
+.leaderboard__icon {
+  composes: nav__icon;
+  background-image: url(./../assets/images/leaderboard-icon.svg);
 }
 
 .btn__download {
