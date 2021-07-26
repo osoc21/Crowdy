@@ -43,16 +43,16 @@ import { VoteModule } from './modules/vote/vote.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.TYPEORM_HOST,
-      port: +process.env.TYPEORM_PORT,
       username: process.env.TYPEORM_USERNAME,
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_NAME,
-      url: process.env.TYPEORM_URL,
+      port: +process.env.TYPEORM_PORT,
+      // url: process.env.TYPEORM_URL,
       autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
       synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
       logging: Boolean(process.env.TYPEORM_LOGGING),
       logger: 'file',
-      // ssl: false,
+      ssl: false,
     }),
 
     /* Winston Import */

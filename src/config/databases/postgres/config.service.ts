@@ -37,9 +37,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   get ssl(): boolean {
     return this.configService.get<Boolean>('typeOrm.database.url');
   }
-  get url(): string {
-    return this.configService.get<string>('typeOrm.database.url');
-  }
+  // get url(): string {
+  //   return this.configService.get<string>('typeOrm.database.url');
+  // }
   get database(): string {
     return this.configService.get<string>('typeOrm.database.database');
   }
