@@ -79,10 +79,28 @@
   align-items: center;
 }
 
-.rating {
+.btn__rating__icon {
+  display: inline-block;
   width: 8rem;
   height: 8rem;
-  background-color: clrGreyFill;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 8rem;
+}
+
+.btn__rating__icon__01 {
+  composes: btn__rating__icon;
+  background-image: url(./../assets/images/rating-icon-01.svg);
+}
+
+.btn__rating__icon__02 {
+  composes: btn__rating__icon;
+  background-image: url(./../assets/images/rating-icon-02.svg);
+}
+
+.btn__rating__icon__03 {
+  composes: btn__rating__icon;
+  background-image: url(./../assets/images/rating-icon-03.svg);
 }
 
 .about {

@@ -5,7 +5,6 @@ import styles from '../styles/Form.Module.css';
 const Register = () => {
   return (
     <section className={styles.container}>
-      {/* WHAT IS THE PREVIOUS LINK? THIS DEPENDS */}
       <Navbar previous="" title="sign up" options={[]} />
       <div className={styles.content}>
         <p className={styles.instructions}>Create your own Crowdy-account!</p>
@@ -23,7 +22,10 @@ const Register = () => {
             <input className={styles.form__field__input} type="email" name="email" id="email" placeholder="pieter.desmet@gmail.com" required></input>
           </div>
           <div className={styles.form__field}>
-            <label className={styles.form__field__label} htmlFor="password">Password</label>
+            <label className={styles.form__field__label} htmlFor="password">
+              <p>Password</p>
+              <p className={styles.form__field__label__extra}>Must contain a minimum of 8 characters</p>
+            </label>
             <input className={styles.form__field__input} type="password" name="password" id="password" placeholder="••••••••" required></input>
           </div>
           <div className={styles.form__field}>

@@ -8,9 +8,9 @@ const Report = ({ hotspots }) => {
   const [rating, setRating] = useState(null);
   let { slug } = useParams();
   const hotspot = hotspots[slug];
-
   const ratings = ['quiet', 'comfortable', 'crowded']
 
+  // Adding the rating to the database
   const handleClickRating = e => {
     // Add report/rating to the database
     setRating(e.currentTarget.value);
@@ -37,7 +37,7 @@ const Report = ({ hotspots }) => {
             {ratings.map((rating, index) => (
               <div className={styles.rating} key={index}>
                 <input className={styles.rating__input} type="radio" name="rating" id={rating} value={index + 1} onChange={handleClickRating} />
-                <label className={styles.rating__label} htmlFor={rating}>[{rating}]</label>
+                <label className={styles[`btn__rating__icon__${(index + 1).toString().padStart(2, '0')}`]} htmlFor={rating} />
               </div>
             ))}
           </form>

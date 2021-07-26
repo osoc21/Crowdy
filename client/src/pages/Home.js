@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/Home.Module.css';
 
 const Home = () => {
+  // Different items to navigate to (tiles on the homepage)
   const items = ['Hotspots', 'Scan', 'Map', 'Profile', 'Leaderboard'];
 
   return (

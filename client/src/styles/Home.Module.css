@@ -120,13 +120,13 @@
   background-color: clrTeal;
   background-repeat: no-repeat;
   background-position:
-    10rem 6rem,
+    9.2rem 5.5rem,
     center;
   background-image: 
     url(./../assets/images/download-icon.svg),
     url(./../assets/images/download-icon-layout-line.svg);
   background-size:
-    6.4rem,
+    7.4rem 7.1rem,
     17.5rem 15rem;
 }
 

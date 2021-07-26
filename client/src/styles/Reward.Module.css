@@ -80,7 +80,10 @@
   width: 8rem;
   height: 8rem;
   border: .4rem solid clrPurple;
-  border-radius: 50%;
+  border-radius: 50%;  background-repeat: no-repeat;
+  background-position: center 1rem;
+  background-size: 4.8rem;
+  background-image: url(./../assets/images/profile-picture-icon-dark.svg);
 }
 
 .progress {

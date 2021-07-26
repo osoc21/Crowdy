@@ -88,12 +88,12 @@
 
 .favourite__icon__true {
   composes: favourite__icon;
-  background-image: url(./../assets/images/favourite-true-icon.svg);
+  background-image: url(./../assets/images/favourite-icon-true.svg);
 }
 
 .favourite__icon__false {
   composes: favourite__icon;
-  background-image: url(./../assets/images/favourite-false-icon.svg);
+  background-image: url(./../assets/images/favourite-icon-false.svg);
 }
 
 .filter__container {

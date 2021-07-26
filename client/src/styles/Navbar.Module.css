@@ -44,17 +44,18 @@
   background-image: url(./../assets/images/filter-icon.svg);
 }
 
-.btn__favourite {
-  composes: btn;
-  background-image: url(./../assets/images/favourite-false-icon.svg);
-}
-
+.btn__favourite,
 .btn__favourite__false {
   composes: btn;
-  background-image: url(./../assets/images/favourite-false-icon.svg);
+  background-image: url(./../assets/images/favourite-icon-false.svg);
 }
 
 .btn__favourite__true {
   composes: btn;
-  background-image: url(./../assets/images/favourite-true-icon.svg);
+  background-image: url(./../assets/images/favourite-icon-true.svg);
+}
+
+.btn__logout {
+  composes: btn;
+  background-image: url(./../assets/images/logout-icon.svg);
 }
