@@ -11,19 +11,19 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, { logger });
 
-  if (process.env.NODE_ENV === 'development') {
-    // app.enableCors();
-    app.enableCors({
-      credentials: true,
-      origin: [process.env.APP_URL],
-    });
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   // app.enableCors();
+  //   app.enableCors({
+  //     credentials: true,
+  //     origin: [process.env.APP_URL],
+  //   });
+  // }
 
   // const appConfig: AppConfigService = app.get('AppConfigService');
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      // whitelist: true,
       forbidNonWhitelisted: true,
     }),
   );
@@ -32,6 +32,6 @@ async function bootstrap() {
 
   const port = process.env.APP_PORT;
   await app.listen(port || 3000);
-  logger.log(`Application is running on: ${await port}`, 'Main - Bootstrap');
+  logger.log(`Application is running on: ${port}`, 'Main - Bootstrap');
 }
 bootstrap();

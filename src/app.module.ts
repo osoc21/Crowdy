@@ -61,7 +61,7 @@ import { VoteModule } from './modules/vote/vote.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       cors: {
-        credentials: true,
+        // credentials: true,
         origin: process.env.APP_URL,
       },
       formatError: (error: GraphQLError) => {
