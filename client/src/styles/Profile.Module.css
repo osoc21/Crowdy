@@ -1,0 +1,184 @@
+@value tokens: "./Vars.Module.css";
+@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrGreen, clrOrange, clrRed, clrGrey, clrGreenFill, clrOrangeFill, clrRedFill, clrGreyFill from tokens;
+
+.container {
+  composes: container from "./Vars.Module.css";
+}
+
+.content {
+  composes: container__content from "./Vars.Module.css";
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.padding {
+  width: 100%;
+  padding: 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info {
+  width: 100%;
+  padding: 2rem 2rem 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: clrPurple;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 0 0 1rem 1rem;
+}
+
+.name {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.created {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
+.data {
+  composes: padding;
+  z-index: 2;
+  margin-top: -2.25rem;
+}
+
+.rank {
+  padding: .5rem 1rem;
+  margin-right: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: clrOrange;
+  background-color: clrPurple;
+  border: .1rem solid clrBackground;
+  border-radius: .5rem;
+}
+
+.profile__picture {
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem auto;
+  border: .4rem solid white;
+  border-radius: 50%;
+}
+
+.progress {
+  width: 100%;
+  height: 1rem;
+  margin: 2.5rem auto;
+  background-color: clrLavender;
+  border-radius: 4rem;
+}
+
+.progress > * {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.progress__bar {
+  width: 50%;
+  height: 1rem;
+  background-color: clrPurple;
+  border-radius: 4rem;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  border-bottom: .3rem solid clrPurple;
+}
+
+.nav > * {
+  flex: 1;
+  height: calc((100vw - 5rem) / 2 - 2rem);
+  padding: 1rem;
+  margin: 2rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-color: clrPurple;
+  border: .3rem solid clrOrange;
+  border-radius: .8rem;
+}
+
+.scanned {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.scanned__title {
+  font-size: 2rem;
+}
+
+.scanned__number {
+  font-size: 3.6rem;
+}
+
+.scanned__unit {
+  font-size: 1.6rem;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboard__title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.leaderboard__icon {
+  width: 9rem;
+  height: 7rem;
+  background-size: 9rem 7.2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(./../assets/images/leaderboard-icon.svg);
+}
+
+.badges__container {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.badges__title {
+  color: clrPurple;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.badges {
+  margin: 0 -3.5rem;
+  width: 100vw;
+  overflow-x: scroll;
+  display: flex;
+  flex-flow: row;
+}
+
+.badge {
+  flex: none;
+  margin: 1rem;
+  width: 10rem;
+  height: 10rem;
+  background-color: clrPurple;
+  border-radius: 50%;
+}
+
+.badge__extra {
+  flex: none;
+  display: block;
+  width: 2rem;
+  height: 1rem;
+}

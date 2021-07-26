@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles/Home.Module.css';
 
 const Home = () => {
-  const items = ['Hotspots', 'Scan', 'Map', 'Profile'];
+  const items = ['Hotspots', 'Scan', 'Map', 'Profile', 'Leaderboard'];
 
   return (
     <div className={styles.container}>

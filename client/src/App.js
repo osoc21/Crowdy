@@ -15,7 +15,8 @@ import Profile from './pages/Profile';
 function App() {
   //const [account, setAccount] = useState(false);
   // eslint-disable-next-line
-  const [hotspots, setHotspots] = useState([
+  const [favourites, setFavourites] = useState([2]);
+  const hotspots = [
     {
       name: 'korenmarkt',
       longitude: 3.7195936,
@@ -40,7 +41,7 @@ function App() {
       type: "square",
       services: []
     }
-  ]);
+  ];
 
   const ranks = ['The Tourist', 'The Traveller', 'The Ranger', 'The King'];
 
@@ -51,7 +52,7 @@ function App() {
           <Hotspots hotspots={hotspots} />
         </Route>
         <Route path="/hotspot/:id">
-          <Hotspot hotspots={hotspots} />
+          <Hotspot hotspots={hotspots} favourites={favourites} setFavourites={setFavourites} />
         </Route>
         <Route path="/scan">
           <Scan hotspots={hotspots} />

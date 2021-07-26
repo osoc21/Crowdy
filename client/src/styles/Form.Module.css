@@ -1,0 +1,49 @@
+@value tokens: "./Vars.Module.css";
+@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrOrange from tokens;
+
+.container {
+  composes: container from "./Vars.Module.css";
+}
+
+.content {
+  composes: container__content from "./Vars.Module.css";
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 2.4rem;
+}
+
+.instructions {
+  margin-bottom: 2.4rem;
+  font-family: 'Josefin Slab';
+  font-size: 2rem;
+  font-weight: 700;
+  color: clrPurple;
+  text-align: center;
+}
+
+.form {
+  composes: form from "./Vars.Module.css";
+}
+
+.btn__primary {
+  composes: btn__primary from "./Vars.Module.css";
+  margin: 2rem auto;
+}
+
+.btn__tertiary {
+  composes: btn__tertiary from "./Vars.Module.css";
+}
+
+.form__field {
+  composes: form__field from "./Vars.Module.css";
+}
+
+.form__field__label {
+  composes: label from "./Vars.Module.css";
+}
+
+.form__field__input {
+  composes: input from "./Vars.Module.css";
+  margin-bottom: 1.6rem;
+}

@@ -85,16 +85,12 @@
   background-color: clrGreyFill;
 }
 
-.about__link {
+.about {
   margin-top: auto;
   margin-bottom: 2rem;
   justify-self: flex-end;
 }
 
-.about {
-  padding: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
-  color: clrPurple;
-  text-decoration: underline;
+.btn__tertiary {
+  composes: btn__tertiary from "./Vars.Module.css";
 }
