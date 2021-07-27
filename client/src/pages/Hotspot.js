@@ -113,7 +113,7 @@ const Hotspot = ({ hotspots, favourites, setFavourites }) => {
             </div>
           </div>
           <div className={styles.map}>
-            <ReactMapGL {...viewport} width="100vw" height="200px" onViewportChange={setViewport} mapStyle={`${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN_STYLE}`}>
+            <ReactMapGL {...viewport} width="100vw" height="240px" onViewportChange={setViewport} mapStyle={`${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN_STYLE}`}>
               {markers}
             </ReactMapGL>
           </div>
