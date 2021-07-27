@@ -66,6 +66,7 @@ import { VoteModule } from './modules/vote/vote.module';
     /* GraphQl Import */
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      playground: true,
       sortSchema: true,
       // cors: {
       //   credentials: true,
