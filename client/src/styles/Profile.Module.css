@@ -228,3 +228,33 @@
   width: 2rem;
   height: 1rem;
 }
+
+.loggedout {
+  width: 100%;
+  padding: 2.5rem;
+  margin: auto;
+  align-self: center;
+}
+
+.instruction {
+  margin: 1rem auto 3rem auto;
+  font-family: 'Josefin Slab', sans-serif;
+  font-size: 2rem;
+  color: clrPurple;
+  text-align: center;
+}
+
+.btn__primary {
+  composes: btn__primary from "./Vars.Module.css";
+  margin: 1rem auto;
+}
+
+.btn__secondary {
+  composes: btn__secondary from "./Vars.Module.css";
+  margin: 1rem auto;
+}
+
+.btn__tertiary {
+  composes: btn__tertiary from "./Vars.Module.css";
+  margin: 1rem auto;
+}

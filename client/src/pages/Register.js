@@ -42,8 +42,7 @@ const Register = () => {
 
   // When the user has registered
   if (data) {
-    console.log(data);
-    //localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('userdata', JSON.stringify(data.UserLogin));
     return <Redirect to="/profile" />
   }
 
@@ -71,17 +70,19 @@ const Register = () => {
               <p className={styles.form__field__label__extra}>Must contain a minimum of 8 characters</p>
             </label>
             <input className={styles.form__field__input} type="password" name="password" id="password" placeholder="••••••••" required></input>
+            {errorForm.password ? <p className={styles.error}>{errorForm.password}</p> : ''}
           </div>
           <div className={styles.form__field}>
             <label className={styles.form__field__label} htmlFor="passwordconfirm">Confirm Password</label>
             <input className={styles.form__field__input} type="password" name="passwordconfirm" id="passwordconfirm" placeholder="••••••••" required></input>
+            {errorForm.passwordconfirm ? <p className={styles.error}>{errorForm.passwordconfirm}</p> : ''}
           </div>
           <div className={styles.form__field}>
             {loading ? <p className={styles.loading}>Creating account...</p> : <input className={styles.btn__primary} type="submit" value="Create account" />}
           </div>
           {error ? (
             <div className={styles.form__field}>
-              <p className={styles.error}>{error}</p>
+              <p className={styles.error}>Server error</p>
             </div>
           ) : ''}
         </form>

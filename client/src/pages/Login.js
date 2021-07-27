@@ -25,8 +25,7 @@ const Login = () => {
 
   // When the user has logged in
   if (data) {
-    console.log(data);
-    //localStorage.setItem('accessToken', data.accessToken);
+    localStorage.setItem('userdata', JSON.stringify(data.UserLogin));
     return <Redirect to="/profile" />
   }
 
@@ -48,7 +47,7 @@ const Login = () => {
           </div>
           {error ? (
             <div className={styles.form__field}>
-              <p className={styles.error}>{error}</p>
+              <p className={styles.error}>Server error</p>
             </div>
           ) : ''}
         </form>

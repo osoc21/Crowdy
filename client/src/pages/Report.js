@@ -39,6 +39,11 @@ const Report = () => {
     });
   };
 
+  if (dataVote) {
+    console.log(dataVote);
+    return <Redirect to="/reward" push />
+  }
+
   // When the hotspot is loading...
   if (loadingHotspot) {
     return (
@@ -86,17 +91,12 @@ const Report = () => {
               {errorVote ? <p className={styles.error}>Something went wrong</p> : ''}
             </div>
           )}
-          <Link className={styles.about} to="/about">
+          <Link className={styles.about} to="/">
             <p className={styles.btn__tertiary}>What is Crowdy?</p>
           </Link>
         </div>
       </section>
     );
-  }
-
-  if (dataVote) {
-    console.log(dataVote);
-    return <Redirect to="/reward" push />
   }
 }
  

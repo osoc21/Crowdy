@@ -1,5 +1,5 @@
 @value tokens: "./Vars.Module.css";
-@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrOrange from tokens;
+@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrOrange, clrRed from tokens;
 
 .container {
   composes: container from "./Vars.Module.css";
@@ -55,14 +55,15 @@
 
 .loading {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: clrPurple;
   /* text-align: center; */
 }
 
 .error {
+  margin-bottom: 1rem;
   font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: clrRed;
   /* text-align: center; */
 }

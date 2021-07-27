@@ -26,7 +26,7 @@ const Map = ({ hotspots }) => {
   return (
     <section className={styles.container}>
       <Navbar previous="/" title="Map" />
-      <ReactMapGL {...viewport} width="100vw" height="100vh" onViewportChange={setViewport} mapStyle={`https://api.maptiler.com/maps/89880a13-40f8-4ec1-8b46-009ae4a9cbe4/style.json?key=${process.env.REACT_APP_MAPTILER_ACCESS_TOKEN}`}>
+      <ReactMapGL {...viewport} width="100vw" height="100vh" onViewportChange={setViewport} mapStyle={`${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN_STYLE}`}>
         {markers}
       </ReactMapGL>
     </section>

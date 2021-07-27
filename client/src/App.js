@@ -43,8 +43,6 @@ function App() {
     }
   ];
 
-  const ranks = ['The Tourist', 'The Traveller', 'The Ranger', 'The King'];
-
   return (
     <div className={styles.container}>
       <Switch>
@@ -73,7 +71,7 @@ function App() {
           <Register />
         </Route>
         <Route path="/profile">
-          <Profile ranks={ranks} />
+          <Profile />
         </Route>
         <Route exact path="/">
           <Home />

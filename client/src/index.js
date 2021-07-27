@@ -12,7 +12,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // ** Apollo Client
 const client = new ApolloClient({
-  uri: process.env.REACT_APP_BACKEND_URL_TEMP,
+  uri: process.env.REACT_APP_SERVER_BACKEND,
   cache: new InMemoryCache(),
 });
 
