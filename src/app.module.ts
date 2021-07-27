@@ -38,15 +38,18 @@ import { VoteModule } from './modules/vote/vote.module';
     /* TypeOrm Import */
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.TYPEORM_HOST,
-      username: process.env.TYPEORM_USERNAME,
-      password: process.env.TYPEORM_PASSWORD,
-      database: process.env.TYPEORM_NAME,
-      port: +process.env.TYPEORM_PORT,
-      // url: process.env.TYPEORM_URL,
+      ...(process.env.database_url
+        ? { url: process.env.DATABASE_URL }
+        : {
+            host: process.env.TYPEORM_HOST,
+            username: process.env.TYPEORM_USERNAME,
+            password: process.env.TYPEORM_PASSWORD,
+            database: process.env.TYPEORM_NAME,
+            port: +process.env.TYPEORM_PORT,
+          }),
       autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
-      synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
-      logging: Boolean(process.env.TYPEORM_LOGGING),
+      synchronize: process.env.NODE_ENV !== 'production',
+      logging: process.env.NODE_ENV !== 'production',
       logger: 'file',
       extra:
         process.env.NODE_ENV === 'production'
