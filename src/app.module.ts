@@ -53,11 +53,11 @@ import { VoteModule } from './modules/vote/vote.module';
       synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
       logging: Boolean(process.env.TYPEORM_LOGGING),
       logger: 'file',
-      // extra: {
-      //   ssl: {
-      //     rejectUnauthorized: false,
-      //   },
-      // },
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      },
     }),
 
     /* Winston Import */
@@ -67,10 +67,10 @@ import { VoteModule } from './modules/vote/vote.module';
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      cors: {
-        credentials: true,
-        origin: process.env.APP_URL,
-      },
+      // cors: {
+      //   credentials: true,
+      //   origin: process.env.APP_URL,
+      // },
       formatError: (error: GraphQLError) => {
         const graphQLFormattedError: GraphQLFormattedError = {
           message: error.extensions.exception.response.message || error.message,
