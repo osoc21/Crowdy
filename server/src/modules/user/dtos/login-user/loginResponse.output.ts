@@ -19,7 +19,8 @@ export class LoginResponseUser {
   avatar: string;
   @Field()
   role: string;
-
+  @Field()
+  createdAt: string;
   @Field()
   accessToken: string;
 }

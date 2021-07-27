@@ -80,6 +80,7 @@ export class UserService {
       avatar: user.avatar,
       email: user.email,
       role: user.role,
+      createdAt: user.createdAt + '',
       accessToken: accessToken,
     };
     return userData;
