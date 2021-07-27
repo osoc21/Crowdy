@@ -5,8 +5,6 @@ import { join } from 'path';
 import { AdminModule } from './modules/admin/admin.module';
 import { AdminAuthModule } from './modules/admin-auth/admin-auth.module';
 import { AppConfigModule } from './config/app/config.module';
-import { TypeOrmConfigModule } from './config/databases/postgres/config.module';
-import { TypeOrmConfigService } from './config/databases/postgres/config.service';
 import { AdminAuthConfigModule } from './config/auth/admin-auth/config.module';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './config/Log/winston.config';
@@ -28,11 +26,7 @@ import { VoteModule } from './modules/vote/vote.module';
 
 @Module({
   imports: [
-    /* TypeOrm Import */
-    // TypeOrmModule.forRootAsync({
-    //   useClass: TypeOrmConfigService,
-    // }),
-
+    //** environement */
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath:
@@ -41,6 +35,7 @@ import { VoteModule } from './modules/vote/vote.module';
           : '.production.env',
     }),
 
+    /* TypeOrm Import */
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.TYPEORM_HOST,
@@ -53,11 +48,14 @@ import { VoteModule } from './modules/vote/vote.module';
       synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
       logging: Boolean(process.env.TYPEORM_LOGGING),
       logger: 'file',
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
+      extra:
+        process.env.NODE_ENV === 'production'
+          ? {
+              ssl: {
+                rejectUnauthorized: false,
+              },
+            }
+          : null,
     }),
 
     /* Winston Import */
@@ -82,7 +80,6 @@ import { VoteModule } from './modules/vote/vote.module';
     }),
 
     /* Configs */
-    // TypeOrmConfigModule,
     AdminAuthConfigModule,
     UserAuthConfigModule,
     AppConfigModule,
