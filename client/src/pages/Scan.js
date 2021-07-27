@@ -3,8 +3,8 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Scan.Module.css';
 import QrReader from 'react-qr-reader'
 import { Redirect } from 'react-router-dom';
-import { useQuery } from "@apollo/client";
-import { GET_SELECTED_HOTSPOT } from "../apis/hotspotApis";
+//import { useQuery } from "@apollo/client";
+//import { GET_SELECTED_HOTSPOT } from "../apis/hotspotApis";
 
 const Scan = () => {
   const [code, setCode] = useState(null);

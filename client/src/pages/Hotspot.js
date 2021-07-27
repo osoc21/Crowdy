@@ -33,7 +33,7 @@ const Hotspot = ({ hotspots, favourites, setFavourites }) => {
     zoom: 15
   });
 
-  const crowdedness = ["Unknown", "Calm", "Rather crowded", "CROWDY!"];
+  //const crowdedness = ["Unknown", "Calm", "Rather crowded", "CROWDY!"];
 
   // Creating the markers separately and memoizing them for better performance
   const markers = useMemo(() => hotspots.map(
