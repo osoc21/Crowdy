@@ -49,7 +49,7 @@ function App() {
     <div className={styles.container}>
       <Switch>
         <Route path="/hotspots">
-          <Hotspots hotspots={hotspots} />
+          <Hotspots />
         </Route>
         <Route path="/hotspot/:id">
           <Hotspot hotspots={hotspots} favourites={favourites} setFavourites={setFavourites} />
@@ -57,8 +57,8 @@ function App() {
         <Route path="/scan">
           <Scan hotspots={hotspots} />
         </Route>
-        <Route path="/report/:slug">
-          <Report hotspots={hotspots} />
+        <Route path="/report/:id">
+          <Report />
         </Route>
         <Route path="/reward">
           <Reward />

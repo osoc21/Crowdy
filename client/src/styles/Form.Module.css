@@ -52,3 +52,17 @@
   composes: input from "./Vars.Module.css";
   margin-bottom: 1.6rem;
 }
+
+.loading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: clrPurple;
+  /* text-align: center; */
+}
+
+.error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: clrRed;
+  /* text-align: center; */
+}

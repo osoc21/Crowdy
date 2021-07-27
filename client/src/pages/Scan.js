@@ -1,58 +1,50 @@
-import { useState /*,useEffect, useRef*/ } from 'react';
+import { useState } from 'react';
 import Navbar from '../components/Navbar';
-// import Stream from '../components/Stream';
 import styles from '../styles/Scan.Module.css';
 import QrReader from 'react-qr-reader'
 import { Redirect } from 'react-router-dom';
+import { useQuery } from "@apollo/client";
+import { GET_SELECTED_HOTSPOT } from "../apis/hotspotApis";
 
-const Scan = ({ hotspots }) => {
-  // const videoRef = useRef(null);
-  // const [init, setInit] = useState(false);
+const Scan = () => {
+  const [code, setCode] = useState(null);
 
-  // useEffect(() => {
-  //   setInit(true);
-  // }, [videoRef]);
-
-  // const handleCanPlay = () => {
-  //   videoRef.current.play();
-  // }
-
-  const [code, setCode] = useState({ result: 'No result' });
-
+  // Scanning for codes...
   const handleScan = data => {
+    // Checking if data was found
     if (data) {
-      setCode({ result: data });
-      console.log(data);
+      // Checking if the code is valid
+      if (data.includes(process.env.REACT_APP_BASE_URL)) {
+        const locationSplit = data.split('/');
+        let id = '';
+        let counter = 0;
+        do {
+          counter ++;
+          id = locationSplit[locationSplit.length - counter];
+        }
+        while (id === '')
+
+        // CHECKING IF THE ID EXISTS //
+
+        setCode(id);
+      }
     }
   }
 
+  // When an error has occured during the scanning
   const handleError = err => {
     console.error(err);
   }
 
-  // Checking if the code is valid
-  if (code.result.includes('crowdy')) {
-    const hotspotNames = hotspots.map(item => item.name);
-    const locationSplit = code.result.split('/');
-    let locationHotspot = '';
-    let counter = 0;
-    do {
-      counter ++;
-      locationHotspot = locationSplit[locationSplit.length - counter];
-    }
-    while (locationHotspot === '')
-    console.log(locationHotspot);
-    //locationHotspot = `vrijdagsmarkt`;
-    if (hotspotNames.includes(locationHotspot)) {
-      return <Redirect to={`/report/${locationHotspot}`} />
-    }
+  // Redirecting to the report-page if a valid code has been found
+  if (code) {
+    return <Redirect to={`/report/${code}`} />
   }
 
   return (
     <section className={styles.container}>
       <Navbar previous="/" title="Scan" />
       <div className={styles.scanner}>
-        {/* <Stream ref={videoRef} ready={init} handleCanPlay={handleCanPlay} /> */}
         <p className={styles.instruction}>Scan the QR-code at the hotspot</p>
         <div>
           <QrReader
@@ -62,7 +54,6 @@ const Scan = ({ hotspots }) => {
             style={{ width: '100vw' }}
           />
         </div>
-        {/* <img className={styles.focus__area} src="./assets/img/qr-code-focus-area.svg" alt="focus area"></img> */}
       </div>
     </section>
   );
