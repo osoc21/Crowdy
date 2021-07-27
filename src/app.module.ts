@@ -40,6 +40,7 @@ import { VoteModule } from './modules/vote/vote.module';
           ? '.development.env'
           : '.production.env',
     }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.TYPEORM_HOST,
@@ -52,7 +53,6 @@ import { VoteModule } from './modules/vote/vote.module';
       synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
       logging: Boolean(process.env.TYPEORM_LOGGING),
       logger: 'file',
-      ssl: true,
       extra: {
         ssl: {
           rejectUnauthorized: false,
