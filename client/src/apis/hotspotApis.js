@@ -229,31 +229,42 @@ export const DELETE_HOTSPOT_API = gql`
 export const ALL_ACTIVE_HOTSPOTS = gql`
   query {
     AllActiveHotspot {
-      id
-      hotspot_name
-      coordinates
-      types {
+      hotspots {
         id
-        type_name
-        type_deleted
+        hotspot_name
+        coordinates
+        votes {
+          id
+          vote_value
+          vote_deleted
+          updatedAt
+          createdAt
+        }
+        types {
+          id
+          type_name
+          type_deleted
+          updatedAt
+          createdAt
+        }
+        services {
+          id
+          service_name
+          service_deleted
+          updatedAt
+          createdAt
+        }
+        city
+        district
+        street
+        number
+        hotspot_status
+        hotspot_deleted
         updatedAt
         createdAt
       }
-      services {
-        id
-        service_name
-        service_deleted
-        updatedAt
-        createdAt
-      }
-      city
-      district
-      street
-      number
-      hotspot_status
-      hotspot_deleted
-      updatedAt
-      createdAt
+      crowdLevel
+      totalVoteCount
     }
   }
 `;
@@ -328,10 +339,27 @@ export const ALL_ACTIVE_HOTSPOTS = gql`
 
 // ** QUERY :: GET SELECTED HOTSPOT
 export const GET_SELECTED_HOTSPOT = gql`
-  query ($id: String!) {
-    SelectedHotspot(id: $id) {
+  query($id: String!) {
+    SelectedHotspot(id: $id)
+    {
       id
       hotspot_name
+      types
+      {
+        id
+        type_name
+        type_deleted
+        updatedAt
+        createdAt
+      }
+      services
+      {
+        id
+        service_name
+        service_deleted
+        updatedAt
+        createdAt
+      }
       coordinates
       city
       district

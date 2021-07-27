@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import styles from '../styles/Reward.Module.css';
 
 const Reward = () => {
+  // Test account data
   const loggedIn = true;
   const account = {
     firstname: 'Pieter',

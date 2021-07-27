@@ -23,3 +23,18 @@ export const formatMilliToTimeElapsed = time => {
 
   return hrs + ':' + mins + ':' + secs + '.' + ms;
 };
+
+export const getAverageFromVotes = votes => {
+  const values = [];
+
+  votes.forEach(vote => {
+    values.push(vote.vote_value);
+  });
+
+  let result = 0;
+  values.forEach(value => {
+    result += parseInt(value);
+  })
+  if (values.length) result /= values.length;
+  return result;
+};
