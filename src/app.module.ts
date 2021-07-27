@@ -52,7 +52,7 @@ import { VoteModule } from './modules/vote/vote.module';
       synchronize: Boolean(process.env.TYPEORM_SYNCRONIZE),
       logging: Boolean(process.env.TYPEORM_LOGGING),
       logger: 'file',
-      ssl: false,
+      // ssl: true,
     }),
 
     /* Winston Import */
@@ -76,7 +76,7 @@ import { VoteModule } from './modules/vote/vote.module';
     }),
 
     /* Configs */
-    TypeOrmConfigModule,
+    // TypeOrmConfigModule,
     AdminAuthConfigModule,
     UserAuthConfigModule,
     AppConfigModule,
