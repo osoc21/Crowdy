@@ -1,7 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { GqlAuthGuardAdmin } from 'src/modules/admin-auth/auth-strategy/guards/auth-gql.guard';
 import { CreateHotSpotServiceDTO } from '../dtos/inputs/create-hotspotService.dto';
 import { DeleteHotspotServiceDTO } from '../dtos/inputs/delete-hotspotService.dto';
 import { HotspotServiceUpdateDTO } from '../dtos/inputs/update-hotspotService.dto';

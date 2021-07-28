@@ -1,7 +1,6 @@
 import { UseGuards } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { GqlAuthGuardAdmin } from 'src/modules/admin-auth/auth-strategy/guards/auth-gql.guard';
 import { CreateHotSpotDTO } from '../dtos/inputs/create-hotspot.dto';
 import { DeleteHotspotDTO } from '../dtos/inputs/delete-hotspot.dto';
 import { UpdateHotspotDTO } from '../dtos/inputs/update-hotspot.dto';
@@ -19,7 +18,6 @@ export class HotspotResolver {
   constructor(private hotspotService: HotSpotService) {}
 
   /* Read all HotSpot */
-  @UseGuards(new GqlAuthGuardAdmin())
   @Query(() => AllHotspotQueryResponse)
   async AllHotspot(
     @Args('page', { type: () => Int }) page: number,

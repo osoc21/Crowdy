@@ -2,7 +2,6 @@ import { UseGuards } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Vote } from 'src/entities/vote/vote.entity';
-import { GqlAuthGuardAdmin } from 'src/modules/admin-auth/auth-strategy/guards/auth-gql.guard';
 import { CreateVoteDTO } from '../dtos/inputs/create-vote.dto';
 import { DeleteVoteDTO } from '../dtos/inputs/delete-vote.dto';
 import { UpdateVoteDTO } from '../dtos/inputs/update-vote.dto';

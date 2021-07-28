@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AdminModule } from './modules/admin/admin.module';
-import { AdminAuthModule } from './modules/admin-auth/admin-auth.module';
+
 import { AppConfigModule } from './config/app/config.module';
 import { AdminAuthConfigModule } from './config/auth/admin-auth/config.module';
 import { WinstonModule } from 'nest-winston';
@@ -77,8 +76,6 @@ import { VoteModule } from './modules/vote/vote.module';
     AppConfigModule,
 
     /* Modules */
-    AdminModule,
-    AdminAuthModule,
     VoteModule,
     UserModule,
     HotspotModule,
