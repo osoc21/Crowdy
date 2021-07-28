@@ -105,10 +105,10 @@
   background-image: url(./../assets/images/profile-icon.svg);
 }
 
-.leaderboard__icon {
+/* .leaderboard__icon {
   composes: nav__icon;
   background-image: url(./../assets/images/leaderboard-icon.svg);
-}
+} */
 
 .btn__download {
   z-index: 2;

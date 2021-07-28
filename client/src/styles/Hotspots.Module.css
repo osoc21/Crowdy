@@ -37,6 +37,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .item,
@@ -47,7 +48,7 @@
   border-radius: 1rem;
   border: .3rem solid clrGrey;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   background-color: clrGreyFill;
@@ -95,6 +96,15 @@
 .favourite__icon__false {
   composes: favourite__icon;
   background-image: url(./../assets/images/favourite-icon-false.svg);
+}
+
+.notFound {
+  margin: auto;
+  align-self: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  color: clrPurple;
+  text-align: center;
 }
 
 .filter__container {

@@ -11,6 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 // ** Apollo Client
+// ** // link to backend = http://api.crowdy.osoc.be/graphql
 const client = new ApolloClient({
   uri: process.env.REACT_APP_SERVER_BACKEND,
   cache: new InMemoryCache(),

@@ -360,6 +360,13 @@ export const GET_SELECTED_HOTSPOT = gql`
         updatedAt
         createdAt
       }
+      votes {
+        id
+        vote_value
+        vote_deleted
+        updatedAt
+        createdAt
+      }
       coordinates
       city
       district

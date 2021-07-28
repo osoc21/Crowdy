@@ -97,16 +97,17 @@
 }
 
 .map {
-  height: 18rem;
+  height: 24rem;
 }
 
 .map > div {
   margin-top: -2rem;
 }
 
-.marker {
+.marker,
+.marker__00 {
   composes: marker from "./Vars.Module.css";
-  background-image: url(./../assets/images/pin-icon-white.svg);
+  background-image: url(./../assets/images/pin-icon-grey.svg);
 }
 
 .marker__01 {

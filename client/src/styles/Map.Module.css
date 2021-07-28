@@ -12,9 +12,10 @@
   height: 100vw;
 }
 
-.marker {
+.marker,
+.marker__00 {
   composes: marker from "./Vars.Module.css";
-  background-image: url(./../assets/images/pin-icon-white.svg);
+  background-image: url(./../assets/images/pin-icon-grey.svg);
 }
 
 .marker__01 {

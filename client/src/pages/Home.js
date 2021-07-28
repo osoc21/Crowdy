@@ -3,7 +3,7 @@ import styles from '../styles/Home.Module.css';
 
 const Home = () => {
   // Different items to navigate to (tiles on the homepage)
-  const items = ['Hotspots', 'Scan', 'Map', 'Profile', 'Leaderboard'];
+  const items = ['Hotspots', 'Scan', 'Map', 'Profile'];
 
   return (
     <div className={styles.container}>
@@ -28,5 +28,5 @@ const Home = () => {
     </div>
   );
 }
- 
+
 export default Home;

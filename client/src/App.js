@@ -15,7 +15,7 @@ import Profile from './pages/Profile';
 function App() {
   //const [account, setAccount] = useState(false);
   // eslint-disable-next-line
-  const [favourites, setFavourites] = useState([2]);
+  const [favourites, setFavourites] = useState([]);
   const hotspots = [
     {
       name: 'korenmarkt',
@@ -47,7 +47,7 @@ function App() {
     <div className={styles.container}>
       <Switch>
         <Route path="/hotspots">
-          <Hotspots />
+          <Hotspots favourites={favourites} />
         </Route>
         <Route path="/hotspot/:id">
           <Hotspot hotspots={hotspots} favourites={favourites} setFavourites={setFavourites} />
