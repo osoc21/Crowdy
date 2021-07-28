@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import styles from '../styles/Report.Module.css';
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import LoadingScreen from '../components/LoadingScreen';
 import ErrorScreen from '../components/ErrorScreen';
 import { useParams } from "react-router-dom";
@@ -91,9 +91,9 @@ const Report = () => {
               {errorVote ? <p className={styles.error}>Something went wrong</p> : ''}
             </div>
           )}
-          <Link className={styles.about} to="/">
+          <a href="https://github.com/osoc21/Crowdy" className={styles.about}>
             <p className={styles.btn__tertiary}>What is Crowdy?</p>
-          </Link>
+          </a>
         </div>
       </section>
     );

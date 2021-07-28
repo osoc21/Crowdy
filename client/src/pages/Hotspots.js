@@ -4,11 +4,11 @@ import Navbar from "../components/Navbar";
 import LoadingScreen from '../components/LoadingScreen';
 import ErrorScreen from '../components/ErrorScreen';
 import styles from "../styles/Hotspots.Module.css";
-import { getAverageFromVotes } from "../js/functions";
+import { getAverageFromVotes, getRecentVotes } from "../js/functions";
 import { useQuery } from "@apollo/client";
 import { ALL_ACTIVE_HOTSPOTS } from "../apis/hotspotApis";
 
-const Hotspots = () => {
+const Hotspots = ({ favourites }) => {
   const [isFilter, setIsFilter] = useState(false);
   const [filters, setFilters] = useState({
     sort: 'crowdedness',
@@ -70,6 +70,8 @@ const Hotspots = () => {
     );
   }
 
+  console.log(favourites);
+
   // When the data has been retrieved
   if (data) {
     return (
@@ -81,11 +83,13 @@ const Hotspots = () => {
               <p>Filtered on: {/*filters.join(', ')*/}</p>
             </div>
             <ul className={styles.list}>
-              {data.AllActiveHotspot.hotspots.map((item, index) => (
+              {data.AllActiveHotspot.hotspots.length === 0
+              ? <p className={styles.notFound}>No hotspots found</p>
+              : data.AllActiveHotspot.hotspots.map(item => (
                 <li className={styles.list__item} key={item.hotspot_name}>
-                  <Link to={`/hotspot/${item.id}`} className={styles[`list__item__${Math.round(getAverageFromVotes(item.votes)).toString().padStart(2, '0')}`]}>
+                  <Link to={`/hotspot/${item.id}`} className={styles[`list__item__${Math.round(getAverageFromVotes(getRecentVotes(item.votes, 120))).toString().padStart(2, '0')}`]}>
                     <p className={styles.item__name}>{item.hotspot_name}</p>
-                    <div className={styles[`favourite__icon__${false}`]} />
+                    <div className={styles[`favourite__icon__${favourites.includes(item.id)}`]} />
                   </Link>
                 </li>
               ))}

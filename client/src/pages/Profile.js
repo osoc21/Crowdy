@@ -1,8 +1,8 @@
-
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Profile.Module.css';
 import { useState } from 'react';
+import { formatDateFromDateToNumber } from "../js/functions";
 
 const Profile = () => {
   const [userData, setUserData] = useState(false);
@@ -57,7 +57,7 @@ const Profile = () => {
             <p className={styles.name}>{userData.fullname}</p>
             <div className={styles.btn__edit} />
           </div>
-          <p className={styles.created}>Member since 01/01/1960</p>
+          <p className={styles.created}>Member since {formatDateFromDateToNumber(userData.createdAt)}</p>
           <div className={styles.profile__picture} />
         </div>
         <div className={styles.data}>

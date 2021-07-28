@@ -64,6 +64,7 @@ export const USER_LOGIN_API = gql`
       avatar
       email
       role
+      createdAt
       accessToken
     }
   }
