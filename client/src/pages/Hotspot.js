@@ -95,13 +95,20 @@ const Hotspot = () => {
     return formatTimeElapsed;
   };
 
+  // Creating a readible address
   const getAddress = d => {
-    return `(${d.street} ${d.number}, ${d.city})`;
+    let address = d.street;
+    if (d.number) address += ` `;
+    address += d.number;
+    if (d.street || d.number) address += `, `;
+    address += d.city;
+    return `${address}`;
   };
 
   // When the data has been retrieved
   if (data) {
     const recentVotes = getRecentVotes(data.SelectedHotspot.votes, 60);
+    const address = getAddress(data.SelectedHotspot);
     return (
       <section className={styles.container}>
         <Navbar previous="/hotspots" title="" options={navOptions} />
@@ -110,7 +117,7 @@ const Hotspot = () => {
             <div className={styles.data}>
               <p className={styles.name}>{data.SelectedHotspot.hotspot_name}</p>
               <p className={styles.type}>{data.SelectedHotspot.types.map(type => type.type_name).join(`/`)} in Ghent</p>
-              <p className={styles.address}>{getAddress(data.SelectedHotspot)}</p>
+              {address !== `` ? <p className={styles.address}>({address})</p> : ''}
               <ul className={styles.services}>
                 {data.SelectedHotspot.services.map((item) => (
                   <div className={styles[`service__${item.service_name.split(` `).join(`__`)}__icon`]} key={item.service_name} />
