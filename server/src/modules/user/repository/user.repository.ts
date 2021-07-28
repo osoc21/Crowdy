@@ -18,8 +18,6 @@ export class UserRepository extends Repository<User> {
   async createUser(createUserDTO: CreateUserDTO): Promise<CreateUserResponse> {
     const { firstname, lastname, email, password } = createUserDTO;
 
-    // Getting the actual ability
-
     const user = this.create();
     user.firstname = firstname;
     user.lastname = lastname;
@@ -62,7 +60,7 @@ export class UserRepository extends Repository<User> {
       }
     }
   }
-  /* Employee Update repository */
+  /* user Update repository */
   async updateUserInfo(id, updateUserDTO: UpdateUserDTO): Promise<User> {
     const { lastname } = updateUserDTO;
     const user = await this.findUserById(id);
