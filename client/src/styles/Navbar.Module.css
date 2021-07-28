@@ -28,6 +28,7 @@
 }
 
 .btn {
+  cursor: pointer;
   width: 5rem;
   height: 5rem;
   background-size: 4rem 4rem;

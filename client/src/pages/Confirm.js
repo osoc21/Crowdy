@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import styles from '../styles/Confirm.Module.css';
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Confirm = () => {
   let { id, report } = useParams();
@@ -22,8 +23,10 @@ const Confirm = () => {
           <p className={styles.header__text}>Thank you{userData ? ` ${userData.firstname}` : ``}!</p>
           <div className={styles.confetti__bottom} />
         </div>
-        <p className={styles.btn__home}>Back Home</p>
-        <p className={styles.details}>You voted that {id} is {ratings[parseInt(report)].toLowerCase()}.</p>
+        <Link to="/profile">
+          <p className={styles.btn__home}>Back Home</p>
+        </Link>
+        <p className={styles.details}>You voted that {id} is {ratings[parseInt(report) - 1].toLowerCase()}.</p>
       </div>
     </section>
   );

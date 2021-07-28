@@ -10,7 +10,7 @@ import { useQuery } from "@apollo/client";
 import { GET_SELECTED_HOTSPOT } from "../apis/hotspotApis";
 import { getTimeElapsedInMilli, formatMilliToTimeElapsed, getAverageFromVotes, getRecentVotes } from "../js/functions"
 
-const Hotspot = ({ favourites, setFavourites }) => {
+const Hotspot = () => {
   // Retrieving the id from the URL to display the correct hotspot
   const { id } = useParams();
 
@@ -26,7 +26,7 @@ const Hotspot = ({ favourites, setFavourites }) => {
       alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data) {
-      console.log(data);
+      //console.log(data);
       setViewport({ longitude: data.SelectedHotspot.coordinates[1], latitude: data.SelectedHotspot.coordinates[0] + 0.0005, zoom: 15 })
     },
   });
@@ -39,6 +39,7 @@ const Hotspot = ({ favourites, setFavourites }) => {
     ) : '', [data]);
 
   // Adding/removing the hotspot to/from the list of favourites
+  /* 
   const changeFavourites = () => {
     setFavourites(previous => {
       let tmp = [...previous];
@@ -47,12 +48,14 @@ const Hotspot = ({ favourites, setFavourites }) => {
       } else {
         tmp.push(id);
       }
+      localStorage.setItem('favourites', JSON.stringify(tmp));
       return tmp;
     });
   };
-  console.log(favourites);
+  */
 
   // Defining which actions the user can do in the navigationbar
+  /* There is an option to add a hotspot to the favourites, but we disabled it for now
   const navOptions = [
     { 
       name: "favourite", 
@@ -60,6 +63,8 @@ const Hotspot = ({ favourites, setFavourites }) => {
       icon: `favourite__${favourites.includes(id)}`
     }
   ];
+  */
+ const navOptions = [];
 
   // When the data is loading...
   if (loading) {
@@ -90,6 +95,10 @@ const Hotspot = ({ favourites, setFavourites }) => {
     return formatTimeElapsed;
   };
 
+  const getAddress = d => {
+    return `(${d.street} ${d.number}, ${d.city})`;
+  };
+
   // When the data has been retrieved
   if (data) {
     const recentVotes = getRecentVotes(data.SelectedHotspot.votes, 60);
@@ -101,9 +110,10 @@ const Hotspot = ({ favourites, setFavourites }) => {
             <div className={styles.data}>
               <p className={styles.name}>{data.SelectedHotspot.hotspot_name}</p>
               <p className={styles.type}>{data.SelectedHotspot.types.map(type => type.type_name).join(`/`)} in Ghent</p>
+              <p className={styles.address}>{getAddress(data.SelectedHotspot)}</p>
               <ul className={styles.services}>
                 {data.SelectedHotspot.services.map((item) => (
-                  <div className={styles[`btn__${item.service_name}`]} key={item.service_name}>{item.service_name}</div>
+                  <div className={styles[`service__${item.service_name.split(` `).join(`__`)}__icon`]} key={item.service_name} />
                 ))}
               </ul>
             </div>
@@ -112,7 +122,8 @@ const Hotspot = ({ favourites, setFavourites }) => {
               <p className={styles.crowdedness__status}>{crowdedness[Math.round(getAverageFromVotes(data.SelectedHotspot.votes))]}</p>
               <p className={styles.crowdedness__info}>{recentVotes.length ? 
               `${recentVotes.length} report${recentVotes.length !== 1 ? 's' : ''} in the last 60 minutes` 
-              : `Last reported: ${getLatestVote(data.SelectedHotspot.votes)} ago`}</p>
+              : data.SelectedHotspot.votes.length ? `Last reported: ${getLatestVote(data.SelectedHotspot.votes)} ago`
+              : `No reports were found`}</p>
             </div>
           </div>
           <div className={styles.map}>

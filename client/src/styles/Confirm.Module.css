@@ -1,5 +1,5 @@
 @value tokens: "./Vars.Module.css";
-@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrOrange from tokens;
+@value clrBackground, clrPurple, clrLavender, clrLavenderFill, clrOrange, clrRed from tokens;
 
 .container {
   composes: container from "./Vars.Module.css";
@@ -59,7 +59,14 @@
   border-radius: .8rem;
 }
 
+.btn__home:hover {
+  transform: scale(1.02);
+  color: clrRed;
+  border-color: clrRed;
+}
+
 .details {
+  width: 100%;
   align-self: flex-end;
   margin: auto 0 3rem 0;
   padding: 1.5rem 2.5rem;

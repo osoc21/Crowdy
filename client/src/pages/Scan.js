@@ -33,7 +33,7 @@ const Scan = () => {
 
   // When an error has occured during the scanning
   const handleError = err => {
-    console.error(err);
+    //console.error(err);
   }
 
   // Redirecting to the report-page if a valid code has been found
