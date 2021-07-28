@@ -20,8 +20,7 @@ const Report = () => {
       alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data) {
-      console.log(data);
-      // Some code to execute
+      //console.log(data);
     },
   });
 
@@ -40,8 +39,7 @@ const Report = () => {
   };
 
   if (dataVote) {
-    console.log(dataVote);
-    return <Redirect to="/reward" push />
+    return <Redirect to={`/confirm/${dataHotspot.SelectedHotspot.hotspot_name}/${dataVote.VoteCreation.vote.vote_value}`} push />
   }
 
   // When the hotspot is loading...
@@ -56,7 +54,6 @@ const Report = () => {
 
   // When an error has occured
   if (errorHotspot) {
-    console.log(errorHotspot);
     return (
       <section className={styles.container}>
         <Navbar previous="/scan" title="Crowdedness" />

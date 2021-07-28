@@ -1,4 +1,4 @@
-import { useState } from "react";
+//import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import LoadingScreen from '../components/LoadingScreen';
@@ -8,7 +8,7 @@ import { getAverageFromVotes, getRecentVotes } from "../js/functions";
 import { useQuery } from "@apollo/client";
 import { ALL_ACTIVE_HOTSPOTS } from "../apis/hotspotApis";
 
-const Hotspots = ({ favourites }) => {
+const Hotspots = () => {
   // Options to open/close the filter-window and select filters have been implemented, but do not have an effect on the list yet
   /*
   const [isFilter, setIsFilter] = useState(false);
@@ -48,6 +48,7 @@ const Hotspots = ({ favourites }) => {
       alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data) {
+      //console.log(data);
       return;
     },
   });
@@ -64,7 +65,6 @@ const Hotspots = ({ favourites }) => {
 
   // When an error has occured
   if (error) {
-    console.log(error);
     return (
       <section className={styles.container}>
         <Navbar previous="/" title="Hotspots" options={navOptions} />
@@ -87,14 +87,11 @@ const Hotspots = ({ favourites }) => {
                 <li className={styles.list__item} key={item.hotspot_name}>
                   <Link to={`/hotspot/${item.id}`} className={styles[`list__item__${Math.round(getAverageFromVotes(getRecentVotes(item.votes, 120))).toString().padStart(2, '0')}`]}>
                     <p className={styles.item__name}>{item.hotspot_name}</p>
-                    <div className={styles[`favourite__icon__${favourites.includes(item.id)}`]} />
+                    {/* <div className={styles[`favourite__icon__${favourites.includes(item.id)}`]} /> */}
                   </Link>
                 </li>
               ))}
             </ul>
-            <Link to="/confirm/Ledeganck Campus/1">
-              [CONFIRM]
-            </Link>
           </div>
           {/* Filtering-functionality hasn't been implemented yet, but a layout was already created
           <div className={styles[`filter__container${isFilter ? `` : `__hidden`}`]}>

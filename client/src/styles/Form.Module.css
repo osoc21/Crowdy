@@ -54,16 +54,31 @@
 }
 
 .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem 0 2rem 0;
+  margin-bottom: 1.2rem;
+  border: none;
+  text-align: center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.6rem;
+  font-size: 2rem;
   color: clrPurple;
-  /* text-align: center; */
 }
 
 .error {
-  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem 0 2rem 0;
+  margin-bottom: 1.2rem;
+  border: none;
+  text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
   color: clrRed;
-  /* text-align: center; */
 }

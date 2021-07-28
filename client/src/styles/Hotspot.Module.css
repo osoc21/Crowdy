@@ -63,11 +63,25 @@
 }
 
 .type {
+  margin-top: .5rem;
   margin-left: .3rem;
   font-family: 'Josefin Slab', sans-serif;
   font-size: 2rem;
   text-transform: capitalize;
   color: #AE9AF8;
+}
+
+.address {
+  margin: .5rem 0 .5rem .3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: clrPurple;
+}
+
+.services {
+  margin-top: .5rem;
+  display: flex;
 }
 
 .crowdedness__icon {
@@ -123,4 +137,28 @@
 .marker__03 {
   composes: marker from "./Vars.Module.css";
   background-image: url(./../assets/images/pin-icon-red.svg);
+}
+
+.service__icon {
+  margin-right: .5rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 3.2rem;
+}
+
+.service__toilets__icon {
+  composes: service__icon;
+  background-image: url(./../assets/images/toilets-icon.svg);
+}
+
+.service__animals__allowed__icon {
+  composes: service__icon;
+  background-image: url(./../assets/images/animals-allowed-icon.svg);
+}
+
+.service__wheelchair__accessible__icon {
+  composes: service__icon;
+  background-image: url(./../assets/images/wheelchair-accessible-icon.svg);
 }

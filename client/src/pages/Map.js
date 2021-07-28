@@ -24,7 +24,7 @@ const Map = () => {
       alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data) {
-      console.log(data);
+      //console.log(data);
     },
   });
 
@@ -51,7 +51,6 @@ const Map = () => {
 
   // When an error has occured
   if (error) {
-    console.log(error);
     return (
       <section className={styles.container}>
         <Navbar previous="/" title="Map" />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+//import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styles from './styles/App.Module.css';
 import Home from './pages/Home';
@@ -16,7 +16,10 @@ import Confirm from './pages/Confirm';
 function App() {
   //const [account, setAccount] = useState(false);
   // eslint-disable-next-line
-  const [favourites, setFavourites] = useState([]);
+
+  // It's possible to save favourites to the localStorage of the device, but we disabled it because it's better to save it in a database
+  //const [favourites, setFavourites] = useState(localStorage.getItem('favourites') !== undefined && localStorage.getItem('favourites') !== null ? JSON.parse(localStorage.getItem('favourites')) : []);
+
   const hotspots = [
     {
       name: 'korenmarkt',
@@ -48,10 +51,10 @@ function App() {
     <div className={styles.container}>
       <Switch>
         <Route path="/hotspots">
-          <Hotspots favourites={favourites} />
+          <Hotspots />
         </Route>
         <Route path="/hotspot/:id">
-          <Hotspot hotspots={hotspots} favourites={favourites} setFavourites={setFavourites} />
+          <Hotspot hotspots={hotspots} />
         </Route>
         <Route path="/scan">
           <Scan hotspots={hotspots} />
