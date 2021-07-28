@@ -35,7 +35,9 @@
   width: 100%;
   height: fit-content;
   margin: 0 auto;
+  align-self: center;
   padding: 1.5rem;
+  padding-bottom: 8rem;
   overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, max-content));
