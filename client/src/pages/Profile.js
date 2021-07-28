@@ -6,12 +6,13 @@ import { formatDateFromDateToNumber } from "../js/functions";
 
 const Profile = () => {
   const [userData, setUserData] = useState(false);
-  console.log(userData);
 
+  // Checking if the user is logged in. If so, retrieve the data
   if (localStorage.getItem('userdata') !== null && localStorage.getItem('userdata') !== undefined && !userData) {
     setUserData(JSON.parse(localStorage.getItem('userdata')));
   }
 
+  // The user can log out of the app
   const logout = () => {
     localStorage.removeItem('userdata');
     setUserData(false);
@@ -25,7 +26,7 @@ const Profile = () => {
   if (!userData) {
     return (
       <section className={styles.container}>
-        <Navbar previous="/" title="your profile" options={navOptions} />
+        <Navbar previous="/" title="your profile" options={[]} />
         <div className={styles.content}>
           <div className={styles.loggedout}>
             <p className={styles.instruction}>Save your rewards to your account</p>
@@ -55,11 +56,12 @@ const Profile = () => {
         <div className={styles.info}>
           <div className={styles.name__container}>
             <p className={styles.name}>{userData.fullname}</p>
-            <div className={styles.btn__edit} />
+            {/* <div className={styles.btn__edit} /> */}
           </div>
           <p className={styles.created}>Member since {formatDateFromDateToNumber(userData.createdAt)}</p>
           <div className={styles.profile__picture} />
         </div>
+        {/* As of right now, the data of the user (scans, rewards, rank) are not yet created/saved
         <div className={styles.data}>
           <p className={styles.rank}>The Ranger</p>
           <div className={styles.progress}>
@@ -90,6 +92,7 @@ const Profile = () => {
             </ul>
           </div>
         </div>
+        */}
       </div>
     </section>
   );

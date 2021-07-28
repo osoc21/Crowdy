@@ -7,12 +7,14 @@ const Navbar = ({ previous, title, options = [] }) => {
 
   return (
     <div className={styles.container}>
-      {previous !== '' ? (
+      {previous === '' ? (
+        <div className={styles.btn__back} onClick={() => history.goBack()} />
+      ) : previous === undefined ? (
+        <div />
+      ) : (
         <Link to={previous}>
           <div className={styles.btn__back} />
         </Link>
-      ) : (
-        <div className={styles.btn__back} onClick={() => history.goBack()} />
       )}
       <h2 className={styles.title}>{title}</h2>
       <div className={styles.options}>

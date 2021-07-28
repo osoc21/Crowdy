@@ -11,6 +11,7 @@ import Map from './pages/Map';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Confirm from './pages/Confirm';
 
 function App() {
   //const [account, setAccount] = useState(false);
@@ -72,6 +73,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/confirm/:id/:report">
+          <Confirm />
         </Route>
         <Route exact path="/">
           <Home />

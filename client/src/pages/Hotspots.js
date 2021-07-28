@@ -9,6 +9,8 @@ import { useQuery } from "@apollo/client";
 import { ALL_ACTIVE_HOTSPOTS } from "../apis/hotspotApis";
 
 const Hotspots = ({ favourites }) => {
+  // Options to open/close the filter-window and select filters have been implemented, but do not have an effect on the list yet
+  /*
   const [isFilter, setIsFilter] = useState(false);
   const [filters, setFilters] = useState({
     sort: 'crowdedness',
@@ -31,12 +33,13 @@ const Hotspots = ({ favourites }) => {
     setFilters(tmp);
   }
 
-  console.log(filters);
-
   // Defining which actions the user can do in the navigationbar
+  // An option to open the filter-window is available
   const navOptions = [
     { name: "filter", action: () => setIsFilter(true) }
   ];
+  */
+  const navOptions = [];
 
   // Retrieving the hotspots from the server
   const { loading, data, error, } = useQuery(ALL_ACTIVE_HOTSPOTS, {
@@ -45,7 +48,7 @@ const Hotspots = ({ favourites }) => {
       alert("Failed to load hotspots, Refresh The page!");
     },
     onCompleted(data) {
-      console.log(data);
+      return;
     },
   });
 
@@ -70,8 +73,6 @@ const Hotspots = ({ favourites }) => {
     );
   }
 
-  console.log(favourites);
-
   // When the data has been retrieved
   if (data) {
     return (
@@ -79,9 +80,6 @@ const Hotspots = ({ favourites }) => {
         <Navbar previous="/" title="Hotspots" options={navOptions} />
         <div className={styles.content}>
           <div className={styles.list__container}>
-            <div className={styles.filter__list}>
-              <p>Filtered on: {/*filters.join(', ')*/}</p>
-            </div>
             <ul className={styles.list}>
               {data.AllActiveHotspot.hotspots.length === 0
               ? <p className={styles.notFound}>No hotspots found</p>
@@ -94,7 +92,11 @@ const Hotspots = ({ favourites }) => {
                 </li>
               ))}
             </ul>
+            <Link to="/confirm/Ledeganck Campus/1">
+              [CONFIRM]
+            </Link>
           </div>
+          {/* Filtering-functionality hasn't been implemented yet, but a layout was already created
           <div className={styles[`filter__container${isFilter ? `` : `__hidden`}`]}>
             <div className={styles.filter__header}>
               <div />
@@ -126,6 +128,7 @@ const Hotspots = ({ favourites }) => {
               </div>
             </form>
           </div>
+          */}
         </div>
       </section>
     );
