@@ -4,7 +4,7 @@
 
 We build a user-friendly web-app "crowdedness meter" to help students meet safely in Ghent hotspots. Our ultimate goal is to offer students the opportunity to reclaim the ownership of their reputation, by demonstrating that it is possible to have a social life while respecting government measures. For students, by students.
 
-[The Project](http://crowdy.osoc.be/)
+[The Project](https://crowdy-osoc.herokuapp.com/)
 
 [GitHub Page](https://osoc21.github.io/Crowdy/)
 
@@ -192,7 +192,7 @@ Start the server
   
 ## Tech Stack
 
-**Client:** React, React Router, REACT QR READER, REACT MAP GL
+**Client:** React, React Router, React QR Reader, React Map GL
 
 **Server:** NestJS, Express, GraphQL, TypeORM
 

@@ -14,38 +14,8 @@ import Profile from './pages/Profile';
 import Confirm from './pages/Confirm';
 
 function App() {
-  //const [account, setAccount] = useState(false);
-  // eslint-disable-next-line
-
   // It's possible to save favourites to the localStorage of the device, but we disabled it because it's better to save it in a database
   //const [favourites, setFavourites] = useState(localStorage.getItem('favourites') !== undefined && localStorage.getItem('favourites') !== null ? JSON.parse(localStorage.getItem('favourites')) : []);
-
-  const hotspots = [
-    {
-      name: 'korenmarkt',
-      longitude: 3.7195936,
-      latitude: 51.0546034,
-      crowdedness: 1,
-      type: "square",
-      services: ["toilet"]
-    },
-    {
-      name: 'citadelpark',
-      longitude: 3.7167535,
-      latitude: 51.0366794,
-      crowdedness: 2,
-      type: "park",
-      services: []
-    },
-    {
-      name: 'vrijdagmarkt',
-      longitude: 3.7241467,
-      latitude: 51.05695,
-      crowdedness: 3,
-      type: "square",
-      services: []
-    }
-  ];
 
   return (
     <div className={styles.container}>
@@ -54,10 +24,10 @@ function App() {
           <Hotspots />
         </Route>
         <Route path="/hotspot/:id">
-          <Hotspot hotspots={hotspots} />
+          <Hotspot />
         </Route>
         <Route path="/scan">
-          <Scan hotspots={hotspots} />
+          <Scan />
         </Route>
         <Route path="/report/:id">
           <Report />
@@ -66,7 +36,7 @@ function App() {
           <Reward />
         </Route>
         <Route path="/map">
-          <Map hotspots={hotspots} />
+          <Map />
         </Route>
         <Route path="/login">
           <Login />
@@ -77,7 +47,7 @@ function App() {
         <Route path="/profile">
           <Profile />
         </Route>
-        <Route path="/confirm/:id/:report">
+        <Route path="/confirm/:hotspot/:report">
           <Confirm />
         </Route>
         <Route exact path="/">
