@@ -31,8 +31,8 @@ export class UserRepository extends Repository<User> {
       await this.manager.save(user);
       delete user.archived;
       delete user.confirmationToken;
-      delete user.createdAt;
-      delete user.updatedAt;
+      // delete user.createdAt;
+      // delete user.updatedAt;
       delete user.password;
       delete user.salt;
       delete user.revoke_login;
