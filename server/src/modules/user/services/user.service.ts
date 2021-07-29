@@ -37,9 +37,9 @@ export class UserService {
   /* USER creation service */
   async createUser(createUserDTO: CreateUserDTO): Promise<CreateUserResponse> {
     const response = await this.userRepository.createUser(createUserDTO);
-    if (response.type == 'success') {
-      const token = await this.generateToken(response.user);
-    }
+    // if (response.type == 'success') {
+    //   const token = await this.generateToken(response.user);
+    // }
     return response;
   }
 
