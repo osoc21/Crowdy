@@ -47,8 +47,8 @@ export class HotSpotRepository extends Repository<HotSpot> {
 
   /* HotSpot delete repository */
   async deleteHotspot(deleteHotSpotTypeDTO: DeleteHotspotDTO) {
-    const { hotspot_id: type_id } = deleteHotSpotTypeDTO;
-    const type = await this.findHotspotById(type_id);
+    const { hotspot_id } = deleteHotSpotTypeDTO;
+    const type = await this.findHotspotById(hotspot_id);
     const result = await this.delete(type.id);
     if (result.affected === 0) {
       throw new NotFoundException(
