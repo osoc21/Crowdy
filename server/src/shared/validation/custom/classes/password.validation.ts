@@ -15,16 +15,16 @@ export function BasePasswordWithValidation<TBase extends Constructor>(
       message: `Password must contain at least 8 characters.`,
     })
     @MaxLength(32, { message: `Password too long.` })
-    @Matches(
-      /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
-      {
-        message: `Password must contain at least :
-    * An UpperCase.
-    * Une lettre minuscule.
-    * A number or a special character.
-    `,
-      },
-    )
+    // @Matches(
+    //   /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+    //   {
+    //     message: `Password must contain at least :
+    // * An UpperCase.
+    // * Une lettre minuscule.
+    // * A number or a special character.
+    // `,
+    //   },
+    // )
     password: string;
   }
   return AbstractBasePasswordValidation;
