@@ -18,11 +18,10 @@ export class HotspotType extends EntityBaseWithDate(EntityBase(EmptyClass)) {
   // Space for hotspot Types
 
   @Field(() => [HotSpot])
-  @ManyToMany(
-    () => HotSpot,
-    hotSpot => hotSpot.types,
-    { eager: true },
-  )
+  @ManyToMany(() => HotSpot, (hotSpot) => hotSpot.types, {
+    eager: true,
+    onDelete: 'CASCADE',
+  })
   hotSpots: HotSpot[];
 
   /* Space for deleted hotspot type*/
