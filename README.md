@@ -1,7 +1,12 @@
+![Crowdy Logo](/docs/img/crowdy-logo.svg)
+
 # CROWDY
 
 We build a user-friendly web-app "crowdedness meter" to help students meet safely in Ghent hotspots. Our ultimate goal is to offer students the opportunity to reclaim the ownership of their reputation, by demonstrating that it is possible to have a social life while respecting government measures. For students, by students.
 
+[The Project](http://crowdy.osoc.be/)
+
+[GitHub Page](https://osoc21.github.io/Crowdy/)
 
 
 ## Authors
@@ -29,18 +34,17 @@ We build a user-friendly web-app "crowdedness meter" to help students meet safel
 
 | Color             | Hex    |
 | ----------------- | ------ |
-| Indigo | ![#4d4bc0] |
-| Aquamarine | ![#4dfff0]|
-| Rajah | ![#f8bb84]|
-| Electric Violet | ![#b02aff]|
-
-    
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+| Indigo | ![#4d4bc0](https://via.placeholder.com/10/4d4bc0?text=+) #4d4bc0 |
+| Aquamarine | ![#4dfff0](https://via.placeholder.com/10/4dfff0?text=+) #4dfff0 |
+| Rajah | ![#f8bb84](https://via.placeholder.com/10/f8bb84?text=+) #f8bb84 |
+| Electric Violet | ![#b02aff](https://via.placeholder.com/10/b02aff?text=+) #b02aff |
 
 
 ## Screenshots
 
-![App Screenshot]
+![Crowdy Logo](/docs/img/crowdy-map-s.png)
+![Crowdy Logo](/docs/img/crowdy-report-s.png)
+![Crowdy Logo](/docs/img/crowdy-hotspot-details-s.png)
 
 
 ## Deployment (CLIENT)

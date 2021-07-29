@@ -126,7 +126,7 @@ const Hotspot = () => {
             </div>
             <div className={styles[`crowdedness__${Math.round(getAverageFromVotes(getRecentVotes(data.SelectedHotspot.votes, 120))).toString().padStart(2, '0')}`]}>
               <div className={styles.crowdedness__icon} />
-              <p className={styles.crowdedness__status}>{crowdedness[Math.round(getAverageFromVotes(data.SelectedHotspot.votes))]}</p>
+              <p className={styles.crowdedness__status}>{getRecentVotes(data.SelectedHotspot.votes, 120).length ? crowdedness[Math.round(getAverageFromVotes(data.SelectedHotspot.votes))] : crowdedness[0]}</p>
               <p className={styles.crowdedness__info}>{recentVotes.length ? 
               `${recentVotes.length} report${recentVotes.length !== 1 ? 's' : ''} in the last 60 minutes` 
               : data.SelectedHotspot.votes.length ? `Last reported: ${getLatestVote(data.SelectedHotspot.votes)} ago`

@@ -29,10 +29,10 @@ export const formatMilliToTimeElapsed = time => {
   let hrs = time % 24;
   time = Math.floor((time - mins) / 24);
 
-  if (time > 0) return `${time} days`;
-  else if (hrs) return `${hrs} hours`;
-  else if (mins) return `${mins} minutes`;
-  else return `${secs} seconds`;
+  if (time > 0) return `${time} day${time !== 1 ?`s` : ``}`;
+  else if (hrs) return `${hrs} hour${hrs !== 1 ?`s` : ``}`;
+  else if (mins) return `${mins} minute${mins !== 1 ?`s` : ``}`;
+  else return `${secs} second${secs !== 1 ?`s` : ``}`;
 
   //return hrs + ':' + mins + ':' + secs + '.' + ms;
 };
