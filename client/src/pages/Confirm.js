@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Confirm = () => {
-  let { id, report } = useParams();
+  let { hotspot, report } = useParams();
   const ratings = ['Quiet', 'Comfortable', 'Crowded'];
   const [userData, setUserData] = useState(false);
 
@@ -23,10 +23,10 @@ const Confirm = () => {
           <p className={styles.header__text}>Thank you{userData ? ` ${userData.firstname}` : ``}!</p>
           <div className={styles.confetti__bottom} />
         </div>
-        <Link to="/profile">
+        <Link to="/">
           <p className={styles.btn__home}>Back Home</p>
         </Link>
-        <p className={styles.details}>You voted that {id} is {ratings[parseInt(report) - 1].toLowerCase()}.</p>
+        <p className={styles.details}>You voted that {hotspot} is {ratings[parseInt(report) - 1].toLowerCase()}.</p>
       </div>
     </section>
   );

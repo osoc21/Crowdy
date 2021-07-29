@@ -78,6 +78,7 @@
   text-transform: capitalize;
   color: clrPurple;
   white-space: normal;
+  word-break: break-word;
 }
 
 .favourite__icon {

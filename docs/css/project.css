@@ -5,17 +5,16 @@
 /* ipad-ish image */
 
 .project-image {
-	padding: 1rem;
-	border: 1px solid rgba(0,0,0,0.3);
+	/* padding: 1rem; */
+	/* border: 1px solid rgba(0,0,0,0.3); */
 	border-radius: 5px;
 	width: 100%;
-	background-color: rgba(0,0,0,0.03);
 	margin: 3rem 0 2rem;
 }
 
 	@media only screen and (min-width: 64em) {
 		.project-image {
-			padding: 1.5rem;
+			/* padding: 1.5rem; */
 			margin: 0;
 		}
 	}
@@ -29,6 +28,20 @@
 
 /* team and partner section */
 
+.screenshots {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.screenshots img {
+  width: 48%;
+}
+
+.logo img {
+  padding: 1.5rem;
+}
 
 .project-section .team,
 .project-section .partners {
@@ -38,5 +51,14 @@
 ul.team li,
 ul.partners li {
 	padding: 1rem 0;
+	list-style: none;
+}
+
+ul.coaches {
+  margin: 2rem 0;
+}
+
+ul.coaches li {
+  padding: .5rem 0;
 	list-style: none;
 }
