@@ -15,6 +15,7 @@ export const USER_SIGNUP_API = gql`
         email
         user_ID
         avatar
+        createdAt
       }
       type
       message

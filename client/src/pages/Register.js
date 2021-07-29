@@ -42,7 +42,7 @@ const Register = () => {
 
   // When the user has registered
   if (data) {
-    localStorage.setItem('userdata', JSON.stringify(data.UserLogin));
+    localStorage.setItem('userdata', JSON.stringify(data.UserRegister.user));
     return <Redirect to="/profile" />
   }
 
