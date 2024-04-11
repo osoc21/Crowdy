@@ -11,7 +11,7 @@ We build a user-friendly web-app "crowdedness meter" to help students meet safel
 
 ## Authors
 
-- [Eben Ezeer Inganji] (https://www.linkedin.com/in/eben-ezeer-inganji-aa3665127/) (https://gitlab.com/ezer.in) (https://github.com/ezering)
+- [Eben Ezeer Inganji]
 - [Loeka Wyseure] (https://www.devine-creations.be/)
 - [Kaj De Muynck] (http://kajdemuynck.be/)
 - [Eléna Lefèbvre] (https://www.linkedin.com/in/el%C3%A9na-lef%C3%A8bvre-869625130/)
@@ -195,4 +195,3 @@ Start the server
 **Client:** React, React Router, React QR Reader, React Map GL
 
 **Server:** NestJS, Express, GraphQL, TypeORM
-
