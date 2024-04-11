@@ -11,7 +11,7 @@ We build a user-friendly web-app "crowdedness meter" to help students meet safel
 
 ## Authors
 
-- [Eben Ezeer Inganji]
+- [Eben Ezeer]
 - [Loeka Wyseure] (https://www.devine-creations.be/)
 - [Kaj De Muynck] (http://kajdemuynck.be/)
 - [Eléna Lefèbvre] (https://www.linkedin.com/in/el%C3%A9na-lef%C3%A8bvre-869625130/)
